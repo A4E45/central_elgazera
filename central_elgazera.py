@@ -185,7 +185,7 @@ class Main(QMainWindow, MainUI):
 
 	def accessories_bayment(self):
 		self.cur.execute("""
-				SELECT accessories.name, accessories.quantity, value, _date, accessories.order_id,employee.name  FROM accessories
+				SELECT accessories.name, accessories.quantity, value, accessories.order_id _date, accessories.order_id,employee.name  FROM accessories
 				INNER JOIN employee ON accessories.EmployeeID=employee.EmployeeID
 				ORDER BY _date
 			""")
@@ -207,8 +207,11 @@ class Main(QMainWindow, MainUI):
 		self.cur.execute(sql, [(accessories_name)])
 		data = self.cur.fetchall()
 		accessories_id = data[0][0]
-		value = quantity * data[0][2]
-		stored_accessories = data[0][3]- quantity
+		value = quantity * data[0][1]
+		stored_accessories = data[0][2]- quantity
+		print(value)
+		print(accessories_id)
+		print(stored_accessories)
 		date = self.load_date_time()
 		if stored_accessories < 0:
 			msg = QMessageBox()
@@ -223,7 +226,7 @@ class Main(QMainWindow, MainUI):
 				""",(accessories_name, value, quantity, date, emp_id))
 
 			self.cur.execute("""
-					UPDATE accessories_stored SET quantity=%s WHERE name=%s AND
+					UPDATE accessories_stored SET quantity=%s WHERE name=%s
 				""", (stored_accessories, accessories_name))
 			self.db.commit()
 			self.tableWidget_2.setRowCount(0)
