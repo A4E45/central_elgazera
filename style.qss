@@ -1111,7 +1111,7 @@ QTableView
 
 QTableView, QHeaderView
 {
-    border-radius: 0px;
+    border-radius: 2px;
 }
 
 QTableView::item:pressed, QListView::item:pressed, QTreeView::item:pressed  {

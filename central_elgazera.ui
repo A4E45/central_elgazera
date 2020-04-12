@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1076</width>
-    <height>763</height>
+    <width>1166</width>
+    <height>747</height>
    </rect>
   </property>
   <property name="sizeIncrement">
@@ -17,7 +17,14 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>سنترال الجزيرة</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="style.qrc">
+    <normaloff>:/dark_blue/img/central_elgazera.png</normaloff>:/dark_blue/img/central_elgazera.png</iconset>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
   </property>
   <property name="styleSheet">
    <string notr="true">/*
@@ -1281,6 +1288,13 @@ ColorButton::disabled {
     border-radius: 0px;
     border: 1px solid #AAAAAA;
 }
+QMessageBox {
+    background-color: rgb(51, 51, 51);
+}
+
+QMessageBox QLabel {
+    color: rgb(200, 200, 200);
+}
 </string>
   </property>
   <property name="locale">
@@ -1304,70 +1318,13 @@ ColorButton::disabled {
          </font>
         </property>
         <property name="currentIndex">
-         <number>7</number>
+         <number>5</number>
         </property>
         <widget class="QWidget" name="tab_9">
          <attribute name="title">
           <string>تسجيل دخول</string>
          </attribute>
          <layout class="QFormLayout" name="formLayout">
-          <item row="6" column="1">
-           <widget class="QLineEdit" name="lineEdit_7">
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="placeholderText">
-             <string>اسم المستخدم</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
-           <widget class="QPushButton" name="pushButton_30">
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <widget class="QLineEdit" name="lineEdit_8">
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="echoMode">
-             <enum>QLineEdit::Password</enum>
-            </property>
-            <property name="placeholderText">
-             <string>كلمة السر</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="1">
-           <widget class="QPushButton" name="pushButton_31">
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>تسجيل دخول</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="1">
            <spacer name="verticalSpacer">
             <property name="orientation">
@@ -1433,6 +1390,129 @@ ColorButton::disabled {
             </property>
            </spacer>
           </item>
+          <item row="6" column="1">
+           <widget class="QLineEdit" name="lineEdit_7">
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="placeholderText">
+             <string>اسم المستخدم</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QLineEdit" name="lineEdit_8">
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
+            </property>
+            <property name="placeholderText">
+             <string>كلمة السر</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QPushButton" name="pushButton_31">
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>تسجيل دخول</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <spacer name="verticalSpacer_9">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="10" column="1">
+           <spacer name="verticalSpacer_10">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="11" column="1">
+           <spacer name="verticalSpacer_11">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="12" column="1">
+           <spacer name="verticalSpacer_12">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="13" column="1">
+           <spacer name="verticalSpacer_13">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="14" column="1">
+           <spacer name="verticalSpacer_14">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item row="5" column="1">
            <spacer name="verticalSpacer_6">
             <property name="orientation">
@@ -1445,6 +1525,28 @@ ColorButton::disabled {
              </size>
             </property>
            </spacer>
+          </item>
+          <item row="7" column="0">
+           <widget class="QPushButton" name="pushButton_30">
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="style.qrc">
+              <normaloff>:/dark_blue/img/showpassword.png</normaloff>:/dark_blue/img/showpassword.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>32</width>
+              <height>32</height>
+             </size>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -1494,25 +1596,24 @@ ColorButton::disabled {
                </widget>
               </item>
               <item>
+               <widget class="QComboBox" name="comboBox_14">
+                <property name="font">
+                 <font>
+                  <pointsize>15</pointsize>
+                 </font>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QComboBox" name="comboBox">
                 <property name="font">
                  <font>
-                  <pointsize>16</pointsize>
+                  <pointsize>15</pointsize>
                  </font>
                 </property>
                 <property name="layoutDirection">
                  <enum>Qt::RightToLeft</enum>
                 </property>
-                <item>
-                 <property name="text">
-                  <string>-------------</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>فوري</string>
-                 </property>
-                </item>
                </widget>
               </item>
               <item>
@@ -1572,12 +1673,27 @@ ColorButton::disabled {
               </column>
               <column>
                <property name="text">
-                <string>الماكينة</string>
+                <string>التاريخ</string>
                </property>
               </column>
               <column>
                <property name="text">
-                <string>التاريخ</string>
+                <string>رقم العملية</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>نوع العملية</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>اسم الماكينة</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>اسم الموظف</string>
                </property>
               </column>
              </widget>
@@ -1637,6 +1753,9 @@ ColorButton::disabled {
                <property name="layoutDirection">
                 <enum>Qt::RightToLeft</enum>
                </property>
+               <property name="locale">
+                <locale language="English" country="UnitedStates"/>
+               </property>
                <property name="minimum">
                 <number>1</number>
                </property>
@@ -1653,11 +1772,6 @@ ColorButton::disabled {
                <property name="layoutDirection">
                 <enum>Qt::RightToLeft</enum>
                </property>
-               <item>
-                <property name="text">
-                 <string>---------------------------</string>
-                </property>
-               </item>
               </widget>
              </widget>
             </item>
@@ -1689,6 +1803,16 @@ ColorButton::disabled {
               <column>
                <property name="text">
                 <string>التاريخ</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>رقم الطلب</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>اسم الموظف</string>
                </property>
               </column>
              </widget>
@@ -1748,6 +1872,9 @@ ColorButton::disabled {
                <property name="layoutDirection">
                 <enum>Qt::RightToLeft</enum>
                </property>
+               <property name="locale">
+                <locale language="English" country="UnitedStates"/>
+               </property>
                <property name="minimum">
                 <number>1</number>
                </property>
@@ -1764,18 +1891,13 @@ ColorButton::disabled {
                <property name="layoutDirection">
                 <enum>Qt::RightToLeft</enum>
                </property>
-               <item>
-                <property name="text">
-                 <string>---------------------</string>
-                </property>
-               </item>
               </widget>
              </widget>
             </item>
             <item>
              <widget class="QTableWidget" name="tableWidget_3">
               <property name="enabled">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <property name="font">
                <font>
@@ -1798,17 +1920,27 @@ ColorButton::disabled {
               </column>
               <column>
                <property name="text">
-                <string>العدد</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
                 <string>القيمة</string>
                </property>
               </column>
               <column>
                <property name="text">
+                <string>العدد</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
                 <string>التاريخ</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>رقم الطلب</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>اسم الموظف</string>
                </property>
               </column>
              </widget>
@@ -2000,6 +2132,18 @@ ColorButton::disabled {
                      </property>
                     </widget>
                    </item>
+                   <item>
+                    <widget class="QLineEdit" name="lineEdit_9">
+                     <property name="font">
+                      <font>
+                       <pointsize>15</pointsize>
+                      </font>
+                     </property>
+                     <property name="placeholderText">
+                      <string>رقم العميل</string>
+                     </property>
+                    </widget>
+                   </item>
                   </layout>
                  </item>
                 </layout>
@@ -2016,9 +2160,6 @@ ColorButton::disabled {
                  <string>اصناف اخرى</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_10">
-                 <property name="topMargin">
-                  <number>20</number>
-                 </property>
                  <item>
                   <layout class="QVBoxLayout" name="verticalLayout_5">
                    <item>
@@ -2032,6 +2173,18 @@ ColorButton::disabled {
                        </property>
                        <property name="text">
                         <string>معلومات</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="pushButton_49">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>حذف</string>
                        </property>
                       </widget>
                      </item>
@@ -2109,6 +2262,16 @@ ColorButton::disabled {
                      <column>
                       <property name="text">
                        <string>التاريخ</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>رقم الطلب</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>اسم الموظف</string>
                       </property>
                      </column>
                     </widget>
@@ -2214,6 +2377,11 @@ ColorButton::disabled {
                 <string>التاريخ</string>
                </property>
               </column>
+              <column>
+               <property name="text">
+                <string>اسم الموظف</string>
+               </property>
+              </column>
              </widget>
             </item>
            </layout>
@@ -2242,6 +2410,37 @@ ColorButton::disabled {
                </widget>
               </item>
               <item>
+               <widget class="QDateEdit" name="dateEdit_5">
+                <property name="font">
+                 <font>
+                  <pointsize>15</pointsize>
+                 </font>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::RightToLeft</enum>
+                </property>
+                <property name="date">
+                 <date>
+                  <year>2020</year>
+                  <month>1</month>
+                  <day>1</day>
+                 </date>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_5">
+                <property name="font">
+                 <font>
+                  <pointsize>15</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>الى</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QDateEdit" name="dateEdit_4">
                 <property name="font">
                  <font>
@@ -2257,6 +2456,18 @@ ColorButton::disabled {
                   <month>1</month>
                   <day>1</day>
                  </date>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_4">
+                <property name="font">
+                 <font>
+                  <pointsize>15</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>من</string>
                 </property>
                </widget>
               </item>
@@ -2301,6 +2512,11 @@ ColorButton::disabled {
             </item>
             <item>
              <widget class="QTableWidget" name="tableWidget_8">
+              <property name="font">
+               <font>
+                <pointsize>15</pointsize>
+               </font>
+              </property>
               <property name="layoutDirection">
                <enum>Qt::RightToLeft</enum>
               </property>
@@ -2321,7 +2537,17 @@ ColorButton::disabled {
               </column>
               <column>
                <property name="text">
+                <string>نوع العملية</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
                 <string>التاريخ</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>اسم الموظف</string>
                </property>
               </column>
              </widget>
@@ -2343,7 +2569,7 @@ ColorButton::disabled {
              </font>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>7</number>
             </property>
             <widget class="QWidget" name="tab_11">
              <attribute name="title">
@@ -2550,9 +2776,9 @@ ColorButton::disabled {
              <attribute name="title">
               <string>اضافة منتجات جديدة</string>
              </attribute>
-             <layout class="QVBoxLayout" name="verticalLayout_29">
+             <layout class="QVBoxLayout" name="verticalLayout_53">
               <item>
-               <layout class="QVBoxLayout" name="verticalLayout_28">
+               <layout class="QVBoxLayout" name="verticalLayout_29">
                 <item>
                  <widget class="QGroupBox" name="groupBox_8">
                   <property name="font">
@@ -2563,12 +2789,9 @@ ColorButton::disabled {
                   <property name="title">
                    <string>سجاير</string>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_24">
-                   <property name="topMargin">
-                    <number>25</number>
-                   </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_27">
                    <item>
-                    <layout class="QHBoxLayout" name="horizontalLayout_17">
+                    <layout class="QHBoxLayout" name="horizontalLayout_7">
                      <item>
                       <widget class="QPushButton" name="pushButton_37">
                        <property name="font">
@@ -2578,6 +2801,21 @@ ColorButton::disabled {
                        </property>
                        <property name="text">
                         <string>اضافة</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="lineEdit_34">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <property name="layoutDirection">
+                        <enum>Qt::RightToLeft</enum>
+                       </property>
+                       <property name="placeholderText">
+                        <string>الكمية</string>
                        </property>
                       </widget>
                      </item>
@@ -2665,6 +2903,54 @@ ColorButton::disabled {
                  </widget>
                 </item>
                 <item>
+                 <widget class="QGroupBox" name="groupBox_13">
+                  <property name="font">
+                   <font>
+                    <pointsize>15</pointsize>
+                   </font>
+                  </property>
+                  <property name="title">
+                   <string>خدمات</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_28">
+                   <property name="topMargin">
+                    <number>25</number>
+                   </property>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_23">
+                     <item>
+                      <widget class="QPushButton" name="pushButton_50">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>اضافة</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="lineEdit_20">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <property name="layoutDirection">
+                        <enum>Qt::RightToLeft</enum>
+                       </property>
+                       <property name="placeholderText">
+                        <string>اسم الخدمة</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QGroupBox" name="groupBox_10">
                   <property name="font">
                    <font>
@@ -2674,12 +2960,9 @@ ColorButton::disabled {
                   <property name="title">
                    <string>اكسسوارات</string>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_26">
-                   <property name="topMargin">
-                    <number>25</number>
-                   </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_24">
                    <item>
-                    <layout class="QHBoxLayout" name="horizontalLayout_19">
+                    <layout class="QHBoxLayout" name="horizontalLayout_10">
                      <item>
                       <widget class="QPushButton" name="pushButton_39">
                        <property name="font">
@@ -2689,6 +2972,21 @@ ColorButton::disabled {
                        </property>
                        <property name="text">
                         <string>اضافة</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="lineEdit_35">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <property name="layoutDirection">
+                        <enum>Qt::RightToLeft</enum>
+                       </property>
+                       <property name="placeholderText">
+                        <string>الكمية</string>
                        </property>
                       </widget>
                      </item>
@@ -2737,12 +3035,9 @@ ColorButton::disabled {
                   <property name="title">
                    <string>منتجات اخرى</string>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_27">
-                   <property name="topMargin">
-                    <number>25</number>
-                   </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_26">
                    <item>
-                    <layout class="QHBoxLayout" name="horizontalLayout_20">
+                    <layout class="QHBoxLayout" name="horizontalLayout_13">
                      <item>
                       <widget class="QPushButton" name="pushButton_40">
                        <property name="font">
@@ -2752,6 +3047,21 @@ ColorButton::disabled {
                        </property>
                        <property name="text">
                         <string>اضافة</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="lineEdit_36">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <property name="layoutDirection">
+                        <enum>Qt::RightToLeft</enum>
+                       </property>
+                       <property name="placeholderText">
+                        <string>الكمية</string>
                        </property>
                       </widget>
                      </item>
@@ -2798,69 +3108,57 @@ ColorButton::disabled {
              <attribute name="title">
               <string>تعديل منتجات</string>
              </attribute>
-             <layout class="QVBoxLayout" name="verticalLayout_54">
+             <layout class="QVBoxLayout" name="verticalLayout_19">
               <item>
-               <layout class="QVBoxLayout" name="verticalLayout_53">
+               <layout class="QVBoxLayout" name="verticalLayout_18">
                 <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_22">
-                  <item>
-                   <widget class="QPushButton" name="pushButton_46">
-                    <property name="font">
-                     <font>
-                      <pointsize>15</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>بحث</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QComboBox" name="comboBox_13">
-                    <property name="font">
-                     <font>
-                      <pointsize>15</pointsize>
-                     </font>
-                    </property>
-                    <property name="layoutDirection">
-                     <enum>Qt::RightToLeft</enum>
-                    </property>
+                 <widget class="QSplitter" name="splitter_7">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <widget class="QWidget" name="layoutWidget">
+                   <layout class="QHBoxLayout" name="horizontalLayout_17">
                     <item>
-                     <property name="text">
-                      <string>اسم المنتج</string>
-                     </property>
+                     <spacer name="horizontalSpacer">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
                     </item>
                     <item>
-                     <property name="text">
-                      <string>السعر</string>
-                     </property>
+                     <widget class="QPushButton" name="pushButton_46">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>تم</string>
+                      </property>
+                     </widget>
                     </item>
-                    <item>
-                     <property name="text">
-                      <string>الكود</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="lineEdit_20">
-                    <property name="font">
-                     <font>
-                      <pointsize>15</pointsize>
-                     </font>
-                    </property>
-                    <property name="placeholderText">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
+                   </layout>
+                  </widget>
+                  <widget class="QComboBox" name="comboBox_15">
+                   <property name="font">
+                    <font>
+                     <pointsize>15</pointsize>
+                    </font>
+                   </property>
+                  </widget>
+                 </widget>
                 </item>
                 <item>
-                 <widget class="QTableWidget" name="tableWidget_9">
+                 <widget class="QTableWidget" name="tableWidget_6">
                   <property name="font">
                    <font>
-                    <pointsize>20</pointsize>
+                    <pointsize>15</pointsize>
                    </font>
                   </property>
                   <property name="layoutDirection">
@@ -2873,27 +3171,46 @@ ColorButton::disabled {
                   </column>
                   <column>
                    <property name="text">
-                    <string>السعر</string>
+                    <string>سعر المنتج</string>
                    </property>
                   </column>
                   <column>
                    <property name="text">
-                    <string>العدد</string>
+                    <string>المخرون</string>
                    </property>
                   </column>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_47">
-                  <property name="font">
-                   <font>
-                    <pointsize>20</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>حفظ</string>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_20">
+                  <item>
+                   <widget class="QPushButton" name="pushButton_48">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true"/>
+                    </property>
+                    <property name="text">
+                     <string>حذف</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_47">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>تعديل</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </item>
@@ -2906,188 +3223,6 @@ ColorButton::disabled {
              <layout class="QVBoxLayout" name="verticalLayout_30">
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_21">
-                <item>
-                 <widget class="QGroupBox" name="groupBox_13">
-                  <property name="font">
-                   <font>
-                    <pointsize>15</pointsize>
-                   </font>
-                  </property>
-                  <property name="title">
-                   <string>تعديل بينات موظف</string>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_34">
-                   <property name="topMargin">
-                    <number>20</number>
-                   </property>
-                   <item>
-                    <widget class="QSplitter" name="splitter_7">
-                     <property name="orientation">
-                      <enum>Qt::Vertical</enum>
-                     </property>
-                     <widget class="QGroupBox" name="groupBox_15">
-                      <property name="font">
-                       <font>
-                        <pointsize>15</pointsize>
-                       </font>
-                      </property>
-                      <property name="title">
-                       <string/>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_33">
-                       <item>
-                        <widget class="QSplitter" name="splitter_5">
-                         <property name="orientation">
-                          <enum>Qt::Vertical</enum>
-                         </property>
-                         <widget class="QLineEdit" name="lineEdit_28">
-                          <property name="font">
-                           <font>
-                            <pointsize>15</pointsize>
-                           </font>
-                          </property>
-                          <property name="layoutDirection">
-                           <enum>Qt::RightToLeft</enum>
-                          </property>
-                          <property name="placeholderText">
-                           <string>اسم المستخدم</string>
-                          </property>
-                         </widget>
-                         <widget class="QLineEdit" name="lineEdit_27">
-                          <property name="font">
-                           <font>
-                            <pointsize>15</pointsize>
-                           </font>
-                          </property>
-                          <property name="layoutDirection">
-                           <enum>Qt::RightToLeft</enum>
-                          </property>
-                          <property name="echoMode">
-                           <enum>QLineEdit::Password</enum>
-                          </property>
-                          <property name="placeholderText">
-                           <string>كلمة السر</string>
-                          </property>
-                         </widget>
-                         <widget class="QPushButton" name="pushButton_42">
-                          <property name="font">
-                           <font>
-                            <pointsize>15</pointsize>
-                           </font>
-                          </property>
-                          <property name="text">
-                           <string>تأكيد</string>
-                          </property>
-                         </widget>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                     <widget class="QGroupBox" name="groupBox_14">
-                      <property name="font">
-                       <font>
-                        <pointsize>15</pointsize>
-                       </font>
-                      </property>
-                      <property name="title">
-                       <string/>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_32">
-                       <item>
-                        <widget class="QSplitter" name="splitter_6">
-                         <property name="orientation">
-                          <enum>Qt::Vertical</enum>
-                         </property>
-                         <widget class="QLineEdit" name="lineEdit_32">
-                          <property name="font">
-                           <font>
-                            <pointsize>15</pointsize>
-                           </font>
-                          </property>
-                          <property name="layoutDirection">
-                           <enum>Qt::RightToLeft</enum>
-                          </property>
-                          <property name="placeholderText">
-                           <string>البريد الالكتروني</string>
-                          </property>
-                         </widget>
-                         <widget class="QLineEdit" name="lineEdit_29">
-                          <property name="font">
-                           <font>
-                            <pointsize>15</pointsize>
-                           </font>
-                          </property>
-                          <property name="layoutDirection">
-                           <enum>Qt::RightToLeft</enum>
-                          </property>
-                          <property name="placeholderText">
-                           <string>رقم الموبايل</string>
-                          </property>
-                         </widget>
-                         <widget class="QLineEdit" name="lineEdit_31">
-                          <property name="font">
-                           <font>
-                            <pointsize>15</pointsize>
-                           </font>
-                          </property>
-                          <property name="layoutDirection">
-                           <enum>Qt::RightToLeft</enum>
-                          </property>
-                          <property name="placeholderText">
-                           <string>العنوان</string>
-                          </property>
-                         </widget>
-                         <widget class="QLineEdit" name="lineEdit_30">
-                          <property name="font">
-                           <font>
-                            <pointsize>15</pointsize>
-                           </font>
-                          </property>
-                          <property name="layoutDirection">
-                           <enum>Qt::RightToLeft</enum>
-                          </property>
-                          <property name="echoMode">
-                           <enum>QLineEdit::Password</enum>
-                          </property>
-                          <property name="placeholderText">
-                           <string>كلمة السر</string>
-                          </property>
-                         </widget>
-                         <widget class="QLineEdit" name="lineEdit_33">
-                          <property name="font">
-                           <font>
-                            <pointsize>15</pointsize>
-                           </font>
-                          </property>
-                          <property name="layoutDirection">
-                           <enum>Qt::RightToLeft</enum>
-                          </property>
-                          <property name="echoMode">
-                           <enum>QLineEdit::Password</enum>
-                          </property>
-                          <property name="placeholderText">
-                           <string>تأكيد كلمة السر</string>
-                          </property>
-                         </widget>
-                         <widget class="QPushButton" name="pushButton_43">
-                          <property name="font">
-                           <font>
-                            <pointsize>15</pointsize>
-                           </font>
-                          </property>
-                          <property name="text">
-                           <string>حفظ</string>
-                          </property>
-                         </widget>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
                 <item>
                  <widget class="QGroupBox" name="groupBox_12">
                   <property name="font">
@@ -3220,118 +3355,534 @@ ColorButton::disabled {
               </item>
              </layout>
             </widget>
+            <widget class="QWidget" name="tab_16">
+             <attribute name="title">
+              <string>بيانات موظف</string>
+             </attribute>
+             <layout class="QVBoxLayout" name="verticalLayout_34">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_33">
+                <item>
+                 <widget class="QSplitter" name="splitter_6">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <widget class="QPushButton" name="pushButton_24">
+                   <property name="font">
+                    <font>
+                     <pointsize>15</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>تم</string>
+                   </property>
+                  </widget>
+                  <widget class="QComboBox" name="comboBox_13">
+                   <property name="font">
+                    <font>
+                     <pointsize>15</pointsize>
+                    </font>
+                   </property>
+                  </widget>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="groupBox_5">
+                  <property name="title">
+                   <string/>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_32">
+                   <item>
+                    <widget class="QSplitter" name="splitter_5">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <widget class="QLineEdit" name="lineEdit_30">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
+                      <property name="placeholderText">
+                       <string>اسم الموظف</string>
+                      </property>
+                     </widget>
+                     <widget class="QLineEdit" name="lineEdit_27">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
+                      <property name="placeholderText">
+                       <string>اسم المستخدم</string>
+                      </property>
+                     </widget>
+                     <widget class="QLineEdit" name="lineEdit_29">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
+                      <property name="placeholderText">
+                       <string>البريد الالكتروني</string>
+                      </property>
+                     </widget>
+                     <widget class="QLineEdit" name="lineEdit_28">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
+                      <property name="placeholderText">
+                       <string>الرقم القومي</string>
+                      </property>
+                     </widget>
+                     <widget class="QLineEdit" name="lineEdit_32">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
+                      <property name="placeholderText">
+                       <string>رقم الموبايل</string>
+                      </property>
+                     </widget>
+                     <widget class="QLineEdit" name="lineEdit_33">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
+                      <property name="placeholderText">
+                       <string>العنوان</string>
+                      </property>
+                     </widget>
+                     <widget class="QLineEdit" name="lineEdit_31">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
+                      <property name="echoMode">
+                       <enum>QLineEdit::Password</enum>
+                      </property>
+                      <property name="placeholderText">
+                       <string>كلمة السر</string>
+                      </property>
+                     </widget>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_19">
+                  <item>
+                   <widget class="QPushButton" name="pushButton_42">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>حذف</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_43">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>حفظ</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
             <widget class="QWidget" name="tab_8">
              <attribute name="title">
               <string>تقارير</string>
              </attribute>
              <layout class="QVBoxLayout" name="verticalLayout_17">
               <item>
-               <layout class="QVBoxLayout" name="verticalLayout_16">
-                <item>
-                 <widget class="QSplitter" name="splitter_10">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <widget class="QPushButton" name="pushButton_23">
-                   <property name="font">
-                    <font>
-                     <pointsize>15</pointsize>
-                    </font>
-                   </property>
-                   <property name="layoutDirection">
-                    <enum>Qt::RightToLeft</enum>
-                   </property>
-                   <property name="text">
-                    <string>بحث</string>
-                   </property>
-                  </widget>
-                  <widget class="QDateEdit" name="dateEdit">
-                   <property name="font">
-                    <font>
-                     <pointsize>15</pointsize>
-                    </font>
-                   </property>
-                   <property name="date">
-                    <date>
-                     <year>2020</year>
-                     <month>1</month>
-                     <day>1</day>
-                    </date>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="label_2">
-                   <property name="font">
-                    <font>
-                     <pointsize>15</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>الى</string>
-                   </property>
-                  </widget>
-                  <widget class="QDateEdit" name="dateEdit_2">
-                   <property name="font">
-                    <font>
-                     <pointsize>15</pointsize>
-                    </font>
-                   </property>
-                   <property name="date">
-                    <date>
-                     <year>2020</year>
-                     <month>1</month>
-                     <day>1</day>
-                    </date>
-                   </property>
-                  </widget>
-                  <widget class="QLabel" name="label">
-                   <property name="font">
-                    <font>
-                     <pointsize>15</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>من</string>
-                   </property>
-                  </widget>
-                  <widget class="QComboBox" name="comboBox_14">
-                   <property name="font">
-                    <font>
-                     <pointsize>15</pointsize>
-                    </font>
-                   </property>
-                   <property name="layoutDirection">
-                    <enum>Qt::RightToLeft</enum>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>الكل</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QTableWidget" name="tableWidget_6">
-                  <property name="font">
-                   <font>
-                    <pointsize>15</pointsize>
-                   </font>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="pushButton_27">
-                  <property name="font">
-                   <font>
-                    <pointsize>15</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>تصدير</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               <widget class="QTabWidget" name="tabWidget_3">
+                <property name="font">
+                 <font>
+                  <pointsize>13</pointsize>
+                 </font>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="currentIndex">
+                 <number>1</number>
+                </property>
+                <widget class="QWidget" name="tab_17">
+                 <attribute name="title">
+                  <string>مخصص</string>
+                 </attribute>
+                 <layout class="QVBoxLayout" name="verticalLayout_54">
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_16">
+                    <item>
+                     <widget class="QSplitter" name="splitter_10">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <widget class="QPushButton" name="pushButton_23">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <property name="layoutDirection">
+                        <enum>Qt::RightToLeft</enum>
+                       </property>
+                       <property name="text">
+                        <string>بحث</string>
+                       </property>
+                      </widget>
+                      <widget class="QDateEdit" name="dateEdit">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <property name="date">
+                        <date>
+                         <year>2020</year>
+                         <month>1</month>
+                         <day>1</day>
+                        </date>
+                       </property>
+                      </widget>
+                      <widget class="QLabel" name="label_2">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>الى</string>
+                       </property>
+                      </widget>
+                      <widget class="QDateEdit" name="dateEdit_2">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <property name="date">
+                        <date>
+                         <year>2020</year>
+                         <month>1</month>
+                         <day>1</day>
+                        </date>
+                       </property>
+                      </widget>
+                      <widget class="QLabel" name="label">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>من</string>
+                       </property>
+                      </widget>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QTableWidget" name="tableWidget_7">
+                      <property name="enabled">
+                       <bool>true</bool>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
+                      <column>
+                       <property name="text">
+                        <string>اسم المنتج</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>سعر المنتج</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>المباع</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>قيمة المباع</string>
+                       </property>
+                      </column>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_22">
+                      <item>
+                       <spacer name="horizontalSpacer_3">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_9">
+                        <property name="font">
+                         <font>
+                          <pointsize>15</pointsize>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>0</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_6">
+                        <property name="font">
+                         <font>
+                          <pointsize>15</pointsize>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>اجمالى قيمة المباع:</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_27">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>تصدير</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="tab_18">
+                 <attribute name="title">
+                  <string>الكل</string>
+                 </attribute>
+                 <layout class="QVBoxLayout" name="verticalLayout_56">
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_55">
+                    <item>
+                     <widget class="QPushButton" name="pushButton_52">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
+                      <property name="text">
+                       <string>تم</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QTableWidget" name="tableWidget_10">
+                      <property name="enabled">
+                       <bool>true</bool>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
+                      <column>
+                       <property name="text">
+                        <string>اسم المنتج</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>سعر المنتج</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>المخزون</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>قيمة المخزون</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>المباع</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>قيمة المباع</string>
+                       </property>
+                      </column>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_26">
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_24">
+                        <item>
+                         <spacer name="horizontalSpacer_6">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>40</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_18">
+                          <property name="font">
+                           <font>
+                            <pointsize>15</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>0</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_19">
+                          <property name="font">
+                           <font>
+                            <pointsize>15</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>اجمالى قيمة المخوزن:</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_25">
+                        <item>
+                         <spacer name="horizontalSpacer_2">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>40</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_20">
+                          <property name="font">
+                           <font>
+                            <pointsize>15</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>0</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_21">
+                          <property name="font">
+                           <font>
+                            <pointsize>15</pointsize>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>اجمالى قيمة المباع:</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_53">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>تصدير</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -3518,9 +4069,9 @@ ColorButton::disabled {
                  <property name="title">
                   <string/>
                  </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_49">
+                 <layout class="QVBoxLayout" name="verticalLayout_58">
                   <item>
-                   <layout class="QVBoxLayout" name="verticalLayout_43">
+                   <layout class="QVBoxLayout" name="verticalLayout_57">
                     <item>
                      <layout class="QHBoxLayout" name="horizontalLayout_14">
                       <item>
@@ -3593,6 +4144,21 @@ ColorButton::disabled {
                              </property>
                              <property name="text">
                               <string>اضافة اضافة موظف</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QCheckBox" name="checkBox_55">
+                             <property name="font">
+                              <font>
+                               <pointsize>13</pointsize>
+                              </font>
+                             </property>
+                             <property name="layoutDirection">
+                              <enum>Qt::RightToLeft</enum>
+                             </property>
+                             <property name="text">
+                              <string>بيانات موظف</string>
                              </property>
                             </widget>
                            </item>
@@ -3692,8 +4258,56 @@ ColorButton::disabled {
                              </property>
                             </widget>
                            </item>
+                          </layout>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QGroupBox" name="groupBox_24">
+                        <property name="font">
+                         <font>
+                          <pointsize>15</pointsize>
+                         </font>
+                        </property>
+                        <property name="title">
+                         <string>اخرى</string>
+                        </property>
+                        <layout class="QVBoxLayout" name="verticalLayout_46">
+                         <item>
+                          <layout class="QVBoxLayout" name="verticalLayout_49">
                            <item>
-                            <widget class="QCheckBox" name="checkBox_15">
+                            <widget class="QCheckBox" name="checkBox_23">
+                             <property name="font">
+                              <font>
+                               <pointsize>13</pointsize>
+                              </font>
+                             </property>
+                             <property name="layoutDirection">
+                              <enum>Qt::RightToLeft</enum>
+                             </property>
+                             <property name="text">
+                              <string>اضافة </string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QCheckBox" name="checkBox_30">
+                             <property name="font">
+                              <font>
+                               <pointsize>13</pointsize>
+                              </font>
+                             </property>
+                             <property name="layoutDirection">
+                              <enum>Qt::RightToLeft</enum>
+                             </property>
+                             <property name="text">
+                              <string>حذف </string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QCheckBox" name="checkBox_31">
                              <property name="font">
                               <font>
                                <pointsize>13</pointsize>
@@ -3722,10 +4336,7 @@ ColorButton::disabled {
                         <property name="title">
                          <string>سجاير</string>
                         </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_46">
-                         <property name="topMargin">
-                          <number>20</number>
-                         </property>
+                        <layout class="QVBoxLayout" name="verticalLayout_43">
                          <item>
                           <layout class="QVBoxLayout" name="verticalLayout_37">
                            <item>
@@ -3740,6 +4351,21 @@ ColorButton::disabled {
                              </property>
                              <property name="text">
                               <string>اضافة </string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QCheckBox" name="checkBox_22">
+                             <property name="font">
+                              <font>
+                               <pointsize>13</pointsize>
+                              </font>
+                             </property>
+                             <property name="layoutDirection">
+                              <enum>Qt::RightToLeft</enum>
+                             </property>
+                             <property name="text">
+                              <string>حذف </string>
                              </property>
                             </widget>
                            </item>
@@ -4005,36 +4631,6 @@ ColorButton::disabled {
                             </widget>
                            </item>
                            <item>
-                            <widget class="QCheckBox" name="checkBox_22">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>تقارير</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_23">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>التحركات اليومية</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
                             <widget class="QCheckBox" name="checkBox_24">
                              <property name="font">
                               <font>
@@ -4203,13 +4799,174 @@ ColorButton::disabled {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1076</width>
+     <width>1166</width>
      <height>21</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit_7</tabstop>
+  <tabstop>pushButton_30</tabstop>
+  <tabstop>pushButton_31</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>lineEdit_2</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>comboBox_14</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_5</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>comboBox_2</tabstop>
+  <tabstop>spinBox</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>pushButton_4</tabstop>
+  <tabstop>pushButton_13</tabstop>
+  <tabstop>tableWidget_2</tabstop>
+  <tabstop>comboBox_3</tabstop>
+  <tabstop>spinBox_2</tabstop>
+  <tabstop>pushButton_10</tabstop>
+  <tabstop>pushButton_34</tabstop>
+  <tabstop>pushButton_9</tabstop>
+  <tabstop>tableWidget_3</tabstop>
+  <tabstop>comboBox_4</tabstop>
+  <tabstop>comboBox_5</tabstop>
+  <tabstop>spinBox_3</tabstop>
+  <tabstop>pushButton_14</tabstop>
+  <tabstop>pushButton_15</tabstop>
+  <tabstop>lineEdit_9</tabstop>
+  <tabstop>lineEdit_3</tabstop>
+  <tabstop>comboBox_9</tabstop>
+  <tabstop>pushButton_18</tabstop>
+  <tabstop>pushButton_17</tabstop>
+  <tabstop>comboBox_6</tabstop>
+  <tabstop>spinBox_4</tabstop>
+  <tabstop>pushButton_22</tabstop>
+  <tabstop>pushButton_49</tabstop>
+  <tabstop>pushButton_21</tabstop>
+  <tabstop>tableWidget_5</tabstop>
+  <tabstop>lineEdit_4</tabstop>
+  <tabstop>lineEdit_5</tabstop>
+  <tabstop>pushButton_19</tabstop>
+  <tabstop>pushButton_20</tabstop>
+  <tabstop>tableWidget_4</tabstop>
+  <tabstop>lineEdit_6</tabstop>
+  <tabstop>comboBox_7</tabstop>
+  <tabstop>dateEdit_4</tabstop>
+  <tabstop>dateEdit_5</tabstop>
+  <tabstop>pushButton_29</tabstop>
+  <tabstop>tableWidget_8</tabstop>
+  <tabstop>comboBox_8</tabstop>
+  <tabstop>spinBox_5</tabstop>
+  <tabstop>pushButton_33</tabstop>
+  <tabstop>comboBox_10</tabstop>
+  <tabstop>spinBox_6</tabstop>
+  <tabstop>pushButton_35</tabstop>
+  <tabstop>comboBox_11</tabstop>
+  <tabstop>spinBox_7</tabstop>
+  <tabstop>pushButton_36</tabstop>
+  <tabstop>lineEdit_10</tabstop>
+  <tabstop>lineEdit_11</tabstop>
+  <tabstop>lineEdit_34</tabstop>
+  <tabstop>pushButton_37</tabstop>
+  <tabstop>lineEdit_12</tabstop>
+  <tabstop>pushButton_38</tabstop>
+  <tabstop>lineEdit_20</tabstop>
+  <tabstop>pushButton_50</tabstop>
+  <tabstop>lineEdit_14</tabstop>
+  <tabstop>lineEdit_13</tabstop>
+  <tabstop>lineEdit_35</tabstop>
+  <tabstop>pushButton_39</tabstop>
+  <tabstop>lineEdit_16</tabstop>
+  <tabstop>lineEdit_15</tabstop>
+  <tabstop>lineEdit_36</tabstop>
+  <tabstop>pushButton_40</tabstop>
+  <tabstop>comboBox_15</tabstop>
+  <tabstop>pushButton_46</tabstop>
+  <tabstop>tableWidget_6</tabstop>
+  <tabstop>pushButton_47</tabstop>
+  <tabstop>pushButton_48</tabstop>
+  <tabstop>lineEdit_17</tabstop>
+  <tabstop>lineEdit_26</tabstop>
+  <tabstop>lineEdit_25</tabstop>
+  <tabstop>lineEdit_18</tabstop>
+  <tabstop>lineEdit_19</tabstop>
+  <tabstop>lineEdit_23</tabstop>
+  <tabstop>lineEdit_24</tabstop>
+  <tabstop>pushButton_41</tabstop>
+  <tabstop>comboBox_13</tabstop>
+  <tabstop>pushButton_24</tabstop>
+  <tabstop>lineEdit_30</tabstop>
+  <tabstop>lineEdit_27</tabstop>
+  <tabstop>lineEdit_29</tabstop>
+  <tabstop>lineEdit_28</tabstop>
+  <tabstop>lineEdit_32</tabstop>
+  <tabstop>lineEdit_33</tabstop>
+  <tabstop>lineEdit_31</tabstop>
+  <tabstop>pushButton_43</tabstop>
+  <tabstop>pushButton_42</tabstop>
+  <tabstop>dateEdit_2</tabstop>
+  <tabstop>dateEdit</tabstop>
+  <tabstop>pushButton_23</tabstop>
+  <tabstop>tableWidget_7</tabstop>
+  <tabstop>pushButton_27</tabstop>
+  <tabstop>pushButton_52</tabstop>
+  <tabstop>tableWidget_10</tabstop>
+  <tabstop>pushButton_53</tabstop>
+  <tabstop>comboBox_21</tabstop>
+  <tabstop>dateEdit_7</tabstop>
+  <tabstop>dateEdit_6</tabstop>
+  <tabstop>textBrowser</tabstop>
+  <tabstop>pushButton_26</tabstop>
+  <tabstop>comboBox_12</tabstop>
+  <tabstop>pushButton_44</tabstop>
+  <tabstop>checkBox_16</tabstop>
+  <tabstop>checkBox_17</tabstop>
+  <tabstop>checkBox_18</tabstop>
+  <tabstop>checkBox_19</tabstop>
+  <tabstop>checkBox_20</tabstop>
+  <tabstop>checkBox_21</tabstop>
+  <tabstop>checkBox_24</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>checkBox_2</tabstop>
+  <tabstop>checkBox_3</tabstop>
+  <tabstop>checkBox_8</tabstop>
+  <tabstop>checkBox_9</tabstop>
+  <tabstop>checkBox_10</tabstop>
+  <tabstop>checkBox_11</tabstop>
+  <tabstop>checkBox_22</tabstop>
+  <tabstop>checkBox_13</tabstop>
+  <tabstop>checkBox_23</tabstop>
+  <tabstop>checkBox_30</tabstop>
+  <tabstop>checkBox_31</tabstop>
+  <tabstop>checkBox_12</tabstop>
+  <tabstop>checkBox_14</tabstop>
+  <tabstop>checkBox_25</tabstop>
+  <tabstop>checkBox_26</tabstop>
+  <tabstop>checkBox_52</tabstop>
+  <tabstop>checkBox_27</tabstop>
+  <tabstop>checkBox_55</tabstop>
+  <tabstop>checkBox_53</tabstop>
+  <tabstop>checkBox_54</tabstop>
+  <tabstop>checkBox_28</tabstop>
+  <tabstop>checkBox_29</tabstop>
+  <tabstop>pushButton_45</tabstop>
+  <tabstop>tabWidget_3</tabstop>
+  <tabstop>pushButton_7</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>pushButton_12</tabstop>
+  <tabstop>pushButton_16</tabstop>
+  <tabstop>tabWidget_2</tabstop>
+  <tabstop>lineEdit_8</tabstop>
+  <tabstop>pushButton_32</tabstop>
+  <tabstop>pushButton_25</tabstop>
+  <tabstop>pushButton_11</tabstop>
+  <tabstop>pushButton_28</tabstop>
+  <tabstop>pushButton_8</tabstop>
+  <tabstop>pushButton_6</tabstop>
+ </tabstops>
  <resources>
   <include location="style.qrc"/>
  </resources>
