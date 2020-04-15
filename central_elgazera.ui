@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1166</width>
+    <width>1172</width>
     <height>747</height>
    </rect>
   </property>
@@ -1298,7 +1298,7 @@ QMessageBox QLabel {
 </string>
   </property>
   <property name="locale">
-   <locale language="Arabic" country="Egypt"/>
+   <locale language="English" country="UnitedStates"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_52">
@@ -1318,7 +1318,7 @@ QMessageBox QLabel {
          </font>
         </property>
         <property name="currentIndex">
-         <number>5</number>
+         <number>7</number>
         </property>
         <widget class="QWidget" name="tab_9">
          <attribute name="title">
@@ -2018,6 +2018,9 @@ QMessageBox QLabel {
                    <property name="layoutDirection">
                     <enum>Qt::RightToLeft</enum>
                    </property>
+                   <property name="locale">
+                    <locale language="English" country="UnitedStates"/>
+                   </property>
                    <property name="minimum">
                     <number>1</number>
                    </property>
@@ -2048,11 +2051,6 @@ QMessageBox QLabel {
                    <property name="layoutDirection">
                     <enum>Qt::RightToLeft</enum>
                    </property>
-                   <item>
-                    <property name="text">
-                     <string>---------------------------------</string>
-                    </property>
-                   </item>
                   </widget>
                  </item>
                 </layout>
@@ -2210,6 +2208,9 @@ QMessageBox QLabel {
                        <property name="layoutDirection">
                         <enum>Qt::RightToLeft</enum>
                        </property>
+                       <property name="locale">
+                        <locale language="English" country="UnitedStates"/>
+                       </property>
                        <property name="minimum">
                         <number>1</number>
                        </property>
@@ -2225,11 +2226,6 @@ QMessageBox QLabel {
                        <property name="layoutDirection">
                         <enum>Qt::RightToLeft</enum>
                        </property>
-                       <item>
-                        <property name="text">
-                         <string>-------------</string>
-                        </property>
-                       </item>
                       </widget>
                      </item>
                     </layout>
@@ -2374,7 +2370,17 @@ QMessageBox QLabel {
               </column>
               <column>
                <property name="text">
+                <string>الطلب</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
                 <string>التاريخ</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>التوقيت</string>
                </property>
               </column>
               <column>
@@ -2392,167 +2398,330 @@ QMessageBox QLabel {
          <attribute name="title">
           <string>بحث عن عملية</string>
          </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout_21">
+         <layout class="QVBoxLayout" name="verticalLayout_20">
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_20">
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <widget class="QTabWidget" name="tabWidget_4">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="locale">
+             <locale language="English" country="UnitedStates"/>
+            </property>
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <widget class="QWidget" name="tab_19">
+             <attribute name="title">
+              <string>استعلام عن عملية</string>
+             </attribute>
+             <layout class="QVBoxLayout" name="verticalLayout_61">
               <item>
-               <widget class="QPushButton" name="pushButton_29">
-                <property name="font">
-                 <font>
-                  <pointsize>15</pointsize>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>بحث</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QDateEdit" name="dateEdit_5">
-                <property name="font">
-                 <font>
-                  <pointsize>15</pointsize>
-                 </font>
-                </property>
-                <property name="layoutDirection">
-                 <enum>Qt::RightToLeft</enum>
-                </property>
-                <property name="date">
-                 <date>
-                  <year>2020</year>
-                  <month>1</month>
-                  <day>1</day>
-                 </date>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_5">
-                <property name="font">
-                 <font>
-                  <pointsize>15</pointsize>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>الى</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QDateEdit" name="dateEdit_4">
-                <property name="font">
-                 <font>
-                  <pointsize>15</pointsize>
-                 </font>
-                </property>
-                <property name="layoutDirection">
-                 <enum>Qt::RightToLeft</enum>
-                </property>
-                <property name="date">
-                 <date>
-                  <year>2020</year>
-                  <month>1</month>
-                  <day>1</day>
-                 </date>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_4">
-                <property name="font">
-                 <font>
-                  <pointsize>15</pointsize>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>من</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="comboBox_7">
-                <property name="font">
-                 <font>
-                  <pointsize>15</pointsize>
-                 </font>
-                </property>
-                <property name="layoutDirection">
-                 <enum>Qt::RightToLeft</enum>
-                </property>
+               <layout class="QVBoxLayout" name="verticalLayout_21">
                 <item>
-                 <property name="text">
-                  <string>رقم الوبايل</string>
-                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_8">
+                  <item>
+                   <widget class="QPushButton" name="pushButton_54">
+                    <property name="font">
+                     <font>
+                      <pointsize>13</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>بحث</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QDateEdit" name="dateEdit_10">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
+                    <property name="locale">
+                     <locale language="English" country="UnitedStates"/>
+                    </property>
+                    <property name="displayFormat">
+                     <string>d‏/M‏/yyyy</string>
+                    </property>
+                    <property name="date">
+                     <date>
+                      <year>2020</year>
+                      <month>1</month>
+                      <day>1</day>
+                     </date>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_12">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>الى</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QDateEdit" name="dateEdit_11">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
+                    <property name="locale">
+                     <locale language="English" country="UnitedStates"/>
+                    </property>
+                    <property name="displayFormat">
+                     <string>d‏/M‏/yyyy</string>
+                    </property>
+                    <property name="date">
+                     <date>
+                      <year>2020</year>
+                      <month>1</month>
+                      <day>1</day>
+                     </date>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_13">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>من</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEdit_22">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="placeholderText">
+                     <string>رقم العميل</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
-                 <property name="text">
-                  <string>السعر</string>
-                 </property>
+                 <widget class="QTableWidget" name="tableWidget_11">
+                  <property name="font">
+                   <font>
+                    <pointsize>15</pointsize>
+                   </font>
+                  </property>
+                  <property name="layoutDirection">
+                   <enum>Qt::RightToLeft</enum>
+                  </property>
+                  <property name="autoFillBackground">
+                   <bool>false</bool>
+                  </property>
+                  <column>
+                   <property name="text">
+                    <string>رقم الموبايل</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>المبلغ</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>التاريخ</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>التوقيت</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>نوع العملية</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>اسم الموظف</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>الماكينة</string>
+                   </property>
+                  </column>
+                 </widget>
                 </item>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="lineEdit_6">
-                <property name="font">
-                 <font>
-                  <pointsize>15</pointsize>
-                 </font>
-                </property>
-                <property name="layoutDirection">
-                 <enum>Qt::RightToLeft</enum>
-                </property>
-                <property name="placeholderText">
-                 <string/>
-                </property>
-               </widget>
+               </layout>
               </item>
              </layout>
-            </item>
-            <item>
-             <widget class="QTableWidget" name="tableWidget_8">
-              <property name="font">
-               <font>
-                <pointsize>15</pointsize>
-               </font>
-              </property>
-              <property name="layoutDirection">
-               <enum>Qt::RightToLeft</enum>
-              </property>
-              <column>
-               <property name="text">
-                <string>رقم الموبايل</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>المبلغ</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>الماكينة</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>نوع العملية</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>التاريخ</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>اسم الموظف</string>
-               </property>
-              </column>
-             </widget>
-            </item>
-           </layout>
+            </widget>
+            <widget class="QWidget" name="tab_20">
+             <attribute name="title">
+              <string>كل العمليات</string>
+             </attribute>
+             <layout class="QVBoxLayout" name="verticalLayout_60">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_59">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_27">
+                  <item>
+                   <widget class="QPushButton" name="pushButton_51">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>بحث</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QDateEdit" name="dateEdit_13">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
+                    <property name="locale">
+                     <locale language="English" country="UnitedStates"/>
+                    </property>
+                    <property name="displayFormat">
+                     <string>d‏/M‏/yyyy</string>
+                    </property>
+                    <property name="date">
+                     <date>
+                      <year>2020</year>
+                      <month>1</month>
+                      <day>1</day>
+                     </date>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_10">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>الى</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QDateEdit" name="dateEdit_12">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
+                    <property name="locale">
+                     <locale language="English" country="UnitedStates"/>
+                    </property>
+                    <property name="displayFormat">
+                     <string>d‏/M‏/yyyy</string>
+                    </property>
+                    <property name="date">
+                     <date>
+                      <year>2020</year>
+                      <month>1</month>
+                      <day>1</day>
+                     </date>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="label_11">
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>من</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QTableWidget" name="tableWidget_9">
+                  <property name="font">
+                   <font>
+                    <pointsize>15</pointsize>
+                   </font>
+                  </property>
+                  <property name="layoutDirection">
+                   <enum>Qt::RightToLeft</enum>
+                  </property>
+                  <column>
+                   <property name="text">
+                    <string>رقم الموبايل</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>المبلغ</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>التاريخ</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>التوقيت</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>نوع العملية</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>اسم الموظف</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>الماكينة</string>
+                   </property>
+                  </column>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -2569,7 +2738,7 @@ QMessageBox QLabel {
              </font>
             </property>
             <property name="currentIndex">
-             <number>7</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="tab_11">
              <attribute name="title">
@@ -2613,6 +2782,9 @@ QMessageBox QLabel {
                        <property name="layoutDirection">
                         <enum>Qt::RightToLeft</enum>
                        </property>
+                       <property name="locale">
+                        <locale language="English" country="UnitedStates"/>
+                       </property>
                        <property name="minimum">
                         <number>1</number>
                        </property>
@@ -2631,11 +2803,6 @@ QMessageBox QLabel {
                        <property name="layoutDirection">
                         <enum>Qt::RightToLeft</enum>
                        </property>
-                       <item>
-                        <property name="text">
-                         <string>-----------------------------------</string>
-                        </property>
-                       </item>
                       </widget>
                      </item>
                     </layout>
@@ -2678,6 +2845,9 @@ QMessageBox QLabel {
                        <property name="layoutDirection">
                         <enum>Qt::RightToLeft</enum>
                        </property>
+                       <property name="locale">
+                        <locale language="English" country="UnitedStates"/>
+                       </property>
                        <property name="minimum">
                         <number>1</number>
                        </property>
@@ -2693,11 +2863,6 @@ QMessageBox QLabel {
                        <property name="layoutDirection">
                         <enum>Qt::RightToLeft</enum>
                        </property>
-                       <item>
-                        <property name="text">
-                         <string>---------------</string>
-                        </property>
-                       </item>
                       </widget>
                      </item>
                     </layout>
@@ -2738,6 +2903,9 @@ QMessageBox QLabel {
                      <property name="layoutDirection">
                       <enum>Qt::RightToLeft</enum>
                      </property>
+                     <property name="locale">
+                      <locale language="English" country="UnitedStates"/>
+                     </property>
                      <property name="minimum">
                       <number>1</number>
                      </property>
@@ -2753,16 +2921,6 @@ QMessageBox QLabel {
                      <property name="layoutDirection">
                       <enum>Qt::RightToLeft</enum>
                      </property>
-                     <item>
-                      <property name="text">
-                       <string>---------------</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>اندومي</string>
-                      </property>
-                     </item>
                     </widget>
                    </item>
                   </layout>
@@ -2805,17 +2963,14 @@ QMessageBox QLabel {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="lineEdit_34">
+                      <widget class="QSpinBox" name="spinBox_8">
                        <property name="font">
                         <font>
                          <pointsize>15</pointsize>
                         </font>
                        </property>
-                       <property name="layoutDirection">
-                        <enum>Qt::RightToLeft</enum>
-                       </property>
-                       <property name="placeholderText">
-                        <string>الكمية</string>
+                       <property name="minimum">
+                        <number>1</number>
                        </property>
                       </widget>
                      </item>
@@ -2976,17 +3131,14 @@ QMessageBox QLabel {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="lineEdit_35">
+                      <widget class="QSpinBox" name="spinBox_9">
                        <property name="font">
                         <font>
                          <pointsize>15</pointsize>
                         </font>
                        </property>
-                       <property name="layoutDirection">
-                        <enum>Qt::RightToLeft</enum>
-                       </property>
-                       <property name="placeholderText">
-                        <string>الكمية</string>
+                       <property name="minimum">
+                        <number>1</number>
                        </property>
                       </widget>
                      </item>
@@ -3051,17 +3203,14 @@ QMessageBox QLabel {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="lineEdit_36">
+                      <widget class="QSpinBox" name="spinBox_10">
                        <property name="font">
                         <font>
                          <pointsize>15</pointsize>
                         </font>
                        </property>
-                       <property name="layoutDirection">
-                        <enum>Qt::RightToLeft</enum>
-                       </property>
-                       <property name="placeholderText">
-                        <string>الكمية</string>
+                       <property name="minimum">
+                        <number>1</number>
                        </property>
                       </widget>
                      </item>
@@ -3112,14 +3261,24 @@ QMessageBox QLabel {
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_18">
                 <item>
-                 <widget class="QSplitter" name="splitter_7">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <widget class="QWidget" name="layoutWidget">
+                 <layout class="QHBoxLayout" name="horizontalLayout_28">
+                  <item>
+                   <spacer name="horizontalSpacer">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_17">
                     <item>
-                     <spacer name="horizontalSpacer">
+                     <spacer name="horizontalSpacer_4">
                       <property name="orientation">
                        <enum>Qt::Horizontal</enum>
                       </property>
@@ -3132,27 +3291,57 @@ QMessageBox QLabel {
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="pushButton_46">
+                     <widget class="QComboBox" name="comboBox_15">
                       <property name="font">
                        <font>
                         <pointsize>15</pointsize>
                        </font>
                       </property>
-                      <property name="text">
-                       <string>تم</string>
-                      </property>
+                      <item>
+                       <property name="text">
+                        <string>---------------------------</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>سجاير</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>اكسسوارات محمول</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>اخرى</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>كروت فودافون</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>كروت اورنج</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>كروت اتصالات</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>كروت WE</string>
+                       </property>
+                      </item>
                      </widget>
                     </item>
                    </layout>
-                  </widget>
-                  <widget class="QComboBox" name="comboBox_15">
-                   <property name="font">
-                    <font>
-                     <pointsize>15</pointsize>
-                    </font>
-                   </property>
-                  </widget>
-                 </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
                  <widget class="QTableWidget" name="tableWidget_6">
@@ -3577,6 +3766,9 @@ QMessageBox QLabel {
                          <pointsize>15</pointsize>
                         </font>
                        </property>
+                       <property name="locale">
+                        <locale language="English" country="UnitedStates"/>
+                       </property>
                        <property name="date">
                         <date>
                          <year>2020</year>
@@ -3600,6 +3792,9 @@ QMessageBox QLabel {
                         <font>
                          <pointsize>15</pointsize>
                         </font>
+                       </property>
+                       <property name="locale">
+                        <locale language="English" country="UnitedStates"/>
                        </property>
                        <property name="date">
                         <date>
@@ -3917,6 +4112,9 @@ QMessageBox QLabel {
                      <pointsize>15</pointsize>
                     </font>
                    </property>
+                   <property name="locale">
+                    <locale language="English" country="UnitedStates"/>
+                   </property>
                    <property name="date">
                     <date>
                      <year>2020</year>
@@ -3940,6 +4138,9 @@ QMessageBox QLabel {
                     <font>
                      <pointsize>15</pointsize>
                     </font>
+                   </property>
+                   <property name="locale">
+                    <locale language="English" country="UnitedStates"/>
                    </property>
                    <property name="date">
                     <date>
@@ -4799,8 +5000,8 @@ QMessageBox QLabel {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1166</width>
-     <height>21</height>
+     <width>1172</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -4852,12 +5053,6 @@ QMessageBox QLabel {
   <tabstop>pushButton_19</tabstop>
   <tabstop>pushButton_20</tabstop>
   <tabstop>tableWidget_4</tabstop>
-  <tabstop>lineEdit_6</tabstop>
-  <tabstop>comboBox_7</tabstop>
-  <tabstop>dateEdit_4</tabstop>
-  <tabstop>dateEdit_5</tabstop>
-  <tabstop>pushButton_29</tabstop>
-  <tabstop>tableWidget_8</tabstop>
   <tabstop>comboBox_8</tabstop>
   <tabstop>spinBox_5</tabstop>
   <tabstop>pushButton_33</tabstop>
@@ -4869,7 +5064,6 @@ QMessageBox QLabel {
   <tabstop>pushButton_36</tabstop>
   <tabstop>lineEdit_10</tabstop>
   <tabstop>lineEdit_11</tabstop>
-  <tabstop>lineEdit_34</tabstop>
   <tabstop>pushButton_37</tabstop>
   <tabstop>lineEdit_12</tabstop>
   <tabstop>pushButton_38</tabstop>
@@ -4877,14 +5071,11 @@ QMessageBox QLabel {
   <tabstop>pushButton_50</tabstop>
   <tabstop>lineEdit_14</tabstop>
   <tabstop>lineEdit_13</tabstop>
-  <tabstop>lineEdit_35</tabstop>
   <tabstop>pushButton_39</tabstop>
   <tabstop>lineEdit_16</tabstop>
   <tabstop>lineEdit_15</tabstop>
-  <tabstop>lineEdit_36</tabstop>
   <tabstop>pushButton_40</tabstop>
   <tabstop>comboBox_15</tabstop>
-  <tabstop>pushButton_46</tabstop>
   <tabstop>tableWidget_6</tabstop>
   <tabstop>pushButton_47</tabstop>
   <tabstop>pushButton_48</tabstop>
