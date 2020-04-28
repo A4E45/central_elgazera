@@ -8,6 +8,7 @@ import datetime
 from xlsxwriter import *
 from xlrd import *
 import humanize
+import hashlib
 
 
 MainUI, _ = loadUiType("central_elgazera.ui")
@@ -34,6 +35,7 @@ class Main(QMainWindow, MainUI):
         self.show_other()
         self.other_payment()
         self.show_wanted()
+        self.show_emp()
 
     def UI_Changes(self):
         self.tabWidget.tabBar().setVisible(False)
@@ -83,6 +85,11 @@ class Main(QMainWindow, MainUI):
         self.comboBox_15.currentIndexChanged.connect(self.show_edit)
         self.pushButton_47.clicked.connect(self.edit)
         self.pushButton_48.clicked.connect(self.delete)
+        self.pushButton_55.clicked.connect(self.add_new_cards_values)
+        self.pushButton_41.clicked.connect(self.add_employee)
+        self.pushButton_24.clicked.connect(self.display_emp)
+        self.pushButton_43.clicked.connect(self.edit_employee)
+        self.pushButton_52.clicked.connect(self.reports)
 
     def load_date(self):
         date = datetime.datetime.now().date()
@@ -129,6 +136,7 @@ class Main(QMainWindow, MainUI):
                 self.comboBox_9.addItem(m)
 
     def show_servies(self):
+        self.comboBox_14.clear()
         self.cur.execute("""
 				SELECT service_name FROM services ORDER BY serviceID
 			""")
@@ -164,7 +172,7 @@ class Main(QMainWindow, MainUI):
 						SELECT * FROM services WHERE service_name=%s
 					""", (self.comboBox_14.currentText(),)
                 )
-                service_id = int(self.cur.fetchall()[0][1])
+                service_id = int(self.cur.fetchall()[0][0])
                 date = self.load_date_time()
                 emp_id = 1
 
@@ -190,8 +198,9 @@ class Main(QMainWindow, MainUI):
                 self.db.commit()
                 self.tableWidget.setRowCount(0)
                 self.show_charge()
-        except ValueError:
+        except ValueError as e:
             self.empty_message("برجاء ادخال ارقام فقط")
+            print(e)
 
     def del_charge(self):
         try:
@@ -226,6 +235,8 @@ class Main(QMainWindow, MainUI):
         self.tabWidget.setCurrentIndex(2)
 
     def show_all_accessories(self):
+        self.comboBox_2.clear()
+        self.comboBox_10.clear()
         self.tableWidget_2.setSelectionBehavior(QAbstractItemView.SelectRows)
         sql = """
 			SELECT * FROM accessories_stored
@@ -321,6 +332,8 @@ class Main(QMainWindow, MainUI):
         self.tabWidget.setCurrentIndex(3)
 
     def show_all_tobacoo(self):
+        self.comboBox_3.clear()
+        self.comboBox_8.clear()
         self.cur.execute("""
 				SELECT name FROM tobacco_stored
 			""")
@@ -421,6 +434,8 @@ class Main(QMainWindow, MainUI):
     ##############################other zone################################
     ########################################################################
     def show_cards(self):
+        self.comboBox_4.clear()
+        self.comboBox_5.clear()
         self.cur.execute("""
 			SELECT * FROM company_names
 			""")
@@ -524,6 +539,8 @@ class Main(QMainWindow, MainUI):
         self.info_message(total)
 
     def show_other(self):
+        self.comboBox_11.clear()
+        self.comboBox_6.clear()
         self.cur.execute("""
 				SELECT other_name FROM other_stored ORDER BY otherID
 			""")
@@ -815,6 +832,35 @@ class Main(QMainWindow, MainUI):
             except mysql.connector.errors.IntegrityError:
                 self.empty_message("هذه الخدمة موجودة من قبل")
 
+    def add_new_cards_values(self):
+        try:
+            value = float(self.lineEdit_21.text())
+            company_name = self.comboBox_7.currentText()
+            if company_name == "فودافون":
+                self.cur.execute("""
+                    INSERT INTO vodafone_cards_values(card_value)
+                    VALUES (%s)
+                """, (value,))
+                self.db.commit()
+            elif company_name == "اورنج":
+                self.cur.execute("""
+                    INSERT INTO orange_cards_values(card_value)
+                    VALUES (%s)
+                """, (value,))
+            elif company_name == "اتصالات":
+                self.cur.execute("""
+                    INSERT INTO etisalat_cards_values(card_value)
+                    VALUES (%s)
+                """, (value,))
+            elif company_name == "WE":
+                self.cur.execute("""
+                    INSERT INTO WE_cards_values(card_value)
+                    VALUES (%s)
+                """, (value,))
+            self.show_cards()
+        except ValueError:
+            self.empty_message("برجاء ادخال ارقام فقط")
+
     def add_new_accessories(self):
         name = self.lineEdit_14.text()
         if name == "":
@@ -862,6 +908,8 @@ class Main(QMainWindow, MainUI):
         self.tableWidget_6.setSelectionBehavior(QAbstractItemView.SelectRows)
         category = self.comboBox_15.currentText()
         if category == "سجاير":
+            self.tableWidget_6.setColumnCount(3)
+            self.tableWidget_6.setHorizontalHeaderLabels(["اسم المنتج", "سعر المنتج", "المخزون"])
             self.cur.execute("""
                     SELECT name, price, quantity FROM tobacco_stored
             """)
@@ -873,6 +921,8 @@ class Main(QMainWindow, MainUI):
                                                QTableWidgetItem(str(colm_data)))
             self.tableWidget_6.resizeColumnsToContents()
         elif category == "اكسسوارات محمول":
+            self.tableWidget_6.setColumnCount(3)
+            self.tableWidget_6.setHorizontalHeaderLabels(["اسم المنتج", "سعر المنتج", "المخزون"])
             self.cur.execute("""
                     SELECT * FROM accessories_stored
             """)
@@ -884,6 +934,8 @@ class Main(QMainWindow, MainUI):
                                                QTableWidgetItem(str(colm_data)))
             self.tableWidget_6.resizeColumnsToContents()
         elif category == "اخرى":
+            self.tableWidget_6.setColumnCount(3)
+            self.tableWidget_6.setHorizontalHeaderLabels(["اسم المنتج", "سعر المنتج", "المخزون"])
             self.cur.execute("""
                     SELECT other_name, price, quantity FROM other_stored
             """)
@@ -894,33 +946,293 @@ class Main(QMainWindow, MainUI):
                     self.tableWidget_6.setItem(row_index, colm_index,
                                                QTableWidgetItem(str(colm_data)))
             self.tableWidget_6.resizeColumnsToContents()
-        elif
+        elif category == "كروت فودافون":
+            self.tableWidget_6.setColumnCount(2)
+            self.tableWidget_6.setHorizontalHeaderLabels(["كود الكرت", "سعر الكرت"])
+            self.cur.execute("""
+                    SELECT * FROM vodafone_cards_values
+            """)
+            data = self.cur.fetchall()
+            for row_index, row_data in enumerate(data):
+                self.tableWidget_6.insertRow(row_index)
+                for colm_index, colm_data in enumerate(row_data):
+                    self.tableWidget_6.setItem(row_index, colm_index,
+                                               QTableWidgetItem(str(colm_data)))
+            self.tableWidget_6.resizeColumnsToContents()
+        elif category == "كروت اورنج":
+            self.tableWidget_6.setColumnCount(2)
+            self.tableWidget_6.setHorizontalHeaderLabels(["كود الكرت", "سعر الكرت"])
+            self.cur.execute("""
+                    SELECT * FROM orange_cards_values
+            """)
+            data = self.cur.fetchall()
+            for row_index, row_data in enumerate(data):
+                self.tableWidget_6.insertRow(row_index)
+                for colm_index, colm_data in enumerate(row_data):
+                    self.tableWidget_6.setItem(row_index, colm_index,
+                                               QTableWidgetItem(str(colm_data)))
+            self.tableWidget_6.resizeColumnsToContents()
+        elif category == "كروت اتصالات":
+            self.tableWidget_6.setColumnCount(2)
+            self.tableWidget_6.setHorizontalHeaderLabels(["كود الكرت", "سعر الكرت"])
+            self.cur.execute("""
+                    SELECT * FROM etisalat_cards_values
+            """)
+            data = self.cur.fetchall()
+            for row_index, row_data in enumerate(data):
+                self.tableWidget_6.insertRow(row_index)
+                for colm_index, colm_data in enumerate(row_data):
+                    self.tableWidget_6.setItem(row_index, colm_index,
+                                               QTableWidgetItem(str(colm_data)))
+            self.tableWidget_6.resizeColumnsToContents()
+        elif category == "كروت WE":
+            self.tableWidget_6.setColumnCount(2)
+            self.tableWidget_6.setHorizontalHeaderLabels(["كود الكرت", "سعر الكرت"])
+            self.cur.execute("""
+                    SELECT * FROM WE_cards_values
+            """)
+            data = self.cur.fetchall()
+            for row_index, row_data in enumerate(data):
+                self.tableWidget_6.insertRow(row_index)
+                for colm_index, colm_data in enumerate(row_data):
+                    self.tableWidget_6.setItem(row_index, colm_index,
+                                               QTableWidgetItem(str(colm_data)))
+            self.tableWidget_6.resizeColumnsToContents()
+        elif category == "خدمات":
+            self.tableWidget_6.setColumnCount(2)
+            self.tableWidget_6.setHorizontalHeaderLabels(["كود الخدمة", "اسم الخدمة"])
+            self.cur.execute("""
+                    SELECT serviceID, service_name FROM services ORDER BY serviceID
+            """)
+            data = self.cur.fetchall()
+            for row_index, row_data in enumerate(data):
+                self.tableWidget_6.insertRow(row_index)
+                for colm_index, colm_data in enumerate(row_data):
+                    self.tableWidget_6.setItem(row_index, colm_index,
+                                               QTableWidgetItem(str(colm_data)))
+            self.tableWidget_6.resizeColumnsToContents()
+        else:
+            pass
 
     def edit(self):
-        category = self.comboBox_15.currentText()
-        info = []
-        for currentQTableWidgetItem in self.tableWidget_6.selectedItems():
-            info.append(currentQTableWidgetItem.text())
-        name = info[0]
-        price = info[1]
-        quantity = info[2]
-        if category == "سجاير":
-            self.cur.execute("""
-                UPDATE tobacco_stored SET name=%s, price=%s, quantity=%s WHERE name=%s
-            """, (name, price, quantity, name))
-            self.db.commit()
-        elif category == "اكسسوارات محمول":
-            pass
-        elif category == "اخرى":
-            pass
+        try:
+            category = self.comboBox_15.currentText()
+            info = []
+            for currentQTableWidgetItem in self.tableWidget_6.selectedItems():
+                info.append(currentQTableWidgetItem.text())
+            name = info[0]
+            price = info[1]
+            if category == "سجاير":
+                quantity = info[2]
+                self.cur.execute("""
+                    UPDATE tobacco_stored SET name=%s, price=%s, quantity=%s WHERE name=%s
+                """, (name, price, quantity, name))
+                self.db.commit()
+            elif category == "اكسسوارات محمول":
+                quantity = info[2]
+                self.cur.execute("""
+                    UPDATE accessories_stored SET name=%s, price=%s, quantity=%s WHERE name=%s
+                """, (name, price, quantity, name))
+                self.db.commit()
+            elif category == "اخرى":
+                quantity = info[2]
+                self.cur.execute("""
+                    UPDATE other_stored SET other_name=%s, price=%s, quantity=%s WHERE other_name=%s
+                """, (name, price, quantity, name))
+                self.db.commit()
+            elif category == "كروت فودافون":
+                self.cur.execute("""
+                    UPDATE vodafone_cards_values SET card_value=%s WHERE cardID=%s
+                """, (price, name))
+                self.db.commit()
+                self.show_cards()
+            elif category == "كروت اورنج":
+                self.cur.execute("""
+                    UPDATE orange_cards_values SET card_value=%s WHERE cardID=%s
+                """, (price, name))
+                self.db.commit()
+                self.show_cards()
+            elif category == "كروت اتصالات":
+                self.cur.execute("""
+                    UPDATE etisalat_cards_values SET card_value=%s WHERE cardID=%s
+                """, (price, name))
+                self.db.commit()
+                self.show_cards()
+            elif category == "كروت WE":
+                self.cur.execute("""
+                    UPDATE WE_cards_values SET card_value=%s WHERE cardID=%s
+                """, (price, name))
+                self.db.commit()
+                self.show_cards()
+            elif category == "خدمات":
+                self.cur.execute("""
+                    UPDATE services SET service_name=%s WHERE serviceID=%s
+                """, (price, name))
+                self.db.commit()
+                self.show_servies()
+            else:
+                pass
+        except:
+            self.empty_message("برجاء تحديد القيمة المراد تعديلها")
 
     def delete(self):
-        # category = self.comboBox_15.currentText()
-        # info = []
-        # for currentQTableWidgetItem in self.tableWidget_6.selectedItems():
-        #     info.append(currentQTableWidgetItem.text())
-        # name = info[0]
-        pass
+        try:
+            category = self.comboBox_15.currentText()
+            info = []
+            for currentQTableWidgetItem in self.tableWidget_6.selectedItems():
+                info.append(currentQTableWidgetItem.text())
+            name = info[0]
+            if category == "سجاير":
+                self.cur.execute("""
+                    DELETE FROM tobacco_stored WHERE name=%s
+                """, (name,))
+                self.db.commit()
+                self.show_all_tobacoo()
+            elif category == "اكسسوارات محمول":
+                self.cur.execute("""
+                    DELETE FROM accessories_stored WHERE name=%s
+                """, (name,))
+                self.db.commit()
+                self.show_all_accessories()
+            elif category == "اخرى":
+                self.cur.execute("""
+                    DELETE FROM other_stored WHERE other_name=%s
+                """, (info[0],))
+                self.db.commit()
+                self.show_other()
+            elif category == "كروت فودافون":
+                self.cur.execute("""
+                    DELETE FROM vodafone_cards_values WHERE cardID=%s
+                """, (info[0],))
+                self.db.commit()
+                self.show_cards()
+            elif category == "كروت اورنج":
+                self.cur.execute("""
+                    DELETE FROM orange_cards_values WHERE cardID=%s
+                """, (info[0],))
+                self.db.commit()
+                self.show_cards()
+            elif category == "كروت اتصالات":
+                self.cur.execute("""
+                    DELETE FROM etisalat_cards_values WHERE cardID=%s
+                """, (info[0],))
+                self.db.commit()
+                self.show_cards()
+            elif category == "كروت WE":
+                self.cur.execute("""
+                    DELETE FROM WE_cards_values WHERE cardID=%s
+                """, (info[0],))
+                self.db.commit()
+                self.show_cards()
+            elif category == "خدمات":
+                self.cur.execute("""
+                    DELETE FROM services WHERE serviceID=%s
+                """, (info[0],))
+                self.db.commit()
+                self.show_servies()
+            else:
+                pass
+
+            self.show_edit()
+        except:
+            self.empty_message("برجاء تحديد المنتج المراد حذفه")
+
+    def encrypt(self, text, hashtype):
+        text = text.encode("utf-8")
+        hash_hash = hashlib.new(hashtype)
+        hash_hash.update(text)
+        return hash_hash.hexdigest()
+
+    def show_emp(self):
+        self.comboBox_13.clear()
+        self.comboBox_12.clear()
+        self.comboBox_13.addItem("")
+        self.cur.execute("""
+                SELECT username FROM employee ORDER BY EmployeeID
+        """)
+        data = self.cur.fetchall()
+        for d in data:
+            self.comboBox_13.addItem(d[0])
+            self.comboBox_12.addItem(d[0])
+
+    def display_emp(self):
+        try:
+            username = self.comboBox_13.currentText()
+            self.cur.execute("""
+                    SELECT name, mail, national_id, phone, address  FROM employee WHERE username=%s
+            """, (username,))
+            data = self.cur.fetchall()[0]
+            name = data[0]
+            mail = data[1]
+            national_id = data[2]
+            phone = data[3]
+            address = data[4]
+            self.lineEdit_30.setText(name)
+            self.lineEdit_29.setText(mail)
+            self.lineEdit_28.setText(national_id)
+            self.lineEdit_32.setText(phone)
+            self.lineEdit_33.setText(address)
+        except IndexError:
+            self.empty_message("برجاء اختيار اسم الموظف")
+        except:
+            self.empty_message("برجاء اختيار اسم الموظف")
+
+    def edit_employee(self):
+        username = self.comboBox_13.currentText()
+        name = self.lineEdit_30.text()
+        mail = self.lineEdit_29.text()
+        national_id = self.lineEdit_28.text()
+        phone = self.lineEdit_32.text()
+        address = self.lineEdit_33.text()
+        if name == "":
+            self.empty_message("برجاء ادخال بيانات الموظف بشكل كامل")
+        elif self.lineEdit_31.text() == "":
+            self.empty_message("برجاء اخدال كلمة السر")
+        else:
+            password = self.encrypt(self.lineEdit_31.text(), "md5")
+            self.cur.execute("""
+                UPDATE employee SET name=%s, mail=%s, national_id=%s, phone=%s, address=%s, password=%s
+                WHERE username=%s
+            """, (name, mail, national_id, phone, address, password, username))
+            self.db.commit()
+            self.statusBar().showMessage("تم تعديل بيانات الموظف بنجاح")
+            self.lineEdit_30.setText("")
+            self.lineEdit_29.setText("")
+            self.lineEdit_28.setText("")
+            self.lineEdit_32.setText("")
+            self.lineEdit_33.setText("")
+            self.lineEdit_31.setText("")
+
+    def add_employee(self):
+        try:
+            name = self.lineEdit_17.text()
+            username = self.lineEdit_26.text()
+            mail = self.lineEdit_25.text()
+            national_id = self.lineEdit_18.text()
+            phone_number = self.lineEdit_19.text()
+            address = self.lineEdit_23.text()
+            password = self.encrypt(self.lineEdit_24.text(), "md5")
+            self.cur.execute("""
+                    INSERT INTO employee(name, username, mail, national_id, phone, address, password)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """, (name, username, mail, national_id, phone_number, address, password))
+            self.db.commit()
+            self.statusBar().showMessage("تم اضافة المعلومات بنجاح")
+        except mysql.connector.errors.IntegrityError:
+            self.empty_message("بيانات هذا الموظف موجودة من قبل")
+        except:
+            self.empty_message("حدث خطأ في ادخال بيانات الموظف")
+
+    def reports(self):
+        category = self.comboBox_16.currentText()
+        _from = self.dateEdit_14.date().toString("yyyy-MM-dd")
+        _to = self.dateEdit_15.date().toString("yyyy-MM-dd")
+        self.cur.execute("SELECT * FROM tobacco")
+        data = self.cur.fetchall()
+        self.cur.execute(""" SELECT * FROM tobacco_stored""")
+        stored_toba = self.cur.fetchall()
+        for stored in range(len(stored_toba)):
+            print(stored_toba[stored][0])
 
     def open_settings_tab(self):
         self.tabWidget.setCurrentIndex(7)

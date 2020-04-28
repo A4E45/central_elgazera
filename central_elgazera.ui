@@ -2738,7 +2738,7 @@ QMessageBox QLabel {
              </font>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>5</number>
             </property>
             <widget class="QWidget" name="tab_11">
              <attribute name="title">
@@ -2934,9 +2934,9 @@ QMessageBox QLabel {
              <attribute name="title">
               <string>اضافة منتجات جديدة</string>
              </attribute>
-             <layout class="QVBoxLayout" name="verticalLayout_53">
+             <layout class="QVBoxLayout" name="verticalLayout_62">
               <item>
-               <layout class="QVBoxLayout" name="verticalLayout_29">
+               <layout class="QVBoxLayout" name="verticalLayout_53">
                 <item>
                  <widget class="QGroupBox" name="groupBox_8">
                   <property name="font">
@@ -3097,6 +3097,80 @@ QMessageBox QLabel {
                        </property>
                        <property name="placeholderText">
                         <string>اسم الخدمة</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="groupBox_14">
+                  <property name="font">
+                   <font>
+                    <pointsize>15</pointsize>
+                   </font>
+                  </property>
+                  <property name="title">
+                   <string>كروت</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_29">
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_29">
+                     <item>
+                      <widget class="QPushButton" name="pushButton_55">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>اضافة</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="comboBox_7">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>فودافون</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>اورنج</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>اتصالات</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>WE</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="lineEdit_21">
+                       <property name="font">
+                        <font>
+                         <pointsize>15</pointsize>
+                        </font>
+                       </property>
+                       <property name="layoutDirection">
+                        <enum>Qt::RightToLeft</enum>
+                       </property>
+                       <property name="placeholderText">
+                        <string>قيمة الكرت</string>
                        </property>
                       </widget>
                      </item>
@@ -3337,6 +3411,11 @@ QMessageBox QLabel {
                         <string>كروت WE</string>
                        </property>
                       </item>
+                      <item>
+                       <property name="text">
+                        <string>خدمات</string>
+                       </property>
+                      </item>
                      </widget>
                     </item>
                    </layout>
@@ -3353,21 +3432,6 @@ QMessageBox QLabel {
                   <property name="layoutDirection">
                    <enum>Qt::RightToLeft</enum>
                   </property>
-                  <column>
-                   <property name="text">
-                    <string>اسم المنتج</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>سعر المنتج</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>المخرون</string>
-                   </property>
-                  </column>
                  </widget>
                 </item>
                 <item>
@@ -3395,7 +3459,7 @@ QMessageBox QLabel {
                      </font>
                     </property>
                     <property name="text">
-                     <string>تعديل</string>
+                     <string>حفظ</string>
                     </property>
                    </widget>
                   </item>
@@ -3599,19 +3663,6 @@ QMessageBox QLabel {
                        <string>اسم الموظف</string>
                       </property>
                      </widget>
-                     <widget class="QLineEdit" name="lineEdit_27">
-                      <property name="font">
-                       <font>
-                        <pointsize>15</pointsize>
-                       </font>
-                      </property>
-                      <property name="layoutDirection">
-                       <enum>Qt::RightToLeft</enum>
-                      </property>
-                      <property name="placeholderText">
-                       <string>اسم المستخدم</string>
-                      </property>
-                     </widget>
                      <widget class="QLineEdit" name="lineEdit_29">
                       <property name="font">
                        <font>
@@ -3626,6 +3677,9 @@ QMessageBox QLabel {
                       </property>
                      </widget>
                      <widget class="QLineEdit" name="lineEdit_28">
+                      <property name="enabled">
+                       <bool>true</bool>
+                      </property>
                       <property name="font">
                        <font>
                         <pointsize>15</pointsize>
@@ -3721,200 +3775,13 @@ QMessageBox QLabel {
              <attribute name="title">
               <string>تقارير</string>
              </attribute>
-             <layout class="QVBoxLayout" name="verticalLayout_17">
+             <layout class="QVBoxLayout" name="verticalLayout_54">
               <item>
-               <widget class="QTabWidget" name="tabWidget_3">
-                <property name="font">
-                 <font>
-                  <pointsize>13</pointsize>
-                 </font>
-                </property>
-                <property name="layoutDirection">
-                 <enum>Qt::LeftToRight</enum>
-                </property>
-                <property name="currentIndex">
-                 <number>1</number>
-                </property>
-                <widget class="QWidget" name="tab_17">
-                 <attribute name="title">
-                  <string>مخصص</string>
-                 </attribute>
-                 <layout class="QVBoxLayout" name="verticalLayout_54">
+               <layout class="QVBoxLayout" name="verticalLayout_17">
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_16">
                   <item>
-                   <layout class="QVBoxLayout" name="verticalLayout_16">
-                    <item>
-                     <widget class="QSplitter" name="splitter_10">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <widget class="QPushButton" name="pushButton_23">
-                       <property name="font">
-                        <font>
-                         <pointsize>15</pointsize>
-                        </font>
-                       </property>
-                       <property name="layoutDirection">
-                        <enum>Qt::RightToLeft</enum>
-                       </property>
-                       <property name="text">
-                        <string>بحث</string>
-                       </property>
-                      </widget>
-                      <widget class="QDateEdit" name="dateEdit">
-                       <property name="font">
-                        <font>
-                         <pointsize>15</pointsize>
-                        </font>
-                       </property>
-                       <property name="locale">
-                        <locale language="English" country="UnitedStates"/>
-                       </property>
-                       <property name="date">
-                        <date>
-                         <year>2020</year>
-                         <month>1</month>
-                         <day>1</day>
-                        </date>
-                       </property>
-                      </widget>
-                      <widget class="QLabel" name="label_2">
-                       <property name="font">
-                        <font>
-                         <pointsize>15</pointsize>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string>الى</string>
-                       </property>
-                      </widget>
-                      <widget class="QDateEdit" name="dateEdit_2">
-                       <property name="font">
-                        <font>
-                         <pointsize>15</pointsize>
-                        </font>
-                       </property>
-                       <property name="locale">
-                        <locale language="English" country="UnitedStates"/>
-                       </property>
-                       <property name="date">
-                        <date>
-                         <year>2020</year>
-                         <month>1</month>
-                         <day>1</day>
-                        </date>
-                       </property>
-                      </widget>
-                      <widget class="QLabel" name="label">
-                       <property name="font">
-                        <font>
-                         <pointsize>15</pointsize>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string>من</string>
-                       </property>
-                      </widget>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QTableWidget" name="tableWidget_7">
-                      <property name="enabled">
-                       <bool>true</bool>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <pointsize>15</pointsize>
-                       </font>
-                      </property>
-                      <property name="layoutDirection">
-                       <enum>Qt::RightToLeft</enum>
-                      </property>
-                      <column>
-                       <property name="text">
-                        <string>اسم المنتج</string>
-                       </property>
-                      </column>
-                      <column>
-                       <property name="text">
-                        <string>سعر المنتج</string>
-                       </property>
-                      </column>
-                      <column>
-                       <property name="text">
-                        <string>المباع</string>
-                       </property>
-                      </column>
-                      <column>
-                       <property name="text">
-                        <string>قيمة المباع</string>
-                       </property>
-                      </column>
-                     </widget>
-                    </item>
-                    <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_22">
-                      <item>
-                       <spacer name="horizontalSpacer_3">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>40</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                      <item>
-                       <widget class="QLabel" name="label_9">
-                        <property name="font">
-                         <font>
-                          <pointsize>15</pointsize>
-                         </font>
-                        </property>
-                        <property name="text">
-                         <string>0</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QLabel" name="label_6">
-                        <property name="font">
-                         <font>
-                          <pointsize>15</pointsize>
-                         </font>
-                        </property>
-                        <property name="text">
-                         <string>اجمالى قيمة المباع:</string>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="pushButton_27">
-                      <property name="font">
-                       <font>
-                        <pointsize>15</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>تصدير</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                 </layout>
-                </widget>
-                <widget class="QWidget" name="tab_18">
-                 <attribute name="title">
-                  <string>الكل</string>
-                 </attribute>
-                 <layout class="QVBoxLayout" name="verticalLayout_56">
-                  <item>
-                   <layout class="QVBoxLayout" name="verticalLayout_55">
+                   <layout class="QHBoxLayout" name="horizontalLayout_22">
                     <item>
                      <widget class="QPushButton" name="pushButton_52">
                       <property name="font">
@@ -3931,153 +3798,256 @@ QMessageBox QLabel {
                      </widget>
                     </item>
                     <item>
-                     <widget class="QTableWidget" name="tableWidget_10">
-                      <property name="enabled">
-                       <bool>true</bool>
-                      </property>
+                     <widget class="QDateEdit" name="dateEdit_15">
                       <property name="font">
                        <font>
                         <pointsize>15</pointsize>
                        </font>
                       </property>
                       <property name="layoutDirection">
-                       <enum>Qt::RightToLeft</enum>
+                       <enum>Qt::LeftToRight</enum>
                       </property>
-                      <column>
-                       <property name="text">
-                        <string>اسم المنتج</string>
-                       </property>
-                      </column>
-                      <column>
-                       <property name="text">
-                        <string>سعر المنتج</string>
-                       </property>
-                      </column>
-                      <column>
-                       <property name="text">
-                        <string>المخزون</string>
-                       </property>
-                      </column>
-                      <column>
-                       <property name="text">
-                        <string>قيمة المخزون</string>
-                       </property>
-                      </column>
-                      <column>
-                       <property name="text">
-                        <string>المباع</string>
-                       </property>
-                      </column>
-                      <column>
-                       <property name="text">
-                        <string>قيمة المباع</string>
-                       </property>
-                      </column>
+                      <property name="locale">
+                       <locale language="English" country="UnitedStates"/>
+                      </property>
+                      <property name="displayFormat">
+                       <string>d‏-M‏-yyyy</string>
+                      </property>
+                      <property name="date">
+                       <date>
+                        <year>2020</year>
+                        <month>1</month>
+                        <day>1</day>
+                       </date>
+                      </property>
                      </widget>
                     </item>
                     <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_26">
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_24">
-                        <item>
-                         <spacer name="horizontalSpacer_6">
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                          <property name="sizeHint" stdset="0">
-                           <size>
-                            <width>40</width>
-                            <height>20</height>
-                           </size>
-                          </property>
-                         </spacer>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_18">
-                          <property name="font">
-                           <font>
-                            <pointsize>15</pointsize>
-                           </font>
-                          </property>
-                          <property name="text">
-                           <string>0</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_19">
-                          <property name="font">
-                           <font>
-                            <pointsize>15</pointsize>
-                           </font>
-                          </property>
-                          <property name="text">
-                           <string>اجمالى قيمة المخوزن:</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_25">
-                        <item>
-                         <spacer name="horizontalSpacer_2">
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                          <property name="sizeHint" stdset="0">
-                           <size>
-                            <width>40</width>
-                            <height>20</height>
-                           </size>
-                          </property>
-                         </spacer>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_20">
-                          <property name="font">
-                           <font>
-                            <pointsize>15</pointsize>
-                           </font>
-                          </property>
-                          <property name="text">
-                           <string>0</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLabel" name="label_21">
-                          <property name="font">
-                           <font>
-                            <pointsize>15</pointsize>
-                           </font>
-                          </property>
-                          <property name="text">
-                           <string>اجمالى قيمة المباع:</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                     </layout>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="pushButton_53">
+                     <widget class="QLabel" name="label_14">
                       <property name="font">
                        <font>
                         <pointsize>15</pointsize>
                        </font>
                       </property>
                       <property name="text">
-                       <string>تصدير</string>
+                       <string>الى</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QDateEdit" name="dateEdit_14">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::LeftToRight</enum>
+                      </property>
+                      <property name="locale">
+                       <locale language="English" country="UnitedStates"/>
+                      </property>
+                      <property name="displayFormat">
+                       <string>d‏-M‏-yyyy</string>
+                      </property>
+                      <property name="date">
+                       <date>
+                        <year>2020</year>
+                        <month>1</month>
+                        <day>1</day>
+                       </date>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_15">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>من</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="comboBox_16">
+                      <property name="font">
+                       <font>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>الكل</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>سجاير</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>اكسسوارات</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>اخرى</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <widget class="QTableWidget" name="tableWidget_10">
+                    <property name="enabled">
+                     <bool>true</bool>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <pointsize>15</pointsize>
+                     </font>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::RightToLeft</enum>
+                    </property>
+                    <column>
+                     <property name="text">
+                      <string>اسم المنتج</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>سعر المنتج</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>المخزون</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>قيمة المخزون</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>المباع</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>قيمة المباع</string>
+                     </property>
+                    </column>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_26">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_24">
+                    <item>
+                     <spacer name="horizontalSpacer_6">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_18">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>0</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_19">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>اجمالى قيمة المخوزن:</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_25">
+                    <item>
+                     <spacer name="horizontalSpacer_2">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_20">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>0</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_21">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>اجمالى قيمة المباع:</string>
                       </property>
                      </widget>
                     </item>
                    </layout>
                   </item>
                  </layout>
-                </widget>
-               </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton_53">
+                  <property name="font">
+                   <font>
+                    <pointsize>15</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>تصدير</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </widget>
@@ -4241,11 +4211,6 @@ QMessageBox QLabel {
                      <property name="layoutDirection">
                       <enum>Qt::RightToLeft</enum>
                      </property>
-                     <item>
-                      <property name="text">
-                       <string>---------------------------</string>
-                      </property>
-                     </item>
                     </widget>
                     <widget class="QLabel" name="label_3">
                      <property name="font">
@@ -5090,7 +5055,6 @@ QMessageBox QLabel {
   <tabstop>comboBox_13</tabstop>
   <tabstop>pushButton_24</tabstop>
   <tabstop>lineEdit_30</tabstop>
-  <tabstop>lineEdit_27</tabstop>
   <tabstop>lineEdit_29</tabstop>
   <tabstop>lineEdit_28</tabstop>
   <tabstop>lineEdit_32</tabstop>
@@ -5098,14 +5062,6 @@ QMessageBox QLabel {
   <tabstop>lineEdit_31</tabstop>
   <tabstop>pushButton_43</tabstop>
   <tabstop>pushButton_42</tabstop>
-  <tabstop>dateEdit_2</tabstop>
-  <tabstop>dateEdit</tabstop>
-  <tabstop>pushButton_23</tabstop>
-  <tabstop>tableWidget_7</tabstop>
-  <tabstop>pushButton_27</tabstop>
-  <tabstop>pushButton_52</tabstop>
-  <tabstop>tableWidget_10</tabstop>
-  <tabstop>pushButton_53</tabstop>
   <tabstop>comboBox_21</tabstop>
   <tabstop>dateEdit_7</tabstop>
   <tabstop>dateEdit_6</tabstop>
@@ -5144,7 +5100,6 @@ QMessageBox QLabel {
   <tabstop>checkBox_28</tabstop>
   <tabstop>checkBox_29</tabstop>
   <tabstop>pushButton_45</tabstop>
-  <tabstop>tabWidget_3</tabstop>
   <tabstop>pushButton_7</tabstop>
   <tabstop>tableWidget</tabstop>
   <tabstop>pushButton_12</tabstop>

@@ -17,12 +17,10 @@ CREATE TABLE services(service_name VARCHAR(255) NOT NULL,
 					serviceID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
 
 		);
-
 CREATE TABLE company_names(companyID INT AUTO_INCREMENT NOT NULL,
                             company_name   VARCHAR(255)  NOT NULL,
                             PRIMARY KEY(companyID)
                             );
-
 CREATE TABLE vodafone_cards_values(card_value FLOAT NOT NULL);
 
 CREATE TABLE orange_cards_values(card_value FLOAT NOT NULL);
@@ -149,4 +147,4 @@ CREATE TABLE permissions(EmployeeID INT NOT NULL,
 						reports BOOLEAN NOT NULL,
 						dailymoment BOOLEAN NOT NULL,
 						permissions BOOLEAN NOT NULL
-						);
+);
