@@ -21,19 +21,28 @@ CREATE TABLE company_names(companyID INT AUTO_INCREMENT NOT NULL,
                             company_name   VARCHAR(255)  NOT NULL,
                             PRIMARY KEY(companyID)
                             );
-CREATE TABLE vodafone_cards_values(card_value FLOAT NOT NULL);
+CREATE TABLE vodafone_cards_values(cardID INT AUTO_INCREMENT NOT NULL ,
+								card_value FLOAT NOT NULL,
+                                PRIMARY KEY(cardID)
+                                );
 
-CREATE TABLE orange_cards_values(card_value FLOAT NOT NULL);
+CREATE TABLE orange_cards_values(cardID INT AUTO_INCREMENT NOT NULL,
+								card_value FLOAT NOT NULL,
+                                PRIMARY KEY(cardID));
 
-CREATE TABLE etisalat_cards_values(card_value FLOAT NOT NULL);
+CREATE TABLE etisalat_cards_values(cardID INT AUTO_INCREMENT NOT NULL,
+	card_value FLOAT NOT NULL,
+    PRIMARY KEY(cardID));
 
-CREATE TABLE WE_cards_values(card_value FLOAT NOT NULL);
+CREATE TABLE WE_cards_values(cardID INT AUTO_INCREMENT NOT NULL,
+	card_value FLOAT NOT NULL,
+    PRIMARY KEY(cardID));
 
-CREATE TABLE charge(phone_number VARCHAR(255) NOT NULL,
+CREATE TABLE charge(order_id INT NOT NULL AUTO_INCREMENT,
+						phone_number VARCHAR(255) NOT NULL,
 						value FLOAT NOT NULL,
 						 _date Date NOT NULL,
 						 _time TIME NOT NULL,
-						 order_id INT NOT NULL AUTO_INCREMENT,
 						 serviceID INT NOT NULL,
 						 EmployeeID INT NOT NULL,
 						 MachineID INT NOT NULL,
@@ -44,37 +53,41 @@ CREATE TABLE charge(phone_number VARCHAR(255) NOT NULL,
 
 						 );
 
-CREATE TABLE accessories(name VARCHAR(255) NOT NULL,
+CREATE TABLE accessories(order_id INT NOT NULL AUTO_INCREMENT,
+						name VARCHAR(255) NOT NULL,
 						 value INT NOT NULL,
 						 quantity INT NOT NULL,
 						 _date date NOT NULL,
 						 _time TIME NOT NULL,
-						 order_id INT NOT NULL AUTO_INCREMENT,
 						 EmployeeID INT NOT NULL,
 						 FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID),
 						 KEY (order_id)
 						  );
 
-CREATE TABLE accessories_stored(name VARCHAR(255) NOT NULL,
+CREATE TABLE accessories_stored(accessoriesID INT NOT NULL AUTO_INCREMENT,
+								name VARCHAR(255) NOT NULL,
 								price INT NOT NULL,
-								quantity INT NOT NULL
+								quantity INT NOT NULL,
+                                PRIMARY KEY(accessoriesID)
 							);
 
-CREATE TABLE tobacco(name VARCHAR(255) NOT NUll,
+CREATE TABLE tobacco(order_id INT NOT NULL AUTO_INCREMENT,
+					name VARCHAR(255) NOT NUll,
 					value FLOAT NOT NULL,
 					num INT NOT NULL,
 					_date DATE NOT NULL,
 					_time TIME NOT NULL,
-					order_id INT NOT NULL AUTO_INCREMENT,
 					EmployeeID INT NOT NULL,
 					FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID),
 					KEY (order_id)
 						);
-CREATE TABLE tobacco_stored(name VARCHAR(255) NOT NUll,
+CREATE TABLE tobacco_stored(tobaccoID INT NOT NULL AUTO_INCREMENT,
+					name VARCHAR(255) NOT NUll,
 					quantity INT NOT NULL,
 					price FLOAT NOT NULL,
 					EmployeeID INT NOT NULL,
-					FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID)
+					FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID),
+                    PRIMARY KEY(tobaccoID)
 						);
 CREATE TABLE phone_cards(company_name VARCHAR(255) NOT NULL,
 						value FLOAT NOT NULL,
