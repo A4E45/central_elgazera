@@ -1318,7 +1318,7 @@ QMessageBox QLabel {
          </font>
         </property>
         <property name="currentIndex">
-         <number>7</number>
+         <number>6</number>
         </property>
         <widget class="QWidget" name="tab_9">
          <attribute name="title">
@@ -1691,11 +1691,6 @@ QMessageBox QLabel {
                 <string>اسم الماكينة</string>
                </property>
               </column>
-              <column>
-               <property name="text">
-                <string>اسم الموظف</string>
-               </property>
-              </column>
              </widget>
             </item>
            </layout>
@@ -1808,11 +1803,6 @@ QMessageBox QLabel {
               <column>
                <property name="text">
                 <string>رقم الطلب</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>اسم الموظف</string>
                </property>
               </column>
              </widget>
@@ -1936,11 +1926,6 @@ QMessageBox QLabel {
               <column>
                <property name="text">
                 <string>رقم الطلب</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>اسم الموظف</string>
                </property>
               </column>
              </widget>
@@ -2265,11 +2250,6 @@ QMessageBox QLabel {
                        <string>رقم الطلب</string>
                       </property>
                      </column>
-                     <column>
-                      <property name="text">
-                       <string>اسم الموظف</string>
-                      </property>
-                     </column>
                     </widget>
                    </item>
                   </layout>
@@ -2401,6 +2381,11 @@ QMessageBox QLabel {
          <layout class="QVBoxLayout" name="verticalLayout_20">
           <item>
            <widget class="QTabWidget" name="tabWidget_4">
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
             <property name="layoutDirection">
              <enum>Qt::LeftToRight</enum>
             </property>
@@ -2408,7 +2393,7 @@ QMessageBox QLabel {
              <locale language="English" country="UnitedStates"/>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="tab_19">
              <attribute name="title">
@@ -2738,7 +2723,7 @@ QMessageBox QLabel {
              </font>
             </property>
             <property name="currentIndex">
-             <number>5</number>
+             <number>6</number>
             </property>
             <widget class="QWidget" name="tab_11">
              <attribute name="title">
@@ -4053,7 +4038,7 @@ QMessageBox QLabel {
             </widget>
             <widget class="QWidget" name="tab_7">
              <attribute name="title">
-              <string>التحركات اليومية</string>
+              <string>التحركات</string>
              </attribute>
              <layout class="QVBoxLayout" name="verticalLayout_88">
               <item>
@@ -4966,7 +4951,7 @@ QMessageBox QLabel {
      <x>0</x>
      <y>0</y>
      <width>1172</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

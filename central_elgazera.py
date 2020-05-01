@@ -244,8 +244,8 @@ class Main(QMainWindow, MainUI):
         self.cur.execute(sql)
         data = self.cur.fetchall()
         for accessories_name in data:
-            self.comboBox_2.addItem(accessories_name[0])
-            self.comboBox_10.addItem(accessories_name[0])
+            self.comboBox_2.addItem(accessories_name[1])
+            self.comboBox_10.addItem(accessories_name[1])
 
     def accessories_bayment(self):
         self.cur.execute("""
@@ -270,17 +270,16 @@ class Main(QMainWindow, MainUI):
 		"""
         self.cur.execute(sql, [(accessories_name)])
         data = self.cur.fetchall()
-        accessories_id = data[0][0]
-        value = quantity * data[0][1]
-        stored_accessories = data[0][2] - quantity
-        date = self.load_date_time()
+        print(data)
+        value = quantity * data[0][2]
+        stored_accessories = data[0][3] - quantity
         if stored_accessories < 0:
             self.empty_message("لقد نفذت الكمية من هذا المنتج")
         else:
             self.cur.execute("""
-					INSERT INTO accessories(name, value, quantity, _date, EmployeeID, _time)
+					INSERT INTO accessories(name, value, quantity, _date, _time, EmployeeID)
 					VALUES (%s, %s, %s, %s, %s, %s)
-				""", (accessories_name, value, quantity, date, emp_id, self.load_time()))
+				""", (accessories_name, value, quantity, self.load_date(), self.load_time(), emp_id))
 
             self.cur.execute("""
 					UPDATE accessories_stored SET quantity=%s WHERE name=%s
@@ -924,7 +923,7 @@ class Main(QMainWindow, MainUI):
             self.tableWidget_6.setColumnCount(3)
             self.tableWidget_6.setHorizontalHeaderLabels(["اسم المنتج", "سعر المنتج", "المخزون"])
             self.cur.execute("""
-                    SELECT * FROM accessories_stored
+                    SELECT name, price, quantity FROM accessories_stored
             """)
             data = self.cur.fetchall()
             for row_index, row_data in enumerate(data):
@@ -1212,12 +1211,15 @@ class Main(QMainWindow, MainUI):
             phone_number = self.lineEdit_19.text()
             address = self.lineEdit_23.text()
             password = self.encrypt(self.lineEdit_24.text(), "md5")
-            self.cur.execute("""
-                    INSERT INTO employee(name, username, mail, national_id, phone, address, password)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s)
-            """, (name, username, mail, national_id, phone_number, address, password))
-            self.db.commit()
-            self.statusBar().showMessage("تم اضافة المعلومات بنجاح")
+            if name == "" or username == "" or mail == "" or national_id == "" or phone_number == "" or address == "" or password == "":
+                self.empty_message("بيانات الموظف غير كاملة")
+            else:
+                self.cur.execute("""
+                        INSERT INTO employee(name, username, mail, national_id, phone, address, password)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s)
+                """, (name, username, mail, national_id, phone_number, address, password))
+                self.db.commit()
+                self.statusBar().showMessage("تم اضافة المعلومات بنجاح")
         except mysql.connector.errors.IntegrityError:
             self.empty_message("بيانات هذا الموظف موجودة من قبل")
         except:

@@ -13,8 +13,9 @@ CREATE TABLE machines(MachineID INT AUTO_INCREMENT NOT NULL,
 						machine_name VARCHAR(255) NOT NULL,
 						PRIMARY KEY(MachineID)
 							);
-CREATE TABLE services(service_name VARCHAR(255) NOT NULL,
-					serviceID INT NOT NULL AUTO_INCREMENT PRIMARY KEY
+CREATE TABLE services(serviceID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	service_name VARCHAR(255) NOT NULL
+
 
 		);
 CREATE TABLE company_names(companyID INT AUTO_INCREMENT NOT NULL,
@@ -79,14 +80,13 @@ CREATE TABLE tobacco(order_id INT NOT NULL AUTO_INCREMENT,
 					_time TIME NOT NULL,
 					EmployeeID INT NOT NULL,
 					FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID),
-					KEY (order_id)
+					PRIMARY KEY (order_id)
 						);
 CREATE TABLE tobacco_stored(tobaccoID INT NOT NULL AUTO_INCREMENT,
 					name VARCHAR(255) NOT NUll,
 					quantity INT NOT NULL,
 					price FLOAT NOT NULL,
 					EmployeeID INT NOT NULL,
-					FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID),
                     PRIMARY KEY(tobaccoID)
 						);
 CREATE TABLE phone_cards(company_name VARCHAR(255) NOT NULL,
