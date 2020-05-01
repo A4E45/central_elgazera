@@ -1225,16 +1225,65 @@ class Main(QMainWindow, MainUI):
         except:
             self.empty_message("حدث خطأ في ادخال بيانات الموظف")
 
-    def reports(self):
-        category = self.comboBox_16.currentText()
+    def tobacco_reports(self):
         _from = self.dateEdit_14.date().toString("yyyy-MM-dd")
         _to = self.dateEdit_15.date().toString("yyyy-MM-dd")
-        self.cur.execute("SELECT * FROM tobacco")
-        data = self.cur.fetchall()
-        self.cur.execute(""" SELECT * FROM tobacco_stored""")
+        self.cur.execute(
+            """ SELECT * FROM tobacco_stored ORDER BY tobacooID""")
         stored_toba = self.cur.fetchall()
+        total_values = []
+        total_pay = 0
+        total_stored = 0
         for stored in range(len(stored_toba)):
-            print(stored_toba[stored][0])
+            self.cur.execute("""
+                SELECT num, value FROM tobacco WHERE (name=%s) AND (_date BETWEEN %s AND %s)
+            """, (stored_toba[stored][0], _from, _to))
+            values = self.cur.fetchall()
+            tobacco = 0
+            tobacco_values = 0
+            total_stored += stored_toba[stored][2] * stored_toba[stored][1]
+            for value in values:
+                tobacco += value[0]
+                tobacco_values += value[1]
+            total_values.append(
+                [stored_toba[stored][0], stored_toba[stored][2], stored_toba[stored][1], stored_toba[stored][2] * stored_toba[stored][1], tobacco, stored_toba[stored][2] * tobacco])
+            total_pay += tobacco_values
+        data = total_values
+        for row_index, row_data in enumerate(data):
+            self.tableWidget_10.insertRow(row_index)
+            for colm_index, colm_data in enumerate(row_data):
+                self.tableWidget_10.setItem(row_index, colm_index,
+                                            QTableWidgetItem(str(colm_data)))
+        self.tableWidget_10.resizeColumnsToContents()
+        return total_pay, total_stored
+
+    def accessories_reports(self):
+        _from = self.dateEdit_14.date().toString("yyyy-MM-dd")
+        _to = self.dateEdit_15.date().toString("yyyy-MM-dd")
+        self.cur.execute(
+            """ SELECT * FROM accessories_stored ORDER BY acID""")
+        stored_ac = self.cur.fetchall()
+
+    def other_reports(self):
+        pass
+
+    def reports(self):
+        category = self.comboBox_16.currentText()
+        self.tableWidget_10.setRowCount(0)
+        self.label_20.setText("")
+        self.label_18.setText("")
+        if category == "سجاير":
+            payment, stored = self.tobacco_reports()
+            self.label_20.setText(str(payment))
+            self.label_18.setText(str(stored))
+        elif category == "اكسسوارات":
+            payment, stored = self.accessories_reports()
+        elif category == "اخرى":
+            pass
+        elif category == "الكل":
+            pass
+        else:
+            pass
 
     def open_settings_tab(self):
         self.tabWidget.setCurrentIndex(7)
@@ -1245,7 +1294,6 @@ def main():
     window = Main()
     window.show()
     app.exec_()
-
 
 if __name__ == "__main__":
     main()
