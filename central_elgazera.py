@@ -1223,8 +1223,7 @@ class Main(QMainWindow, MainUI):
             self.empty_message("بيانات هذا الموظف موجودة من قبل")
         except:
             self.empty_message("حدث خطأ في ادخال بيانات الموظف")
-
-    def tobacco_reports(self):
+    def show_tobacco_reports(self):
         _from = self.dateEdit_14.date().toString("yyyy-MM-dd")
         _to = self.dateEdit_15.date().toString("yyyy-MM-dd")
         self.cur.execute(
@@ -1247,7 +1246,10 @@ class Main(QMainWindow, MainUI):
             total_values.append(
                 [stored_toba[stored][1], stored_toba[stored][3], stored_toba[stored][2], stored_toba[stored][2] * stored_toba[stored][3], tobacco, stored_toba[stored][3] * tobacco])
             total_pay += tobacco_values
-        data = total_values
+        return total_pay, total_stored, total_values
+
+    def tobacco_reports(self):
+        total_pay, total_stored,  data = self.show_tobacco_reports()
         for row_index, row_data in enumerate(data):
             self.tableWidget_10.insertRow(row_index)
             for colm_index, colm_data in enumerate(row_data):
@@ -1349,7 +1351,40 @@ class Main(QMainWindow, MainUI):
             pass
 
     def export_reports(self):
-        print("Done!")
+        category = self.comboBox_16.currentText()
+        if category == "سجاير":
+            data = self.show_tobacco_reports()[2]
+            wb = Workbook(f'تقارير/{self.load_date()}.xlsx')
+            sheet1  = wb.add_worksheet()
+
+            sheet1.write(0,0,'اسم المنتج')
+            sheet1.write(0,1,'سعر المنتج')
+            sheet1.write(0,2,'المجزون')
+            sheet1.write(0,3,'قيمة المخزون')
+            sheet1.write(0,4,'المباع')
+            sheet1.write(0,5,'قيمة المباع')
+
+            row_number = 1
+            for row in data :
+                column_number = 0
+                for item in row :
+                    sheet1.write(row_number , column_number , str(item))
+                    column_number += 1
+                row_number += 1
+
+            wb.close()
+
+        elif category == "اكسسوارات":
+            pass
+        elif category == "اخرى":
+            pass
+        elif category == "الكل":
+            pass
+        else:
+            pass
+
+
+
 
     def open_settings_tab(self):
         self.tabWidget.setCurrentIndex(7)
