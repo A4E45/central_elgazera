@@ -109,12 +109,12 @@ CREATE TABLE elec_cards(client_number VARCHAR(255) NOT NULL,
 						FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID),
 						FOREIGN KEY (MachineID) REFERENCES machines(MachineID)
 						);
-CREATE TABLE other(name VARCHAR(255) NOT NULL,
+CREATE TABLE other(order_id INT NOT NULL AUTO_INCREMENT,
+					name VARCHAR(255) NOT NULL,
 					num INT NOT NULL,
 					value FLOAT NOT NULL,
 					_date DATE NOT NULL,
 					_time TIME NOT NULL,
-					order_id INT NOT NULL AUTO_INCREMENT,
 					EmployeeID INT NOT NULL,
 					FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID),
 					KEY (order_id)

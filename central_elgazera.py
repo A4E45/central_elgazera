@@ -90,6 +90,7 @@ class Main(QMainWindow, MainUI):
         self.pushButton_24.clicked.connect(self.display_emp)
         self.pushButton_43.clicked.connect(self.edit_employee)
         self.pushButton_52.clicked.connect(self.reports)
+        self.pushButton_53.clicked.connect(self.export_reports)
 
     def load_date(self):
         date = datetime.datetime.now().date()
@@ -198,9 +199,8 @@ class Main(QMainWindow, MainUI):
                 self.db.commit()
                 self.tableWidget.setRowCount(0)
                 self.show_charge()
-        except ValueError as e:
+        except ValueError:
             self.empty_message("برجاء ادخال ارقام فقط")
-            print(e)
 
     def del_charge(self):
         try:
@@ -270,7 +270,6 @@ class Main(QMainWindow, MainUI):
 		"""
         self.cur.execute(sql, [(accessories_name)])
         data = self.cur.fetchall()
-        print(data)
         value = quantity * data[0][2]
         stored_accessories = data[0][3] - quantity
         if stored_accessories < 0:
@@ -1229,7 +1228,7 @@ class Main(QMainWindow, MainUI):
         _from = self.dateEdit_14.date().toString("yyyy-MM-dd")
         _to = self.dateEdit_15.date().toString("yyyy-MM-dd")
         self.cur.execute(
-            """ SELECT * FROM tobacco_stored ORDER BY tobacooID""")
+            """ SELECT * FROM tobacco_stored ORDER BY tobaccoID""")
         stored_toba = self.cur.fetchall()
         total_values = []
         total_pay = 0
@@ -1237,16 +1236,16 @@ class Main(QMainWindow, MainUI):
         for stored in range(len(stored_toba)):
             self.cur.execute("""
                 SELECT num, value FROM tobacco WHERE (name=%s) AND (_date BETWEEN %s AND %s)
-            """, (stored_toba[stored][0], _from, _to))
+            """, (stored_toba[stored][1], _from, _to))
             values = self.cur.fetchall()
             tobacco = 0
             tobacco_values = 0
-            total_stored += stored_toba[stored][2] * stored_toba[stored][1]
+            total_stored += stored_toba[stored][2] * stored_toba[stored][3]
             for value in values:
                 tobacco += value[0]
                 tobacco_values += value[1]
             total_values.append(
-                [stored_toba[stored][0], stored_toba[stored][2], stored_toba[stored][1], stored_toba[stored][2] * stored_toba[stored][1], tobacco, stored_toba[stored][2] * tobacco])
+                [stored_toba[stored][1], stored_toba[stored][3], stored_toba[stored][2], stored_toba[stored][2] * stored_toba[stored][3], tobacco, stored_toba[stored][3] * tobacco])
             total_pay += tobacco_values
         data = total_values
         for row_index, row_data in enumerate(data):
@@ -1261,11 +1260,65 @@ class Main(QMainWindow, MainUI):
         _from = self.dateEdit_14.date().toString("yyyy-MM-dd")
         _to = self.dateEdit_15.date().toString("yyyy-MM-dd")
         self.cur.execute(
-            """ SELECT * FROM accessories_stored ORDER BY acID""")
+            """ SELECT * FROM accessories_stored ORDER BY accessoriesID""")
         stored_ac = self.cur.fetchall()
+        total_values = []
+        total_pay = 0
+        total_stored = 0
+        for stored in range(len(stored_ac)):
+            self.cur.execute("""
+                SELECT quantity, value FROM accessories WHERE (name=%s) AND (_date BETWEEN %s AND %s)
+            """, (stored_ac[stored][1], _from, _to))
+            values = self.cur.fetchall()
+            ac = 0
+            ac_values = 0
+            total_stored += stored_ac[stored][2] * stored_ac[stored][3]
+            for value in values:
+                ac += value[0]
+                ac_values += value[1]
+            total_values.append(
+                [stored_ac[stored][1], stored_ac[stored][2], stored_ac[stored][3], stored_ac[stored][3] * stored_ac[stored][2], ac, stored_ac[stored][2] * ac])
+            total_pay += ac_values
+        data = total_values
+        for row_index, row_data in enumerate(data):
+            self.tableWidget_10.insertRow(row_index)
+            for colm_index, colm_data in enumerate(row_data):
+                self.tableWidget_10.setItem(row_index, colm_index,
+                                            QTableWidgetItem(str(colm_data)))
+        self.tableWidget_10.resizeColumnsToContents()
+        return total_pay, total_stored
 
     def other_reports(self):
-        pass
+        _from = self.dateEdit_14.date().toString("yyyy-MM-dd")
+        _to = self.dateEdit_15.date().toString("yyyy-MM-dd")
+        self.cur.execute(
+            """ SELECT * FROM other_stored ORDER BY otherID""")
+        stored_ot = self.cur.fetchall()
+        total_values = []
+        total_pay = 0
+        total_stored = 0
+        for stored in range(len(stored_ot)):
+            self.cur.execute("""
+                SELECT num, value FROM other WHERE (name=%s) AND (_date BETWEEN %s AND %s)
+            """, (stored_ot[stored][1], _from, _to))
+            values = self.cur.fetchall()
+            ot = 0
+            ot_values = 0
+            total_stored += stored_ot[stored][2] * stored_ot[stored][3]
+            for value in values:
+                ot += value[0]
+                ot_values += value[1]
+            total_values.append(
+                [stored_ot[stored][1], stored_ot[stored][2], stored_ot[stored][3], stored_ot[stored][3] * stored_ot[stored][2], ot, stored_ot[stored][2] * ot])
+            total_pay += ot_values
+        data = total_values
+        for row_index, row_data in enumerate(data):
+            self.tableWidget_10.insertRow(row_index)
+            for colm_index, colm_data in enumerate(row_data):
+                self.tableWidget_10.setItem(row_index, colm_index,
+                                            QTableWidgetItem(str(colm_data)))
+        self.tableWidget_10.resizeColumnsToContents()
+        return total_pay, total_stored
 
     def reports(self):
         category = self.comboBox_16.currentText()
@@ -1278,12 +1331,25 @@ class Main(QMainWindow, MainUI):
             self.label_18.setText(str(stored))
         elif category == "اكسسوارات":
             payment, stored = self.accessories_reports()
+            self.label_20.setText(str(payment))
+            self.label_18.setText(str(stored))
         elif category == "اخرى":
-            pass
+            payment, stored = self.other_reports()
+            self.label_20.setText(str(payment))
+            self.label_18.setText(str(stored))
         elif category == "الكل":
-            pass
+            payment_ot, stored_ot = self.other_reports()
+            payment_ac, stored_ac = self.accessories_reports()
+            payment_to, stored_to = self.tobacco_reports()
+            total = payment_to + payment_ac + payment_ot
+            total_stored = stored_to + stored_ac + stored_ot
+            self.label_20.setText(str(total))
+            self.label_18.setText(str(total_stored))
         else:
             pass
+
+    def export_reports(self):
+        print("Done!")
 
     def open_settings_tab(self):
         self.tabWidget.setCurrentIndex(7)
