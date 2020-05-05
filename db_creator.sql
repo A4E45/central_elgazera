@@ -95,9 +95,7 @@ CREATE TABLE phone_cards(company_name VARCHAR(255) NOT NULL,
 						_date DATE NOT NULL,
 						_time TIME NOT NULL,
 						EmployeeID INT NOT NULL,
-						MachineID INT NOT NULL,
-						FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID),
-						FOREIGN KEY (MachineID) REFERENCES machines(MachineID)
+						FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID)
 					 );
 CREATE TABLE elec_cards(client_number VARCHAR(255) NOT NULL,
 						value FLOAT NOT NULL,
@@ -134,6 +132,15 @@ CREATE TABLE wanted(client_name VARCHAR(255) NOT NULL,
 					KEY (order_id),
 					FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID)
 						);
+CREATE TABLE dailymoment(moveID INT NOT NULL AUTO_INCREMENT,
+						EmployeeID INT NOT NULL,
+						_move VARCHAR(255) NOT NULL,
+						_date DATE NOT NULL,
+						_time TIME NOT NULL,
+						FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID),
+						PRIMARY KEY (moveID)
+
+)
 CREATE TABLE permissions(EmployeeID INT NOT NULL,
 						FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID),
 						is_admin BOOLEAN NOT NULL,
