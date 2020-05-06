@@ -39,7 +39,14 @@ class Main(QMainWindow, MainUI):
 
     def UI_Changes(self):
         self.tabWidget.tabBar().setVisible(False)
-        #self.tabWidget.setTabEnabled(1, False)
+        self.pushButton_6.setEnabled(False)
+        self.pushButton_7.setEnabled(False)
+        self.pushButton_11.setEnabled(False)
+        self.pushButton_12.setEnabled(False)
+        self.pushButton_16.setEnabled(False)
+        self.pushButton_28.setEnabled(False)
+        self.pushButton_8.setEnabled(False)
+        self.pushButton_32.setEnabled(False)
 
     def db_connect(self):
         self.db = mysql.connector.connect(host="localhost", port=3306, user="root",
@@ -85,7 +92,6 @@ class Main(QMainWindow, MainUI):
         self.pushButton_40.clicked.connect(self.add_new_other)
         self.comboBox_15.currentIndexChanged.connect(self.show_edit)
         self.pushButton_47.clicked.connect(self.edit)
-        self.pushButton_48.clicked.connect(self.delete)
         self.pushButton_55.clicked.connect(self.add_new_cards_values)
         self.pushButton_41.clicked.connect(self.add_employee)
         self.pushButton_24.clicked.connect(self.display_emp)
@@ -103,25 +109,77 @@ class Main(QMainWindow, MainUI):
         self.checkBox_19.stateChanged.connect(self.other_groupbox)
         self.checkBox_20.stateChanged.connect(self.wanted_groupbox)
         self.checkBox_24.stateChanged.connect(self.settings_groupbox)
+        self.checkBox_29.stateChanged.connect(self.admin_groupbox)
+
+    def admin_groupbox(self):
+        if self.checkBox_29.isChecked():
+            self.groupBox_16.setEnabled(False)
+            self.groupBox_17.setEnabled(False)
+            self.groupBox_18.setEnabled(False)
+            self.groupBox_24.setEnabled(False)
+            self.groupBox_19.setEnabled(False)
+            self.groupBox_21.setEnabled(False)
+            self.groupBox_20.setEnabled(False)
+        else:
+            self.groupBox_20.setEnabled(True)
 
     def charge_groupbox(self):
-        self.groupBox_16.setEnabled(True)
+        if self.checkBox_16.isChecked():
+            self.groupBox_16.setEnabled(True)
+        else:
+            self.groupBox_16.setEnabled(False)
+            self.checkBox_15.setChecked(False)
+            self.checkBox_2.setChecked(False)
+            self.checkBox_3.setChecked(False)
 
     def accessories_groupbox(self):
-        self.groupBox_17.setEnabled(True)
+        if self.checkBox_17.isChecked():
+            self.groupBox_17.setEnabled(True)
+        else:
+            self.groupBox_17.setEnabled(False)
+            self.checkBox_32.setChecked(False)
+            self.checkBox_9.setChecked(False)
+            self.checkBox_10.setChecked(False)
 
     def tobacco_groupbox(self):
-        self.groupBox_18.setEnabled(True)
+        if self.checkBox_18.isChecked():
+            self.groupBox_18.setEnabled(True)
+        else:
+            self.groupBox_18.setEnabled(False)
+            self.checkBox_11.setChecked(False)
+            self.checkBox_22.setChecked(False)
+            self.checkBox_13.setChecked(False)
 
     def other_groupbox(self):
-        self.groupBox_24.setEnabled(True)
+        if self.checkBox_19.isChecked():
+            self.groupBox_24.setEnabled(True)
+        else:
+            self.groupBox_24.setEnabled(False)
+            self.checkBox_23.setChecked(False)
+            self.checkBox_30.setChecked(False)
+            self.checkBox_31.setChecked(False)
 
     def wanted_groupbox(self):
-        self.groupBox_19.setEnabled(True)
+        if self.checkBox_20.isChecked():
+            self.groupBox_19.setEnabled(True)
+        else:
+            self.groupBox_19.setEnabled(False)
+            self.checkBox_12.setChecked(False)
+            self.checkBox_14.setChecked(False)
 
     def settings_groupbox(self):
-        self.groupBox_21.setEnabled(True)
-
+        if self.checkBox_24.isChecked():
+            self.groupBox_21.setEnabled(True)
+        else:
+            self.groupBox_21.setEnabled(False)
+            self.checkBox_25.setChecked(False)
+            self.checkBox_26.setChecked(False)
+            self.checkBox_52.setChecked(False)
+            self.checkBox_27.setChecked(False)
+            self.checkBox_55.setChecked(False)
+            self.checkBox_53.setChecked(False)
+            self.checkBox_54.setChecked(False)
+            self.checkBox_28.setChecked(False)
 
     def load_date(self):
         date = datetime.datetime.now().date()
@@ -166,6 +224,14 @@ class Main(QMainWindow, MainUI):
         self.tableWidget_10.setRowCount(0)
         self.lineEdit_7.setText("")
         self.lineEdit_8.setText("")
+        self.pushButton_6.setEnabled(False)
+        self.pushButton_7.setEnabled(False)
+        self.pushButton_11.setEnabled(False)
+        self.pushButton_12.setEnabled(False)
+        self.pushButton_16.setEnabled(False)
+        self.pushButton_28.setEnabled(False)
+        self.pushButton_8.setEnabled(False)
+        self.pushButton_32.setEnabled(False)
 
     def daily_movement(self, m):
         #emp_id = 1
@@ -585,6 +651,7 @@ class Main(QMainWindow, MainUI):
 			""", (card_name, card_value * card_quantity, card_quantity, emp_id, self.load_date(), self.load_time()))
         self.db.commit()
         self.daily_movement(f"""تم اضافة كرت {card_name} {card_quantity * card_value}""")
+        self.statusBar().showMessage("تم اضافة قيمة الكرت بنجاح")
 
 
     def cards_info(self):
@@ -603,7 +670,6 @@ class Main(QMainWindow, MainUI):
         total2 = 0
         for value2 in values2:
             total2 += float(value2[0])
-        print(total2)
         self.info_message(total, total2)
         self.daily_movement("""  تم اظهار معلومات عن الكروت الشحن""")
 
@@ -627,6 +693,7 @@ class Main(QMainWindow, MainUI):
 					""", (client_number, value, op_type, self.load_date(), emp_id, machine_id, self.load_time()))
                 self.db.commit()
                 self.daily_movement(f"""تم اضافة كرت كهربا {value} {client_number}""")
+                self.statusBar().showMessage("تم اضافة قيمة الكرت بنجاح")
         except ValueError:
             self.empty_message("برجاء ادخال ارقام فقط")
 
@@ -723,7 +790,8 @@ class Main(QMainWindow, MainUI):
 			""", (final, other_name))
         self.db.commit()
         self.tableWidget_5.setRowCount(0)
-        self.other_payment(f"""تم حذف  {other_name} {info[2]}""")
+        self.other_payment()
+        self.daily_movement(f"""تم حذف  {other_name} {info[2]}""")
 
     def info_other(self):
         self.cur.execute("""
@@ -880,6 +948,7 @@ class Main(QMainWindow, MainUI):
 		""", (new_stored, name))
         self.db.commit()
         self.daily_movement(f"""تم اضافة {name} {quantity} """)
+        self.statusBar().showMessage("تم اضافة المنتج بنجاح")
 
     def update_accessories(self):
         name = self.comboBox_10.currentText()
@@ -893,6 +962,8 @@ class Main(QMainWindow, MainUI):
 		""", (new_stored, name))
         self.db.commit()
         self.daily_movement(f"""تم اضافة {name} {quantity} """)
+        self.statusBar().showMessage("تم اضافة المنتج بنجاح")
+
 
     def update_other(self):
         name = self.comboBox_11.currentText()
@@ -906,6 +977,7 @@ class Main(QMainWindow, MainUI):
 		""", (new_stored, name))
         self.db.commit()
         self.daily_movement(f"""تم اضافة {name} {quantity} """)
+        self.statusBar().showMessage("تم اضافة المنتج بنجاح")
 
     def add_new_tobacco(self):
         name = self.lineEdit_10.text()
@@ -924,6 +996,7 @@ class Main(QMainWindow, MainUI):
                 self.comboBox_3.clear()
                 self.show_all_tobacoo()
                 self.daily_movement(f"""تم اضافة نوع جديد من السجاير {name} بسعر {price} بكمية {quantity}""")
+                self.statusBar().showMessage("تم اضافة المنتج بنجاح")
             except mysql.connector.errors.IntegrityError:
                 self.empty_message("هذا المنتج موجود من قبل")
             except ValueError:
@@ -944,6 +1017,7 @@ class Main(QMainWindow, MainUI):
                 self.comboBox_9.clear()
                 self.show_machine()
                 self.daily_movement(f"""تم اضافة ماكينة جديدة {name}""")
+                self.statusBar().showMessage("تم اضافة اسم الماكينة بنجاح")
             except mysql.connector.errors.IntegrityError:
                 self.empty_message("هذه الماكينة موجودة من قبل")
 
@@ -961,6 +1035,7 @@ class Main(QMainWindow, MainUI):
                 self.comboBox_14.clear()
                 self.show_servies()
                 self.daily_movement(f"""تم اضافة خدمة جديدة {name}""")
+                self.statusBar().showMessage("تم اضافة نوع الخدمة بنجاح")
             except mysql.connector.errors.IntegrityError:
                 self.empty_message("هذه الخدمة موجودة من قبل")
 
@@ -975,21 +1050,28 @@ class Main(QMainWindow, MainUI):
                     VALUES (%s)
                 """, (value,))
                 self.db.commit()
+                self.statusBar().showMessage("تم اضافة الكرت بنجاح")
             elif company_name == "اورنج":
                 self.cur.execute("""
                     INSERT INTO orange_cards_values(card_value)
                     VALUES (%s)
                 """, (value,))
+                self.db.commit()
+                self.statusBar().showMessage("تم اضافة الكرت بنجاح")
             elif company_name == "اتصالات":
                 self.cur.execute("""
                     INSERT INTO etisalat_cards_values(card_value)
                     VALUES (%s)
                 """, (value,))
+                self.db.commit()
+                self.statusBar().showMessage("تم اضافة الكرت بنجاح")
             elif company_name == "WE":
                 self.cur.execute("""
                     INSERT INTO WE_cards_values(card_value)
                     VALUES (%s)
                 """, (value,))
+                self.db.commit()
+                self.statusBar().showMessage("تم اضافة الكرت بنجاح")
             self.show_cards()
         except ValueError:
             self.empty_message("برجاء ادخال ارقام فقط")
@@ -1011,6 +1093,7 @@ class Main(QMainWindow, MainUI):
                 self.comboBox_10.clear()
                 self.show_all_accessories()
                 self.daily_movement(f"""تم اضافة نوع جديد من الاكسسوارات {name} بسعر {price} بكمية {quantity}""")
+                self.statusBar().showMessage("تم اضافة النتج بنجاح")
             except mysql.connector.errors.IntegrityError:
                 self.empty_message("هذا المنتج موجود من قبل")
             except ValueError:
@@ -1033,6 +1116,7 @@ class Main(QMainWindow, MainUI):
                 self.comboBox_11.clear()
                 self.show_other()
                 self.daily_movement(f"""تم اضافة منتج اخر {name} بسعر {price} {quantity}""")
+                self.statusBar().showMessage("تم اضافة امنتج بنجاح")
             except mysql.connector.errors.IntegrityError:
                 self.empty_message("هذا المنتج موجود من قبل")
             except ValueError:
@@ -1165,6 +1249,7 @@ class Main(QMainWindow, MainUI):
                 """, (name, price, quantity, name))
                 self.db.commit()
                 self.daily_movement(f""" تم التعديل على {name} بسعر {price} بكمية {quantity}""")
+                self.statusBar().showMessage("تم التعديل على النتج بنجاح")
             elif category == "اكسسوارات محمول":
                 quantity = info[2]
                 self.cur.execute("""
@@ -1172,6 +1257,7 @@ class Main(QMainWindow, MainUI):
                 """, (name, price, quantity, name))
                 self.db.commit()
                 self.daily_movement(f""" تم التعديل على {name} بسعر {price} بكمية {quantity}""")
+                self.statusBar().showMessage("تم التعديل على النتج بنجاح")
             elif category == "اخرى":
                 quantity = info[2]
                 self.cur.execute("""
@@ -1179,6 +1265,7 @@ class Main(QMainWindow, MainUI):
                 """, (name, price, quantity, name))
                 self.db.commit()
                 self.daily_movement(f""" تم التعديل على {name} بسعر {price} بكمية {quantity}""")
+                self.statusBar().showMessage("تم التعديل على النتج بنجاح")
             elif category == "كروت فودافون":
                 self.cur.execute("""
                     UPDATE vodafone_cards_values SET card_value=%s WHERE cardID=%s
@@ -1186,6 +1273,7 @@ class Main(QMainWindow, MainUI):
                 self.db.commit()
                 self.show_cards()
                 self.daily_movement(f""" تم التعديل على {name} بسعر {price} بكمية {quantity}""")
+                self.statusBar().showMessage("تم التعديل على قيمة الكرت بنجاح")
             elif category == "كروت اورنج":
                 self.cur.execute("""
                     UPDATE orange_cards_values SET card_value=%s WHERE cardID=%s
@@ -1193,6 +1281,7 @@ class Main(QMainWindow, MainUI):
                 self.db.commit()
                 self.show_cards()
                 self.daily_movement(f""" تم التعديل على {name} بسعر {price} """)
+                self.statusBar().showMessage("تم التعديل على قيمة الكرت بنجاح")
             elif category == "كروت اتصالات":
                 self.cur.execute("""
                     UPDATE etisalat_cards_values SET card_value=%s WHERE cardID=%s
@@ -1200,6 +1289,7 @@ class Main(QMainWindow, MainUI):
                 self.db.commit()
                 self.show_cards()
                 self.daily_movement(f""" تم التعديل على {name} بسعر {price}""")
+                self.statusBar().showMessage("تم التعديل على قيمة الكرت بنجاح")
             elif category == "كروت WE":
                 self.cur.execute("""
                     UPDATE WE_cards_values SET card_value=%s WHERE cardID=%s
@@ -1207,6 +1297,7 @@ class Main(QMainWindow, MainUI):
                 self.db.commit()
                 self.show_cards()
                 self.daily_movement(f""" تم التعديل على {name} بسعر {price} """)
+                self.statusBar().showMessage("تم التعديل على قيمة الكرت بنجاح")
             elif category == "خدمات":
                 self.cur.execute("""
                     UPDATE services SET service_name=%s WHERE serviceID=%s
@@ -1214,80 +1305,11 @@ class Main(QMainWindow, MainUI):
                 self.db.commit()
                 self.show_servies()
                 self.daily_movement(f""" تم التعديل على {name} """)
+                self.statusBar().showMessage("تم التعديل على اسم الخدمة بنجاح")
             else:
                 pass
         except:
             self.empty_message("برجاء تحديد القيمة المراد تعديلها")
-
-    def delete(self):
-        try:
-            category = self.comboBox_15.currentText()
-            info = []
-            for currentQTableWidgetItem in self.tableWidget_6.selectedItems():
-                info.append(currentQTableWidgetItem.text())
-            name = info[0]
-            if category == "سجاير":
-                self.cur.execute("""
-                    DELETE FROM tobacco_stored WHERE name=%s
-                """, (name,))
-                self.db.commit()
-                self.show_all_tobacoo()
-                self.daily_movement(f"""تم حذف {name} بسعر {info[1]} بكمية {info[2]}""")
-            elif category == "اكسسوارات محمول":
-                self.cur.execute("""
-                    DELETE FROM accessories_stored WHERE name=%s
-                """, (name,))
-                self.db.commit()
-                self.show_all_accessories()
-                self.daily_movement(f"""تم حذف {name} بسعر {info[1]} بكمية {info[2]}""")
-            elif category == "اخرى":
-                self.cur.execute("""
-                    DELETE FROM other_stored WHERE other_name=%s
-                """, (info[0],))
-                self.db.commit()
-                self.show_other()
-                self.daily_movement(f"""تم حذف {name} بسعر {info[1]} بكمية {info[2]}""")
-            elif category == "كروت فودافون":
-                self.cur.execute("""
-                    DELETE FROM vodafone_cards_values WHERE cardID=%s
-                """, (info[0],))
-                self.db.commit()
-                self.show_cards()
-                self.daily_movement(f""" تم حذف كرت فودافون {info[1]}""")
-            elif category == "كروت اورنج":
-                self.cur.execute("""
-                    DELETE FROM orange_cards_values WHERE cardID=%s
-                """, (info[0],))
-                self.db.commit()
-                self.show_cards()
-                self.daily_movement(f""" تم حذف كرت اورنج {info[1]}""")
-            elif category == "كروت اتصالات":
-                self.cur.execute("""
-                    DELETE FROM etisalat_cards_values WHERE cardID=%s
-                """, (info[0],))
-                self.db.commit()
-                self.show_cards()
-                self.daily_movement(f""" تم حذف كرت اتصالات {info[1]}""")
-            elif category == "كروت WE":
-                self.cur.execute("""
-                    DELETE FROM WE_cards_values WHERE cardID=%s
-                """, (info[0],))
-                self.db.commit()
-                self.show_cards()
-                self.daily_movement(f""" تم حذف كرت WE {info[1]}""")
-            elif category == "خدمات":
-                self.cur.execute("""
-                    DELETE FROM services WHERE serviceID=%s
-                """, (info[0],))
-                self.db.commit()
-                self.show_servies()
-                self.daily_movement(f"""تم حذف خدمة {info[2]}""")
-            else:
-                pass
-
-            self.show_edit()
-        except:
-            self.empty_message("برجاء تحديد المنتج المراد حذفه")
 
     def encrypt(self, text, hashtype):
         text = text.encode("utf-8")
@@ -1356,6 +1378,7 @@ class Main(QMainWindow, MainUI):
             self.lineEdit_33.setText("")
             self.lineEdit_31.setText("")
             self.daily_movement(f""" تم التعديل على بيانات {name}""")
+            self.statusBar().showMessage("تم التعديل على بيانات الموظف بنجاح")
 
     def add_employee(self):
         try:
@@ -1373,14 +1396,20 @@ class Main(QMainWindow, MainUI):
                         INSERT INTO employee(name, username, mail, national_id, phone, address, password)
                         VALUES (%s, %s, %s, %s, %s, %s, %s)
                 """, (name, username, mail, national_id, phone_number, address, password))
+                self.cur.execute(
+                    "SELECT EmployeeID FROM employee WHERE username=%s", (username, ))
+                _id = self.cur.fetchall()[0][0]
+                self.cur.execute("""
+                INSERT INTO permissions (EmployeeID, is_admin, charge_tab, charge_add, charge_del, charge_info, accessories_tab, accessories_add, accessories_del, accessories_info, tobacco_tab, tobacco_add, tobacco_del, tobacco_info, other_tab, other_add, other_del, other_info, wanted_tab, wanted_add, wanted_del, search_op, settings_tab, setting_add_brand, setting_add_new_brand, setting_edit_brand, add_employee, edit_employee, reports, dailymoment, add_permissions)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                """, (_id, False, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, False, False, False, False, False, False, False, False, False))
                 self.db.commit()
                 self.statusBar().showMessage("تم اضافة المعلومات بنجاح")
                 self.daily_movement(f"""تم اضافة موظف {name}""")
-                self.tabWidget_2.setCurrentIndex(7)
                 self.show_emp()
-        except mysql.connector.errors.IntegrityError:
+        except mysql.connector.errors.IntegrityError as e:
             self.empty_message("بيانات هذا الموظف موجودة من قبل")
-        except:
+        except Exception as e:
             self.empty_message("حدث خطأ في ادخال بيانات الموظف")
 
     def show_tobacco_reports(self):
@@ -1452,6 +1481,7 @@ class Main(QMainWindow, MainUI):
                                             QTableWidgetItem(str(colm_data)))
         self.tableWidget_10.resizeColumnsToContents()
         return total_pay, total_stored
+
     def show_other_reports(self):
         _from = self.dateEdit_14.date().toString("yyyy-MM-dd")
         _to = self.dateEdit_15.date().toString("yyyy-MM-dd")
@@ -1549,6 +1579,7 @@ class Main(QMainWindow, MainUI):
         else:
             pass
         self.daily_movement(f"""تم تصدير تقارير عن {category}""")
+        self.statusBar().showMessage("تم تصدير البيانات بنجاح")
 
     def show_daily_movment_for_one(self):
         username = self.comboBox_21.currentText()
@@ -1601,7 +1632,6 @@ class Main(QMainWindow, MainUI):
         if username == "الكل":
             with open(f"التحركات/{self.load_date()}.txt", "a", encoding="utf-8") as file:
                 data = self.show_all_daily_movements()
-                print(data)
                 for i in data:
                     file.write(f"""قام {i[0]} {i[1]} التاريخ {i[2]} التوقيت {i[3]} \n""")
         else:
@@ -1609,6 +1639,7 @@ class Main(QMainWindow, MainUI):
                 data = self.show_daily_movment_for_one()[0]
                 for i in data:
                     file.write(f"""قام {i[0]} {i[1]} التاريخ {i[2]} التوقيت {i[3]} \n""")
+        self.statusBar().showMessage("تم تصدير البيانات بنجاح")
 
     def login(self):
         try:
@@ -1626,6 +1657,173 @@ class Main(QMainWindow, MainUI):
                 self.other_payment()
                 self.lineEdit_7.setText("")
                 self.lineEdit_8.setText("")
+                self.pushButton_32.setEnabled(True)
+                self.cur.execute("""
+                    SELECT * FROM permissions WHERE EmployeeID=%s
+                """, (emp_id,))
+                data = self.cur.fetchall()[0]
+                if data[2] == 1:
+                    self.pushButton_6.setEnabled(True)
+                    self.pushButton.setEnabled(True)
+                    self.pushButton_2.setEnabled(True)
+                    self.pushButton_5.setEnabled(True)
+                    self.pushButton_7.setEnabled(True)
+                    self.pushButton_3.setEnabled(True)
+                    self.pushButton_4.setEnabled(True)
+                    self.pushButton_13.setEnabled(True)
+                    self.pushButton_11.setEnabled(True)
+                    self.pushButton_10.setEnabled(True)
+                    self.pushButton_34.setEnabled(True)
+                    self.pushButton_9.setEnabled(True)
+                    self.pushButton_12.setEnabled(True)
+                    self.pushButton_14.setEnabled(True)
+                    self.pushButton_18.setEnabled(True)
+                    self.pushButton_22.setEnabled(True)
+                    self.pushButton_49.setEnabled(True)
+                    self.pushButton_15.setEnabled(True)
+                    self.pushButton_17.setEnabled(True)
+                    self.pushButton_16.setEnabled(True)
+                    self.pushButton_19.setEnabled(True)
+                    self.pushButton_20.setEnabled(True)
+                    self.pushButton_16.setEnabled(True)
+                    self.pushButton_28.setEnabled(True)
+                    self.pushButton_8.setEnabled(True)
+                    self.tabWidget_2.setTabEnabled(0, True)
+                    self.tabWidget_2.setTabEnabled(1, True)
+                    self.tabWidget_2.setTabEnabled(2, True)
+                    self.tabWidget_2.setTabEnabled(3, True)
+                    self.tabWidget_2.setTabEnabled(4, True)
+                    self.tabWidget_2.setTabEnabled(5, True)
+                    self.tabWidget_2.setTabEnabled(6, True)
+                    self.tabWidget_2.setTabEnabled(7, True)
+                else:
+                    if data[3] == 1:
+                        self.pushButton_6.setEnabled(True)
+                        if data[4] == 1:
+                            self.pushButton.setEnabled(True)
+                        else:
+                            self.pushButton.setEnabled(False)
+                        if data[5] == 1:
+                            self.pushButton_2.setEnabled(True)
+                        else:
+                            self.pushButton_2.setEnabled(False)
+                        if data[6] == 1:
+                            self.pushButton_5.setEnabled(True)
+                        else:
+                            self.pushButton_5.setEnabled(False)
+                    else:
+                        self.pushButton_6.setEnabled(False)
+                    if data[7] == 1:
+                        self.pushButton_7.setEnabled(True)
+                        if data[8] == 1:
+                            self.pushButton_3.setEnabled(True)
+                        else:
+                            self.pushButton_3.setEnabled(False)
+                        if data[9] == 1:
+                            self.pushButton_4.setEnabled(True)
+                        else:
+                            self.pushButton_4.setEnabled(False)
+                        if data[10] == 1:
+                            self.pushButton_13.setEnabled(True)
+                        else:
+                            self.pushButton_13.setEnabled(False)
+                    else:
+                        self.pushButton_7.setEnabled(False)
+                    if data[11] == 1:
+                        self.pushButton_11.setEnabled(True)
+                        if data[12] == 1:
+                            self.pushButton_10.setEnabled(True)
+                        else:
+                            self.pushButton_10.setEnabled(False)
+                        if data[13] == 1:
+                            self.pushButton_34.setEnabled(True)
+                        else:
+                            self.pushButton_34.setEnabled(False)
+                        if data[14] == 1:
+                            self.pushButton_9.setEnabled(True)
+                        else:
+                            self.pushButton_9.setEnabled(False)
+                    else:
+                        self.pushButton_11.setEnabled(False)
+                    if data[15] == 1:
+                        self.pushButton_12.setEnabled(True)
+                        if data[16] == 1:
+                            self.pushButton_14.setEnabled(True)
+                            self.pushButton_18.setEnabled(True)
+                            self.pushButton_22.setEnabled(True)
+                        else:
+                            self.pushButton_14.setEnabled(False)
+                            self.pushButton_18.setEnabled(False)
+                            self.pushButton_22.setEnabled(False)
+                        if data[17] == 1:
+                            self.pushButton_49.setEnabled(True)
+                        else:
+                            self.pushButton_49.setEnabled(False)
+                        if data[18] == 1:
+                            self.pushButton_15.setEnabled(True)
+                            self.pushButton_17.setEnabled(True)
+                            self.pushButton_21.setEnabled(True)
+                        else:
+                            self.pushButton_15.setEnabled(False)
+                            self.pushButton_17.setEnabled(False)
+                            self.pushButton_21.setEnabled(False)
+                    else:
+                        self.pushButton_12.setEnabled(False)
+
+                    if data[19] == 1:
+                        self.pushButton_16.setEnabled(True)
+                        if data[20] == 1:
+                            self.pushButton_19.setEnabled(True)
+                        else:
+                            self.pushButton_19.setEnabled(False)
+                        if data[21] == 1:
+                            self.pushButton_20.setEnabled(True)
+                        else:
+                            self.pushButton_20.setEnabled(False)
+                    else:
+                        self.pushButton_16.setEnabled(False)
+
+                    if data[22] == 1:
+                        self.pushButton_28.setEnabled(True)
+                    else:
+                        self.pushButton_28.setEnabled(False)
+
+                    if data[23] == 1:
+                        self.pushButton_8.setEnabled(True)
+                        if data[24] == 1:
+                            self.tabWidget_2.setTabEnabled(0, True)
+                        else:
+                            self.tabWidget_2.setTabEnabled(0, False)
+                        if data[25] == 1:
+                            self.tabWidget_2.setTabEnabled(1, True)
+                        else:
+                            self.tabWidget_2.setTabEnabled(1, False)
+                        if data[26] == 1:
+                            self.tabWidget_2.setTabEnabled(2, True)
+                        else:
+                            self.tabWidget_2.setTabEnabled(2, False)
+                        if data[27] == 1:
+                            self.tabWidget_2.setTabEnabled(3, True)
+                        else:
+                            self.tabWidget_2.setTabEnabled(3, False)
+                        if data[28] == 1:
+                            self.tabWidget_2.setTabEnabled(4, True)
+                        else:
+                            self.tabWidget_2.setTabEnabled(4, False)
+                        if data[29] == 1:
+                            self.tabWidget_2.setTabEnabled(5, True)
+                        else:
+                            self.tabWidget_2.setTabEnabled(5, False)
+                        if data[30] == 1:
+                            self.tabWidget_2.setTabEnabled(6, True)
+                        else:
+                            self.tabWidget_2.setTabEnabled(6, False)
+                        if data[31] == 1:
+                            self.tabWidget_2.setTabEnabled(7, True)
+                        else:
+                            self.tabWidget_2.setTabEnabled(7, False)
+                    else:
+                        self.pushButton_8.setEnabled(False)
 
             else:
                 self.empty_message("برجاء الخال اسم المستخدم و الكلمة المرور بشكل صحيح")
@@ -1633,10 +1831,185 @@ class Main(QMainWindow, MainUI):
             self.empty_message("برجاء الخال اسم المستخدم و الكلمة المرور بشكل صحيح")
 
     def display_permission(self):
-        pass
+        try:
+            self.groupBox_20.setEnabled(True)
+            self.checkBox_16.setChecked(False)
+            self.checkBox_17.setChecked(False)
+            self.checkBox_18.setChecked(False)
+            self.checkBox_19.setChecked(False)
+            self.checkBox_20.setChecked(False)
+            self.checkBox_21.setChecked(False)
+            self.checkBox_24.setChecked(False)
+            self.checkBox_29.setChecked(False)
+            self.groupBox_16.setEnabled(False)
+            self.checkBox_15.setChecked(False)
+            self.checkBox_2.setChecked(False)
+            self.checkBox_3.setChecked(False)
+            self.groupBox_17.setEnabled(False)
+            self.checkBox_32.setChecked(False)
+            self.checkBox_9.setChecked(False)
+            self.checkBox_10.setChecked(False)
+            self.groupBox_18.setEnabled(False)
+            self.checkBox_11.setChecked(False)
+            self.checkBox_22.setChecked(False)
+            self.checkBox_13.setChecked(False)
+            self.groupBox_24.setEnabled(False)
+            self.checkBox_23.setChecked(False)
+            self.checkBox_30.setChecked(False)
+            self.checkBox_31.setChecked(False)
+            self.groupBox_19.setEnabled(False)
+            self.checkBox_12.setChecked(False)
+            self.checkBox_14.setChecked(False)
+            self.groupBox_21.setEnabled(False)
+            self.checkBox_25.setChecked(False)
+            self.checkBox_26.setChecked(False)
+            self.checkBox_52.setChecked(False)
+            self.checkBox_27.setChecked(False)
+            self.checkBox_55.setChecked(False)
+            self.checkBox_53.setChecked(False)
+            self.checkBox_54.setChecked(False)
+            self.checkBox_28.setChecked(False)
+            username = self.comboBox_12.currentText()
+            self.cur.execute(""" SELECT EmployeeID FROM employee WHERE username=%s""",(username,))
+            _id = self.cur.fetchall()[0][0]
+            self.cur.execute(""" SELECT * FROM permissions WHERE EmployeeID=%s""", (_id,))
+            data = self.cur.fetchall()[0]
+            is_admin = data[2]
+            charge_tab = data[3]
+            add_charge = data[4]
+            del_charge = data[5]
+            info_charge = data[6]
+            accessories_tab = data[7]
+            add_accessories = data[8]
+            del_accessories = data[9]
+            info_accessories = data[10]
+            tobacco_tab = data[11]
+            add_tobacco = data[12]
+            del_tobacco = data[13]
+            info_tobacco = data[14]
+            other_tab = data[15]
+            add_other = data[16]
+            del_other = data[17]
+            info_other = data[18]
+            wanted_tab = data[19]
+            add_wanted = data[20]
+            del_wanted = data[21]
+            search_op = data[22]
+            settings_tab = data[23]
+            add_brand = data[24]
+            add_new_brand = data[25]
+            edit_brand = data[26]
+            add_emp = data[27]
+            info_emp = data[28]
+            reports = data[29]
+            dailymovments = data[30]
+            add_permissions = data[31]
+            if is_admin == 1:
+                self.checkBox_29.setChecked(True)
+            else:
+                if charge_tab == 1:
+                    self.checkBox_16.setChecked(True)
+                if add_charge == 1:
+                    self.checkBox_15.setChecked(True)
+                if del_charge == 1:
+                    self.checkBox_2.setChecked(True)
+                if info_charge == 1:
+                    self.checkBox_3.setChecked(True)
+                if accessories_tab == 1:
+                    self.checkBox_17.setChecked(True)
+                if add_accessories == 1:
+                    self.checkBox_32.setChecked(True)
+                if del_accessories == 1:
+                    self.checkBox_9.setChecked(True)
+                if info_accessories == 1:
+                    self.checkBox_10.setChecked(True)
+                if tobacco_tab == 1:
+                    self.checkBox_18.setChecked(True)
+                if add_tobacco == 1:
+                    self.checkBox_11.setChecked(True)
+                if del_tobacco == 1:
+                    self.checkBox_22.setChecked(True)
+                if info_tobacco == 1:
+                    self.checkBox_13.setChecked(True)
+                if other_tab == 1:
+                    self.checkBox_19.setChecked(True)
+                if add_other == 1:
+                    self.checkBox_23.setChecked(True)
+                if del_other == 1:
+                    self.checkBox_30.setChecked(True)
+                if info_other == 1:
+                    self.checkBox_31.setChecked(True)
+                if wanted_tab == 1:
+                    self.checkBox_20.setChecked(True)
+                if add_wanted == 1:
+                    self.checkBox_12.setChecked(True)
+                if del_wanted == 1:
+                    self.checkBox_14.setChecked(True)
+                if search_op == 1:
+                    self.checkBox_21.setChecked(True)
+                if settings_tab == 1:
+                    self.checkBox_24.setChecked(True)
+                if add_brand == 1:
+                    self.checkBox_25.setChecked(True)
+                if add_new_brand == 1:
+                    self.checkBox_26.setChecked(True)
+                if edit_brand == 1:
+                    self.checkBox_52.setChecked(True)
+                if add_emp == 1:
+                    self.checkBox_27.setChecked(True)
+                if info_emp == 1:
+                    self.checkBox_55.setChecked(True)
+                if reports == 1:
+                    self.checkBox_53.setChecked(True)
+                if dailymovments == 1:
+                    self.checkBox_54.setChecked(True)
+                if add_permissions == 1:
+                    self.checkBox_28.setChecked(True)
+        except:
+            self.empty_message("""هذا الموظف ليس لديه صلاحيات برجاء اضافة صلاحيات له""")
 
     def permissions(self):
-        pass
+        username = self.comboBox_12.currentText()
+        self.cur.execute("""
+                SELECT EmployeeID FROM employee WHERE username=%s
+        """,(username,))
+        _id = self.cur.fetchall()[0][0]
+        is_admin = self.checkBox_29.isChecked()
+        charge_tab = self.checkBox_16.isChecked()
+        add_charge = self.checkBox_15.isChecked()
+        del_charge = self.checkBox_2.isChecked()
+        info_charge = self.checkBox_3.isChecked()
+        accessories_tab = self.checkBox_17.isChecked()
+        add_accessories = self.checkBox_32.isChecked()
+        del_accessories = self.checkBox_9.isChecked()
+        info_accessories = self.checkBox_10.isChecked()
+        tobacco_tab = self.checkBox_18.isChecked()
+        add_tobacco = self.checkBox_11.isChecked()
+        del_tobacco = self.checkBox_22.isChecked()
+        info_tobacco = self.checkBox_13.isChecked()
+        other_tab = self.checkBox_19.isChecked()
+        add_other = self.checkBox_23.isChecked()
+        del_other = self.checkBox_30.isChecked()
+        info_other = self.checkBox_31.isChecked()
+        wanted_tab = self.checkBox_20.isChecked()
+        add_wanted = self.checkBox_12.isChecked()
+        del_wanted = self.checkBox_14.isChecked()
+        search_op = self.checkBox_21.isChecked()
+        settings_tab = self.checkBox_24.isChecked()
+        add_brand = self.checkBox_25.isChecked()
+        add_new_brand = self.checkBox_26.isChecked()
+        edit_brand = self.checkBox_52.isChecked()
+        add_emp = self.checkBox_27.isChecked()
+        info_emp = self.checkBox_55.isChecked()
+        reports = self.checkBox_53.isChecked()
+        dailymovments = self.checkBox_54.isChecked()
+        add_permissions = self.checkBox_28.isChecked()
+        self.cur.execute("""
+                UPDATE permissions SET is_admin=%s, charge_tab=%s, charge_add=%s, charge_del=%s, charge_info=%s, accessories_tab=%s, accessories_add=%s, accessories_del=%s, accessories_info=%s, tobacco_tab=%s, tobacco_add=%s, tobacco_del=%s, tobacco_info=%s, other_tab=%s, other_add=%s, other_del=%s, other_info=%s, wanted_tab=%s, wanted_add=%s, wanted_del=%s, search_op=%s, settings_tab=%s, setting_add_brand=%s, setting_add_new_brand=%s, setting_edit_brand=%s, add_employee=%s, edit_employee=%s, reports=%s, dailymoment=%s, add_permissions=%s
+                WHERE EmployeeID=%s
+        """, (is_admin, charge_tab, add_charge, del_charge, info_charge, accessories_tab, add_accessories, del_accessories, info_accessories, tobacco_tab, add_tobacco, del_tobacco, info_tobacco, other_tab, add_other, del_other, info_other, wanted_tab, add_wanted, del_wanted, search_op, settings_tab, add_brand, add_new_brand, edit_brand, add_emp, info_emp, reports, dailymovments, add_permissions, _id))
+        self.db.commit()
+        self.statusBar().showMessage("تم تعديل صلاحيات الموظف بنجاح")
 
     def open_settings_tab(self):
         self.tabWidget.setCurrentIndex(7)

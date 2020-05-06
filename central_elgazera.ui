@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1172</width>
-    <height>722</height>
+    <height>721</height>
    </rect>
   </property>
   <property name="sizeIncrement">
@@ -2714,7 +2714,7 @@ QMessageBox QLabel {
              </font>
             </property>
             <property name="currentIndex">
-             <number>7</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="tab_11">
              <attribute name="title">
@@ -3413,21 +3413,6 @@ QMessageBox QLabel {
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_20">
                   <item>
-                   <widget class="QPushButton" name="pushButton_48">
-                    <property name="font">
-                     <font>
-                      <pointsize>15</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true"/>
-                    </property>
-                    <property name="text">
-                     <string>حذف</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
                    <widget class="QPushButton" name="pushButton_47">
                     <property name="font">
                      <font>
@@ -3717,18 +3702,6 @@ QMessageBox QLabel {
                 </item>
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_19">
-                  <item>
-                   <widget class="QPushButton" name="pushButton_42">
-                    <property name="font">
-                     <font>
-                      <pointsize>15</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>حذف</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item>
                    <widget class="QPushButton" name="pushButton_43">
                     <property name="font">
@@ -5027,7 +5000,6 @@ QMessageBox QLabel {
   <tabstop>comboBox_15</tabstop>
   <tabstop>tableWidget_6</tabstop>
   <tabstop>pushButton_47</tabstop>
-  <tabstop>pushButton_48</tabstop>
   <tabstop>lineEdit_17</tabstop>
   <tabstop>lineEdit_26</tabstop>
   <tabstop>lineEdit_25</tabstop>
@@ -5045,7 +5017,6 @@ QMessageBox QLabel {
   <tabstop>lineEdit_33</tabstop>
   <tabstop>lineEdit_31</tabstop>
   <tabstop>pushButton_43</tabstop>
-  <tabstop>pushButton_42</tabstop>
   <tabstop>comboBox_21</tabstop>
   <tabstop>dateEdit_7</tabstop>
   <tabstop>dateEdit_6</tabstop>
