@@ -39,6 +39,7 @@ class Main(QMainWindow, MainUI):
 
     def UI_Changes(self):
         self.tabWidget.tabBar().setVisible(False)
+        #self.tabWidget.setTabEnabled(1, False)
 
     def db_connect(self):
         self.db = mysql.connector.connect(host="localhost", port=3306, user="root",
@@ -94,6 +95,33 @@ class Main(QMainWindow, MainUI):
         self.pushButton_25.clicked.connect(self.daily_movement_search)
         self.pushButton_26.clicked.connect(self.export_daiymovments)
         self.pushButton_31.clicked.connect(self.login)
+        self.pushButton_44.clicked.connect(self.display_permission)
+        self.pushButton_45.clicked.connect(self.permissions)
+        self.checkBox_16.stateChanged.connect(self.charge_groupbox)
+        self.checkBox_17.stateChanged.connect(self.accessories_groupbox)
+        self.checkBox_18.stateChanged.connect(self.tobacco_groupbox)
+        self.checkBox_19.stateChanged.connect(self.other_groupbox)
+        self.checkBox_20.stateChanged.connect(self.wanted_groupbox)
+        self.checkBox_24.stateChanged.connect(self.settings_groupbox)
+
+    def charge_groupbox(self):
+        self.groupBox_16.setEnabled(True)
+
+    def accessories_groupbox(self):
+        self.groupBox_17.setEnabled(True)
+
+    def tobacco_groupbox(self):
+        self.groupBox_18.setEnabled(True)
+
+    def other_groupbox(self):
+        self.groupBox_24.setEnabled(True)
+
+    def wanted_groupbox(self):
+        self.groupBox_19.setEnabled(True)
+
+    def settings_groupbox(self):
+        self.groupBox_21.setEnabled(True)
+
 
     def load_date(self):
         date = datetime.datetime.now().date()
@@ -136,6 +164,8 @@ class Main(QMainWindow, MainUI):
         self.tableWidget_11.setRowCount(0)
         self.tableWidget_6.setRowCount(0)
         self.tableWidget_10.setRowCount(0)
+        self.lineEdit_7.setText("")
+        self.lineEdit_8.setText("")
 
     def daily_movement(self, m):
         #emp_id = 1
@@ -311,7 +341,7 @@ class Main(QMainWindow, MainUI):
         value = quantity * data[0][2]
         stored_accessories = data[0][3] - quantity
         if stored_accessories < 0:
-            self.empty_message("لقد نفذت الكمية من هذا المنتج")
+            self.empty_message(" لقد نفذت الكمية من هذا المنتج او الكمية غير كافية")
         else:
             self.cur.execute("""
 					INSERT INTO accessories(name, value, quantity, _date, _time, EmployeeID)
@@ -418,7 +448,7 @@ class Main(QMainWindow, MainUI):
         #emp_id = 1
         _datetime = self.load_date_time()
         if stored_tobacco < 0:
-            self.empty_message("لقد نفذت الكمية من هذا المنتج")
+            self.empty_message(" لقد نفذت الكمية من هذا المنتج او الكمية غير كافية")
 
         else:
             self.cur.execute("""
@@ -657,7 +687,7 @@ class Main(QMainWindow, MainUI):
         total_value = quantity * price
         #emp = 1
         if quantity_stored < 0:
-            self.empty_message("لقد نفذت الكمية من هذا المنتج")
+            self.empty_message(" لقد نفذت الكمية من هذا المنتج او الكمية غير كافية")
         else:
             self.cur.execute("""
 					INSERT INTO other(name, num, value, _date, _time, EmployeeID)
@@ -1594,11 +1624,19 @@ class Main(QMainWindow, MainUI):
                 self.accessories_bayment()
                 self.tobacco_payment()
                 self.other_payment()
+                self.lineEdit_7.setText("")
+                self.lineEdit_8.setText("")
 
             else:
                 self.empty_message("برجاء الخال اسم المستخدم و الكلمة المرور بشكل صحيح")
         except:
             self.empty_message("برجاء الخال اسم المستخدم و الكلمة المرور بشكل صحيح")
+
+    def display_permission(self):
+        pass
+
+    def permissions(self):
+        pass
 
     def open_settings_tab(self):
         self.tabWidget.setCurrentIndex(7)

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1172</width>
-    <height>741</height>
+    <height>722</height>
    </rect>
   </property>
   <property name="sizeIncrement">
@@ -1390,6 +1390,19 @@ QMessageBox QLabel {
             </property>
            </spacer>
           </item>
+          <item row="5" column="1">
+           <spacer name="verticalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item row="6" column="1">
            <widget class="QLineEdit" name="lineEdit_7">
             <property name="font">
@@ -1404,6 +1417,19 @@ QMessageBox QLabel {
              <string>اسم المستخدم</string>
             </property>
            </widget>
+          </item>
+          <item row="7" column="0">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item row="7" column="1">
            <widget class="QLineEdit" name="lineEdit_8">
@@ -1512,44 +1538,6 @@ QMessageBox QLabel {
              </size>
             </property>
            </spacer>
-          </item>
-          <item row="5" column="1">
-           <spacer name="verticalSpacer_6">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="7" column="0">
-           <widget class="QPushButton" name="pushButton_30">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="style.qrc">
-              <normaloff>:/dark_blue/img/showpassword.png</normaloff>:/dark_blue/img/showpassword.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>32</width>
-              <height>32</height>
-             </size>
-            </property>
-           </widget>
           </item>
          </layout>
         </widget>
@@ -2726,7 +2714,7 @@ QMessageBox QLabel {
              </font>
             </property>
             <property name="currentIndex">
-             <number>4</number>
+             <number>7</number>
             </property>
             <widget class="QWidget" name="tab_11">
              <attribute name="title">
@@ -4230,6 +4218,9 @@ QMessageBox QLabel {
                      <layout class="QHBoxLayout" name="horizontalLayout_14">
                       <item>
                        <widget class="QGroupBox" name="groupBox_21">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
                         <property name="font">
                          <font>
                           <pointsize>15</pointsize>
@@ -4368,6 +4359,9 @@ QMessageBox QLabel {
                       </item>
                       <item>
                        <widget class="QGroupBox" name="groupBox_19">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
                         <property name="font">
                          <font>
                           <pointsize>15</pointsize>
@@ -4419,6 +4413,9 @@ QMessageBox QLabel {
                       </item>
                       <item>
                        <widget class="QGroupBox" name="groupBox_24">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
                         <property name="font">
                          <font>
                           <pointsize>15</pointsize>
@@ -4482,6 +4479,9 @@ QMessageBox QLabel {
                       </item>
                       <item>
                        <widget class="QGroupBox" name="groupBox_18">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
                         <property name="font">
                          <font>
                           <pointsize>15</pointsize>
@@ -4545,6 +4545,9 @@ QMessageBox QLabel {
                       </item>
                       <item>
                        <widget class="QGroupBox" name="groupBox_17">
+                        <property name="enabled">
+                         <bool>false</bool>
+                        </property>
                         <property name="font">
                          <font>
                           <pointsize>15</pointsize>
@@ -4554,13 +4557,10 @@ QMessageBox QLabel {
                          <string>اكسسوارت</string>
                         </property>
                         <layout class="QVBoxLayout" name="verticalLayout_47">
-                         <property name="topMargin">
-                          <number>20</number>
-                         </property>
                          <item>
                           <layout class="QVBoxLayout" name="verticalLayout_36">
                            <item>
-                            <widget class="QCheckBox" name="checkBox_8">
+                            <widget class="QCheckBox" name="checkBox_32">
                              <property name="font">
                               <font>
                                <pointsize>13</pointsize>
@@ -4612,7 +4612,7 @@ QMessageBox QLabel {
                       <item>
                        <widget class="QGroupBox" name="groupBox_16">
                         <property name="enabled">
-                         <bool>true</bool>
+                         <bool>false</bool>
                         </property>
                         <property name="font">
                          <font>
@@ -4623,13 +4623,10 @@ QMessageBox QLabel {
                          <string>تحويل رصيد</string>
                         </property>
                         <layout class="QVBoxLayout" name="verticalLayout_48">
-                         <property name="topMargin">
-                          <number>20</number>
-                         </property>
                          <item>
                           <layout class="QVBoxLayout" name="verticalLayout_35">
                            <item>
-                            <widget class="QCheckBox" name="checkBox">
+                            <widget class="QCheckBox" name="checkBox_15">
                              <property name="font">
                               <font>
                                <pointsize>13</pointsize>
@@ -4961,12 +4958,11 @@ QMessageBox QLabel {
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_7</tabstop>
-  <tabstop>pushButton_30</tabstop>
-  <tabstop>pushButton_31</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>lineEdit</tabstop>
-  <tabstop>lineEdit_2</tabstop>
+  <tabstop>lineEdit_7</tabstop>
+  <tabstop>lineEdit_8</tabstop>
+  <tabstop>pushButton_31</tabstop>
   <tabstop>comboBox</tabstop>
   <tabstop>comboBox_14</tabstop>
   <tabstop>pushButton</tabstop>
@@ -5064,10 +5060,8 @@ QMessageBox QLabel {
   <tabstop>checkBox_20</tabstop>
   <tabstop>checkBox_21</tabstop>
   <tabstop>checkBox_24</tabstop>
-  <tabstop>checkBox</tabstop>
   <tabstop>checkBox_2</tabstop>
   <tabstop>checkBox_3</tabstop>
-  <tabstop>checkBox_8</tabstop>
   <tabstop>checkBox_9</tabstop>
   <tabstop>checkBox_10</tabstop>
   <tabstop>checkBox_11</tabstop>
@@ -5093,13 +5087,35 @@ QMessageBox QLabel {
   <tabstop>pushButton_12</tabstop>
   <tabstop>pushButton_16</tabstop>
   <tabstop>tabWidget_2</tabstop>
-  <tabstop>lineEdit_8</tabstop>
+  <tabstop>lineEdit_2</tabstop>
   <tabstop>pushButton_32</tabstop>
   <tabstop>pushButton_25</tabstop>
   <tabstop>pushButton_11</tabstop>
   <tabstop>pushButton_28</tabstop>
   <tabstop>pushButton_8</tabstop>
   <tabstop>pushButton_6</tabstop>
+  <tabstop>tabWidget_4</tabstop>
+  <tabstop>pushButton_54</tabstop>
+  <tabstop>dateEdit_10</tabstop>
+  <tabstop>dateEdit_11</tabstop>
+  <tabstop>lineEdit_22</tabstop>
+  <tabstop>tableWidget_11</tabstop>
+  <tabstop>pushButton_51</tabstop>
+  <tabstop>dateEdit_13</tabstop>
+  <tabstop>dateEdit_12</tabstop>
+  <tabstop>tableWidget_9</tabstop>
+  <tabstop>spinBox_8</tabstop>
+  <tabstop>pushButton_55</tabstop>
+  <tabstop>comboBox_7</tabstop>
+  <tabstop>lineEdit_21</tabstop>
+  <tabstop>spinBox_9</tabstop>
+  <tabstop>spinBox_10</tabstop>
+  <tabstop>pushButton_52</tabstop>
+  <tabstop>dateEdit_15</tabstop>
+  <tabstop>dateEdit_14</tabstop>
+  <tabstop>comboBox_16</tabstop>
+  <tabstop>tableWidget_10</tabstop>
+  <tabstop>pushButton_53</tabstop>
  </tabstops>
  <resources>
   <include location="style.qrc"/>
