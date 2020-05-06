@@ -628,10 +628,10 @@ class Main(QMainWindow, MainUI):
         WE = []
         for w in WE_values:
             WE.append(str(w[1]))
-        self.comboBox_4.addItem(all_company[0], WE)
-        self.comboBox_4.addItem(all_company[1], etisalat)
-        self.comboBox_4.addItem(all_company[2], orange)
-        self.comboBox_4.addItem(all_company[3], vodafone)
+        self.comboBox_4.addItem(all_company[0], vodafone)
+        self.comboBox_4.addItem(all_company[1], orange)
+        self.comboBox_4.addItem(all_company[2], etisalat)
+        self.comboBox_4.addItem(all_company[3], WE)
         self.comboBox_4.currentIndexChanged.connect(self.indexChanged)
         self.indexChanged(self.comboBox_4.currentIndex())
 
