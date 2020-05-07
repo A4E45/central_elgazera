@@ -47,6 +47,7 @@ class Main(QMainWindow, MainUI):
         self.pushButton_28.setEnabled(False)
         self.pushButton_8.setEnabled(False)
         self.pushButton_32.setEnabled(False)
+        self.setWindowIcon(QIcon('img/central_elgazera.png'))
 
     def db_connect(self):
         self.db = mysql.connector.connect(host="localhost", port=3306, user="root",
@@ -196,6 +197,7 @@ class Main(QMainWindow, MainUI):
     def info_message(self, total, total2):
         msg = QMessageBox()
         msg.setWindowTitle(" معلومات")
+        msg.setWindowIcon(QIcon('img/central_elgazera.png'))
         msg.setText(f"""
           اجمالي مبيعات اليوم : {total}
           اجمالي مبيعات الموظف : {total2}
@@ -206,8 +208,10 @@ class Main(QMainWindow, MainUI):
     def empty_message(self, message):
         msg = QMessageBox()
         msg.setWindowTitle("تحذير")
+        msg.setWindowIcon(QIcon('img/central_elgazera.png'))
         msg.setText(f"{message}")
         msg.setIcon(QMessageBox.Critical)
+
         msg.exec_()
 
     def open_login_tab(self):
