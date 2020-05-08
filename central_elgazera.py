@@ -211,7 +211,6 @@ class Main(QMainWindow, MainUI):
         msg.setWindowIcon(QIcon('img/central_elgazera.png'))
         msg.setText(f"{message}")
         msg.setIcon(QMessageBox.Critical)
-
         msg.exec_()
 
     def open_login_tab(self):
