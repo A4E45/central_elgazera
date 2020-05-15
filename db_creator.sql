@@ -60,7 +60,8 @@ CREATE TABLE `accessories_stored` (
   `name` varchar(255) NOT NULL,
   `price` int NOT NULL,
   `quantity` int NOT NULL,
-  PRIMARY KEY (`accessoriesID`)
+  PRIMARY KEY (`accessoriesID`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -89,6 +90,7 @@ CREATE TABLE `charge` (
   `serviceID` int NOT NULL,
   `EmployeeID` int NOT NULL,
   `MachineID` int NOT NULL,
+  PRIMARY KEY (`order_id`),
   KEY `EmployeeID` (`EmployeeID`),
   KEY `MachineID` (`MachineID`),
   KEY `serviceID` (`serviceID`),
@@ -207,8 +209,9 @@ CREATE TABLE `employee` (
   `phone` varchar(255) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`EmployeeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`EmployeeID`),
+  UNIQUE KEY `username_UNIQUE` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +220,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'على','alialaa','alialaa','213','3213','asdf','e10adc3949ba59abbe56e057f20f883e');
+INSERT INTO `employee` VALUES (1,'على','alialaa','alialaa','213','3213','asdf','e10adc3949ba59abbe56e057f20f883e'),(26,'علاء طه','alaataha','alaa_taha00000@yahoo.com','621916352','01010722699','asdfasdf','228381086f8349afee7f3e9d0f96813c');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +234,8 @@ DROP TABLE IF EXISTS `etisalat_cards_values`;
 CREATE TABLE `etisalat_cards_values` (
   `cardID` int NOT NULL AUTO_INCREMENT,
   `card_value` float NOT NULL,
-  PRIMARY KEY (`cardID`)
+  PRIMARY KEY (`cardID`),
+  UNIQUE KEY `card_value_UNIQUE` (`card_value`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -254,8 +258,10 @@ DROP TABLE IF EXISTS `machines`;
 CREATE TABLE `machines` (
   `MachineID` int NOT NULL AUTO_INCREMENT,
   `machine_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`MachineID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `stored_charge` float NOT NULL,
+  PRIMARY KEY (`MachineID`),
+  UNIQUE KEY `machine_name_UNIQUE` (`machine_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -264,7 +270,7 @@ CREATE TABLE `machines` (
 
 LOCK TABLES `machines` WRITE;
 /*!40000 ALTER TABLE `machines` DISABLE KEYS */;
-INSERT INTO `machines` VALUES (1,'فوري'),(2,'مصاري'),(3,'سداد'),(4,'ضامن');
+INSERT INTO `machines` VALUES (1,'فوري',0),(2,'مصاري',0),(3,'سداد',0),(4,'ضامن',0);
 /*!40000 ALTER TABLE `machines` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -278,7 +284,8 @@ DROP TABLE IF EXISTS `orange_cards_values`;
 CREATE TABLE `orange_cards_values` (
   `cardID` int NOT NULL AUTO_INCREMENT,
   `card_value` float NOT NULL,
-  PRIMARY KEY (`cardID`)
+  PRIMARY KEY (`cardID`),
+  UNIQUE KEY `card_value_UNIQUE` (`card_value`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -334,7 +341,8 @@ CREATE TABLE `other_stored` (
   `other_name` varchar(255) NOT NULL,
   `price` float NOT NULL,
   `quantity` int NOT NULL,
-  PRIMARY KEY (`otherID`)
+  PRIMARY KEY (`otherID`),
+  UNIQUE KEY `other_name_UNIQUE` (`other_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -390,7 +398,7 @@ CREATE TABLE `permissions` (
   PRIMARY KEY (`permissionID`),
   KEY `EmployeeID` (`EmployeeID`),
   CONSTRAINT `permissions_ibfk_1` FOREIGN KEY (`EmployeeID`) REFERENCES `employee` (`EmployeeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -399,7 +407,7 @@ CREATE TABLE `permissions` (
 
 LOCK TABLES `permissions` WRITE;
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
-INSERT INTO `permissions` VALUES (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0);
+INSERT INTO `permissions` VALUES (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0),(2,26,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0);
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -441,7 +449,8 @@ DROP TABLE IF EXISTS `services`;
 CREATE TABLE `services` (
   `serviceID` int NOT NULL AUTO_INCREMENT,
   `service_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`serviceID`)
+  PRIMARY KEY (`serviceID`),
+  UNIQUE KEY `service_name_UNIQUE` (`service_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -451,7 +460,7 @@ CREATE TABLE `services` (
 
 LOCK TABLES `services` WRITE;
 /*!40000 ALTER TABLE `services` DISABLE KEYS */;
-INSERT INTO `services` VALUES (1,'شحن فودافون'),(2,'شحن اتصالات'),(3,'شحن اورنج'),(4,'شحن WE');
+INSERT INTO `services` VALUES (4,'شحن WE'),(2,'شحن اتصالات'),(3,'شحن اورنج'),(1,'شحن فودافون');
 /*!40000 ALTER TABLE `services` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -498,7 +507,8 @@ CREATE TABLE `tobacco_stored` (
   `name` varchar(255) NOT NULL,
   `quantity` int NOT NULL,
   `price` float NOT NULL,
-  PRIMARY KEY (`tobaccoID`)
+  PRIMARY KEY (`tobaccoID`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -521,7 +531,8 @@ DROP TABLE IF EXISTS `vodafone_cards_values`;
 CREATE TABLE `vodafone_cards_values` (
   `cardID` int NOT NULL AUTO_INCREMENT,
   `card_value` float NOT NULL,
-  PRIMARY KEY (`cardID`)
+  PRIMARY KEY (`cardID`),
+  UNIQUE KEY `card_value_UNIQUE` (`card_value`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -574,7 +585,8 @@ DROP TABLE IF EXISTS `we_cards_values`;
 CREATE TABLE `we_cards_values` (
   `cardID` int NOT NULL AUTO_INCREMENT,
   `card_value` float NOT NULL,
-  PRIMARY KEY (`cardID`)
+  PRIMARY KEY (`cardID`),
+  UNIQUE KEY `card_value_UNIQUE` (`card_value`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -596,4 +608,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-08  2:30:59
+-- Dump completed on 2020-05-15  5:33:53
