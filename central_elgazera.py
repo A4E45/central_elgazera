@@ -1,7 +1,7 @@
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
-from PyQt5.uic import loadUiType
+#from PyQt5.uic import loadUiType
 import sys
 import mysql.connector
 import datetime
@@ -9,12 +9,13 @@ from xlsxwriter import *
 from xlrd import *
 import humanize
 import hashlib
+from central_elgazera import Ui_MainWindow
 
-
-MainUI,_ = loadUiType("central_elgazera.ui")
+#MainUI,_ = loadUiType("central_elgazera.ui")
 emp_id = 0
 
-class Main(QMainWindow, MainUI):
+
+class Main(QMainWindow, Ui_MainWindow):
 
     def __init__(self, parent=None):
         super(Main, self).__init__(parent)
@@ -255,7 +256,8 @@ class Main(QMainWindow, MainUI):
         self.daily_movement("قام بفتح صفحة تحويل الرصيد")
 
     def show_machine(self):
-        self.cur.execute("SELECT machine_name FROM machines ORDER BY MachineID")
+        self.cur.execute(
+            "SELECT machine_name FROM machines ORDER BY MachineID")
         machines = self.cur.fetchall()
         for machine in machines:
             for m in machine:
@@ -286,7 +288,8 @@ class Main(QMainWindow, MainUI):
         for row_index, row_data in enumerate(data):
             self.tableWidget.insertRow(row_index)
             for colm_index, colm_data in enumerate(row_data):
-                self.tableWidget.setItem(row_index, colm_index, QTableWidgetItem(str(colm_data)))
+                self.tableWidget.setItem(
+                    row_index, colm_index, QTableWidgetItem(str(colm_data)))
         self.tableWidget.resizeColumnsToContents()
 
     def add_charge(self):
@@ -300,10 +303,12 @@ class Main(QMainWindow, MainUI):
 						SELECT * FROM machines WHERE machine_name=%s
 					""", (self.comboBox.currentText(),))
                 machine_id = int(self.cur.fetchall()[0][0])
-                self.cur.execute("SELECT stored_charge FROM machines WHERE MachineID=%s", (machine_id,))
+                self.cur.execute(
+                    "SELECT stored_charge FROM machines WHERE MachineID=%s", (machine_id,))
                 stored_value = float(self.cur.fetchall()[0][0])
                 if stored_value < value:
-                    self.empty_message("""لقد نفذ الرصيد من هذه الماكينة او ان قيمة التحويل غير كافية""")
+                    self.empty_message(
+                        """لقد نفذ الرصيد من هذه الماكينة او ان قيمة التحويل غير كافية""")
                 else:
                     self.cur.execute("""
                             SELECT * FROM services WHERE service_name=%s
@@ -326,11 +331,13 @@ class Main(QMainWindow, MainUI):
                     self.cur.execute(sql, data_inserted)
                     self.db.commit()
                     final_value = stored_value - value
-                    self.cur.execute("""UPDATE machines SET stored_charge=%s WHERE MachineID=%s""", (final_value, machine_id))
+                    self.cur.execute(
+                        """UPDATE machines SET stored_charge=%s WHERE MachineID=%s""", (final_value, machine_id))
                     self.db.commit()
                     self.tableWidget.setRowCount(0)
                     self.show_charge()
-                    self.daily_movement(f""" بقيمة {value} {phone_number}تم اضافة عملية تحويل""")
+                    self.daily_movement(
+                        f""" بقيمة {value} {phone_number}تم اضافة عملية تحويل""")
 
         except ValueError:
             self.empty_message("برجاء ادخال ارقام فقط")
@@ -403,35 +410,41 @@ class Main(QMainWindow, MainUI):
         for row_index, row_data in enumerate(data):
             self.tableWidget_2.insertRow(row_index)
             for colm_index, colm_data in enumerate(row_data):
-                self.tableWidget_2.setItem(row_index, colm_index, QTableWidgetItem(str(colm_data)))
+                self.tableWidget_2.setItem(
+                    row_index, colm_index, QTableWidgetItem(str(colm_data)))
         self.tableWidget_2.resizeColumnsToContents()
 
     def add_accessories(self):
-        accessories_name = self.comboBox_2.currentText()
-        quantity = int(self.spinBox.text())
-        #emp_id = 1
-        sql = """
-				SELECT * FROM accessories_stored WHERE name=%s
-		"""
-        self.cur.execute(sql, [(accessories_name)])
-        data = self.cur.fetchall()
-        value = quantity * data[0][2]
-        stored_accessories = data[0][3] - quantity
-        if stored_accessories < 0:
-            self.empty_message(" لقد نفذت الكمية من هذا المنتج او الكمية غير كافية")
-        else:
-            self.cur.execute("""
-					INSERT INTO accessories(name, value, quantity, _date, _time, EmployeeID)
-					VALUES (%s, %s, %s, %s, %s, %s)
-				""", (accessories_name, value, quantity, self.load_date(), self.load_time(), emp_id))
+        try:
+            accessories_name = self.comboBox_2.currentText()
+            quantity = int(self.spinBox.text())
+            #emp_id = 1
+            sql = """
+                    SELECT * FROM accessories_stored WHERE name=%s
+            """
+            self.cur.execute(sql, [(accessories_name)])
+            data = self.cur.fetchall()
+            value = quantity * data[0][2]
+            stored_accessories = data[0][3] - quantity
+            if stored_accessories < 0:
+                self.empty_message(
+                    " لقد نفذت الكمية من هذا المنتج او الكمية غير كافية")
+            else:
+                self.cur.execute("""
+                        INSERT INTO accessories(name, value, quantity, _date, _time, EmployeeID)
+                        VALUES (%s, %s, %s, %s, %s, %s)
+                    """, (accessories_name, value, quantity, self.load_date(), self.load_time(), emp_id))
 
-            self.cur.execute("""
-					UPDATE accessories_stored SET quantity=%s WHERE name=%s
-				""", (stored_accessories, accessories_name))
-            self.db.commit()
-            self.tableWidget_2.setRowCount(0)
-            self.accessories_bayment()
-            self.daily_movement(f""" {value} {accessories_name}تم اضافة اكسسوار""")
+                self.cur.execute("""
+                        UPDATE accessories_stored SET quantity=%s WHERE name=%s
+                    """, (stored_accessories, accessories_name))
+                self.db.commit()
+                self.tableWidget_2.setRowCount(0)
+                self.accessories_bayment()
+                self.daily_movement(
+                    f""" {value} {accessories_name}تم اضافة اكسسوار""")
+        except:
+            self.empty_message("""حدث خطأ""")
 
     def del_accessories(self):
         try:
@@ -456,7 +469,7 @@ class Main(QMainWindow, MainUI):
             self.accessories_bayment()
             self.daily_movement(f"""تم حذف اكسسوار {info[0]} {info[2]}""")
         except:
-            pass
+            self.empty_message("""حدث خطأ""")
 
     def info_accessories(self):
         self.cur.execute("""
@@ -510,35 +523,41 @@ class Main(QMainWindow, MainUI):
         for row_index, row_data in enumerate(data):
             self.tableWidget_3.insertRow(row_index)
             for colm_index, colm_data in enumerate(row_data):
-                self.tableWidget_3.setItem(row_index, colm_index, QTableWidgetItem(str(colm_data)))
+                self.tableWidget_3.setItem(
+                    row_index, colm_index, QTableWidgetItem(str(colm_data)))
         self.tableWidget_3.resizeColumnsToContents()
 
     def add_tobacco(self):
-        tobacco_name = self.comboBox_3.currentText()
-        quantity = int(self.spinBox_2.text())
-        self.cur.execute("""
-				SELECT quantity, price FROM tobacco_stored WHERE name=%s
-			""", (tobacco_name,))
-        data = self.cur.fetchall()
-        stored_tobacco = data[0][0] - quantity
-        total_value = data[0][1] * quantity
-        #emp_id = 1
-        _datetime = self.load_date_time()
-        if stored_tobacco < 0:
-            self.empty_message(" لقد نفذت الكمية من هذا المنتج او الكمية غير كافية")
+        try:
+            tobacco_name = self.comboBox_3.currentText()
+            quantity = int(self.spinBox_2.text())
+            self.cur.execute("""
+                    SELECT quantity, price FROM tobacco_stored WHERE name=%s
+                """, (tobacco_name,))
+            data = self.cur.fetchall()
+            stored_tobacco = data[0][0] - quantity
+            total_value = data[0][1] * quantity
+            #emp_id = 1
+            _datetime = self.load_date_time()
+            if stored_tobacco < 0:
+                self.empty_message(
+                    " لقد نفذت الكمية من هذا المنتج او الكمية غير كافية")
 
-        else:
-            self.cur.execute("""
-					INSERT INTO tobacco(name, value, num , _date, EmployeeID, _time)
-					VALUES (%s, %s, %s, %s, %s, %s)
-				""", (tobacco_name, total_value, quantity, _datetime, emp_id, self.load_time()))
-            self.cur.execute("""
-					UPDATE tobacco_stored SET quantity=%s WHERE name=%s
-				""", (stored_tobacco, tobacco_name))
-            self.db.commit()
-            self.tableWidget_3.setRowCount(0)
-            self.tobacco_payment()
-            self.daily_movement(f""" تم اضافة علبة سجاير {tobacco_name} {total_value}""")
+            else:
+                self.cur.execute("""
+                        INSERT INTO tobacco(name, value, num , _date, EmployeeID, _time)
+                        VALUES (%s, %s, %s, %s, %s, %s)
+                    """, (tobacco_name, total_value, quantity, _datetime, emp_id, self.load_time()))
+                self.cur.execute("""
+                        UPDATE tobacco_stored SET quantity=%s WHERE name=%s
+                    """, (stored_tobacco, tobacco_name))
+                self.db.commit()
+                self.tableWidget_3.setRowCount(0)
+                self.tobacco_payment()
+                self.daily_movement(
+                    f""" تم اضافة علبة سجاير {tobacco_name} {total_value}""")
+        except:
+            self.empty_message("""حدث خطأ""")
 
     def del_tobacco(self):
         try:
@@ -564,9 +583,10 @@ class Main(QMainWindow, MainUI):
             self.db.commit()
             self.tableWidget_3.setRowCount(0)
             self.tobacco_payment()
-            self.daily_movement(f"""تم حذف علبة سجاير {tobacco_name} {info[1]}""")
+            self.daily_movement(
+                f"""تم حذف علبة سجاير {tobacco_name} {info[1]}""")
         except:
-            pass
+            self.empty_message("""حدث خطأ""")
 
     def info_tobacco(self):
         self.cur.execute("""
@@ -653,17 +673,21 @@ class Main(QMainWindow, MainUI):
             self.comboBox_5.addItems(data)
 
     def add_cards(self):
-        card_name = self.comboBox_4.currentText()
-        card_value = float(self.comboBox_5.currentText())
-        card_quantity = int(self.spinBox_3.text())
-        self.cur.execute("""
-				INSERT INTO phone_cards (company_name, value, quantity, EmployeeID, _date, _time)
-				VALUES (%s, %s, %s, %s, %s, %s, %s)
-			""", (card_name, card_value * card_quantity, card_quantity, emp_id, self.load_date(), self.load_time()))
-        self.db.commit()
-        self.daily_movement(f"""تم اضافة كرت {card_name} {card_quantity * card_value}""")
-        self.statusBar().showMessage("تم اضافة قيمة الكرت بنجاح")
-        self.statusBar().setStyleSheet("font-size: 20px;")
+        try:
+            card_name = self.comboBox_4.currentText()
+            card_value = float(self.comboBox_5.currentText())
+            card_quantity = int(self.spinBox_3.text())
+            self.cur.execute("""
+                    INSERT INTO phone_cards (company_name, value, quantity, EmployeeID, _date, _time)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                """, (card_name, card_value * card_quantity, card_quantity, emp_id, self.load_date(), self.load_time()))
+            self.db.commit()
+            self.daily_movement(
+                f"""تم اضافة كرت {card_name} {card_quantity * card_value}""")
+            self.statusBar().showMessage("تم اضافة قيمة الكرت بنجاح")
+            self.statusBar().setStyleSheet("font-size: 20px;")
+        except:
+            self.empty_message("""حدث خطأ""")
 
     def cards_info(self):
         self.cur.execute("""
@@ -703,11 +727,14 @@ class Main(QMainWindow, MainUI):
 						VALUES (%s, %s, %s, %s, %s, %s, %s)
 					""", (client_number, value, op_type, self.load_date(), emp_id, machine_id, self.load_time()))
                 self.db.commit()
-                self.daily_movement(f"""تم اضافة كرت كهربا {value} {client_number}""")
+                self.daily_movement(
+                    f"""تم اضافة كرت كهربا {value} {client_number}""")
                 self.statusBar().showMessage("تم اضافة قيمة الكرت بنجاح")
                 self.statusBar().setStyleSheet("font-size: 20px;")
         except ValueError:
             self.empty_message("برجاء ادخال ارقام فقط")
+        except:
+            self.empty_message("""حدث خطأ""")
 
     def info_elec_cards(self):
         self.cur.execute("""
@@ -751,59 +778,67 @@ class Main(QMainWindow, MainUI):
         for row_index, row_data in enumerate(data):
             self.tableWidget_5.insertRow(row_index)
             for colm_index, colm_data in enumerate(row_data):
-                self.tableWidget_5.setItem(row_index, colm_index, QTableWidgetItem(str(colm_data)))
+                self.tableWidget_5.setItem(
+                    row_index, colm_index, QTableWidgetItem(str(colm_data)))
         self.tableWidget_5.resizeColumnsToContents()
 
     def add_other(self):
-        name = self.comboBox_6.currentText()
-        quantity = int(self.spinBox_4.text())
-        self.cur.execute("""
-				SELECT price, quantity FROM other_stored WHERE other_name=%s
-			""", (name,))
-        data = self.cur.fetchall()
-        price = data[0][0]
-        quantity_stored = data[0][1] - quantity
-        total_value = quantity * price
-        #emp = 1
-        if quantity_stored < 0:
-            self.empty_message(" لقد نفذت الكمية من هذا المنتج او الكمية غير كافية")
-        else:
+        try:
+            name = self.comboBox_6.currentText()
+            quantity = int(self.spinBox_4.text())
             self.cur.execute("""
-					INSERT INTO other(name, num, value, _date, _time, EmployeeID)
-					VALUES (%s, %s, %s, %s, %s, %s)
-				""", (name, quantity, total_value, self.load_date(), self.load_time(), emp_id))
+                    SELECT price, quantity FROM other_stored WHERE other_name=%s
+                """, (name,))
+            data = self.cur.fetchall()
+            price = data[0][0]
+            quantity_stored = data[0][1] - quantity
+            total_value = quantity * price
+            #emp = 1
+            if quantity_stored < 0:
+                self.empty_message(
+                    " لقد نفذت الكمية من هذا المنتج او الكمية غير كافية")
+            else:
+                self.cur.execute("""
+                        INSERT INTO other(name, num, value, _date, _time, EmployeeID)
+                        VALUES (%s, %s, %s, %s, %s, %s)
+                    """, (name, quantity, total_value, self.load_date(), self.load_time(), emp_id))
+                self.cur.execute("""
+                        UPDATE other_stored SET quantity=%s WHERE other_name=%s
+                    """, (quantity_stored, name))
+                self.db.commit()
+                self.tableWidget_5.setRowCount(0)
+                self.other_payment()
+                self.daily_movement(f"""تم اضافة {name} {total_value}""")
+        except:
+            self.empty_message("""حدث خطأ""")
+
+    def del_other(self):
+        try:
+            info = []
+            for currentQTableWidgetItem in self.tableWidget_5.selectedItems():
+                info.append(currentQTableWidgetItem.text())
+            other_name = info[0]
+            order_id = info[4]
+            quantity_back = int(info[2])
             self.cur.execute("""
-					UPDATE other_stored SET quantity=%s WHERE other_name=%s
-				""", (quantity_stored, name))
+                    DELETE FROM other WHERE order_id=%s
+                """, (order_id,))
+
+            self.cur.execute("""
+                    SELECT quantity FROM other_stored WHERE other_name=%s
+                """, (other_name,))
+
+            final = self.cur.fetchall()[0][0] + quantity_back
+
+            self.cur.execute("""
+                    UPDATE other_stored SET quantity=%s WHERE other_name=%s
+                """, (final, other_name))
             self.db.commit()
             self.tableWidget_5.setRowCount(0)
             self.other_payment()
-            self.daily_movement(f"""تم اضافة {name} {total_value}""")
-
-    def del_other(self):
-        info = []
-        for currentQTableWidgetItem in self.tableWidget_5.selectedItems():
-            info.append(currentQTableWidgetItem.text())
-        other_name = info[0]
-        order_id = info[4]
-        quantity_back = int(info[2])
-        self.cur.execute("""
-				DELETE FROM other WHERE order_id=%s
-			""", (order_id,))
-
-        self.cur.execute("""
-				SELECT quantity FROM other_stored WHERE other_name=%s
-			""", (other_name,))
-
-        final = self.cur.fetchall()[0][0] + quantity_back
-
-        self.cur.execute("""
-				UPDATE other_stored SET quantity=%s WHERE other_name=%s
-			""", (final, other_name))
-        self.db.commit()
-        self.tableWidget_5.setRowCount(0)
-        self.other_payment()
-        self.daily_movement(f"""تم حذف  {other_name} {info[2]}""")
+            self.daily_movement(f"""تم حذف  {other_name} {info[2]}""")
+        except:
+            self.empty_message("""حدث خطأ""")
 
     def info_other(self):
         self.cur.execute("""
@@ -847,7 +882,8 @@ class Main(QMainWindow, MainUI):
         for row_index, row_data in enumerate(data):
             self.tableWidget_4.insertRow(row_index)
             for colm_index, colm_data in enumerate(row_data):
-                self.tableWidget_4.setItem(row_index, colm_index, QTableWidgetItem(str(colm_data)))
+                self.tableWidget_4.setItem(
+                    row_index, colm_index, QTableWidgetItem(str(colm_data)))
         self.tableWidget_4.resizeColumnsToContents()
 
     def add_wanted(self):
@@ -865,81 +901,94 @@ class Main(QMainWindow, MainUI):
                 self.db.commit()
                 self.tableWidget_4.setRowCount(0)
                 self.show_wanted()
-                self.daily_movement(f"""تم اضافة {name} {value} الى المستحقات""")
+                self.daily_movement(
+                    f"""تم اضافة {name} {value} الى المستحقات""")
 
         except ValueError:
             self.empty_message("برجاء ادخال ارقام فقط")
+        except:
+            self.empty_message("""حدث خطأ""")
 
     def del_wanted(self):
-        info = []
-        for currentQTableWidgetItem in self.tableWidget_4.selectedItems():
-            info.append(currentQTableWidgetItem.text())
-        order_id = info[2]
-        name = info[0]
-        self.cur.execute("""
-			DELETE FROM wanted WHERE order_id=%s AND client_name=%s
-			""", (order_id, name))
-        self.db.commit()
-        self.tableWidget_4.setRowCount(0)
-        self.show_wanted()
-        self.daily_movement(f""" تم حذف {name} {info[1]} من المستحقات""")
+        try:
+            info = []
+            for currentQTableWidgetItem in self.tableWidget_4.selectedItems():
+                info.append(currentQTableWidgetItem.text())
+            order_id = info[2]
+            name = info[0]
+            self.cur.execute("""
+                DELETE FROM wanted WHERE order_id=%s AND client_name=%s
+                """, (order_id, name))
+            self.db.commit()
+            self.tableWidget_4.setRowCount(0)
+            self.show_wanted()
+            self.daily_movement(f""" تم حذف {name} {info[1]} من المستحقات""")
+        except:
+            self.empty_message("""حدث خطأ""")
     ########################################################################
     ##############################op zone###################################
     ########################################################################
 
     def show_op(self):
-        self.tableWidget_11.setRowCount(0)
-        number = self.lineEdit_22.text()
-        if number == "":
-            self.empty_message("رجاء ادخال اسم العميل")
-        else:
-            _from = self.dateEdit_11.date().toString("yyyy-MM-dd")
-            _to = self.dateEdit_10.date().toString("yyyy-MM-dd")
-            self.cur.execute("""
-    				SELECT phone_number, value, _date, TIME_FORMAT(_time, "%H:%i  %p"), services.service_name, employee.name, machines.machine_name
-    				FROM charge
-    				INNER JOIN employee ON charge.EmployeeID=employee.EmployeeID
-    				INNER JOIN services ON charge.serviceID=services.serviceID
-    				INNER JOIN machines ON charge.MachineID=machines.MachineID
-    				WHERE phone_number=%s AND _date BETWEEN %s AND %s
-    				ORDER BY _time
-    			""", (number, _from, _to))
-            data = self.cur.fetchall()
-            if data == []:
-                self.empty_message("العملية غير موجودة")
+        try:
+            self.tableWidget_11.setRowCount(0)
+            number = self.lineEdit_22.text()
+            if number == "":
+                self.empty_message("رجاء ادخال اسم العميل")
             else:
-                for row_index, row_data in enumerate(data):
-                    self.tableWidget_11.insertRow(row_index)
-                    for colm_index, colm_data in enumerate(row_data):
-                        self.tableWidget_11.setItem(row_index, colm_index,
-                                                    QTableWidgetItem(str(colm_data)))
-                self.tableWidget_11.resizeColumnsToContents()
-                self.daily_movement(f"""تم البحث عن عملية مخصصة {number}""")
+                _from = self.dateEdit_11.date().toString("yyyy-MM-dd")
+                _to = self.dateEdit_10.date().toString("yyyy-MM-dd")
+                self.cur.execute("""
+                        SELECT phone_number, value, _date, TIME_FORMAT(_time, "%H:%i  %p"), services.service_name, employee.name, machines.machine_name
+                        FROM charge
+                        INNER JOIN employee ON charge.EmployeeID=employee.EmployeeID
+                        INNER JOIN services ON charge.serviceID=services.serviceID
+                        INNER JOIN machines ON charge.MachineID=machines.MachineID
+                        WHERE phone_number=%s AND _date BETWEEN %s AND %s
+                        ORDER BY _time
+                    """, (number, _from, _to))
+                data = self.cur.fetchall()
+                if data == []:
+                    self.empty_message("العملية غير موجودة")
+                else:
+                    for row_index, row_data in enumerate(data):
+                        self.tableWidget_11.insertRow(row_index)
+                        for colm_index, colm_data in enumerate(row_data):
+                            self.tableWidget_11.setItem(row_index, colm_index,
+                                                        QTableWidgetItem(str(colm_data)))
+                    self.tableWidget_11.resizeColumnsToContents()
+                    self.daily_movement(
+                        f"""تم البحث عن عملية مخصصة {number}""")
+        except:
+            self.empty_message("""حدث خطأ""")
 
     def all_op(self):
-        self.tableWidget_9.setRowCount(0)
-        _from = self.dateEdit_12.date().toString("yyyy-MM-dd")
-        _to = self.dateEdit_13.date().toString("yyyy-MM-dd")
-        self.cur.execute("""
-				SELECT phone_number, value, _date, TIME_FORMAT(_time, "%H:%i  %p"), services.service_name, employee.name, machines.machine_name
-				FROM charge
-				INNER JOIN employee ON charge.EmployeeID=employee.EmployeeID
-				INNER JOIN services ON charge.serviceID=services.serviceID
-				INNER JOIN machines ON charge.MachineID=machines.MachineID
-				WHERE _date BETWEEN %s AND %s
-				ORDER BY _time
-			""", (_from, _to))
-        data = self.cur.fetchall()
-        if data == []:
-            self.empty_message("العمليات غير موجودة")
-        else:
-            for row_index, row_data in enumerate(data):
-                self.tableWidget_9.insertRow(row_index)
-                for colm_index, colm_data in enumerate(row_data):
-                    self.tableWidget_9.setItem(row_index, colm_index,
-                                               QTableWidgetItem(str(colm_data)))
-            self.tableWidget_9.resizeColumnsToContents()
-            self.daily_movement("""تم ابحث عن عمليات من فترة الى اخرى""")
+        try:
+            self.tableWidget_9.setRowCount(0)
+            _from = self.dateEdit_12.date().toString("yyyy-MM-dd")
+            _to = self.dateEdit_13.date().toString("yyyy-MM-dd")
+            self.cur.execute("""
+                    SELECT phone_number, value, _date, TIME_FORMAT(_time, "%H:%i  %p"), services.service_name, employee.name, machines.machine_name
+                    FROM charge
+                    INNER JOIN employee ON charge.EmployeeID=employee.EmployeeID
+                    INNER JOIN services ON charge.serviceID=services.serviceID
+                    INNER JOIN machines ON charge.MachineID=machines.MachineID
+                    WHERE _date BETWEEN %s AND %s
+                    ORDER BY _time
+                """, (_from, _to))
+            data = self.cur.fetchall()
+            if data == []:
+                self.empty_message("العمليات غير موجودة")
+            else:
+                for row_index, row_data in enumerate(data):
+                    self.tableWidget_9.insertRow(row_index)
+                    for colm_index, colm_data in enumerate(row_data):
+                        self.tableWidget_9.setItem(row_index, colm_index,
+                                                   QTableWidgetItem(str(colm_data)))
+                self.tableWidget_9.resizeColumnsToContents()
+                self.daily_movement("""تم ابحث عن عمليات من فترة الى اخرى""")
+        except:
+            self.empty_message("""حدث خطأ""")
 
     def open_search_for_opration_tab(self):
         self.tabWidget.setCurrentIndex(6)
@@ -969,7 +1018,7 @@ class Main(QMainWindow, MainUI):
             value = float(self.lineEdit_6.text())
             self.cur.execute("""
                 SELECT stored_charge FROM machines WHERE machine_name=%s
-            """,(machine_name,))
+            """, (machine_name,))
             stored_value = float(self.cur.fetchall()[0][0])
             final_value = stored_value + value
             self.cur.execute("""
@@ -980,7 +1029,8 @@ class Main(QMainWindow, MainUI):
             self.statusBar().setStyleSheet("font-size: 20px;")
         except ValueError:
             self.empty_message("""يجب ادخال ارقام فقط""")
-
+        except:
+            self.empty_message("""حدث خطأ""")
 
     def update_accessories(self):
         name = self.comboBox_10.currentText()
@@ -995,7 +1045,6 @@ class Main(QMainWindow, MainUI):
         self.db.commit()
         self.daily_movement(f"""تم اضافة {name} {quantity} """)
         self.statusBar().showMessage("تم اضافة المنتج بنجاح")
-
 
     def update_other(self):
         name = self.comboBox_11.currentText()
@@ -1028,13 +1077,16 @@ class Main(QMainWindow, MainUI):
                 self.comboBox_8.clear()
                 self.comboBox_3.clear()
                 self.show_all_tobacoo()
-                self.daily_movement(f"""تم اضافة نوع جديد من السجاير {name} بسعر {price} بكمية {quantity}""")
+                self.daily_movement(
+                    f"""تم اضافة نوع جديد من السجاير {name} بسعر {price} بكمية {quantity}""")
                 self.statusBar().showMessage("تم اضافة المنتج بنجاح")
                 self.statusBar().setStyleSheet("font-size: 20px;")
             except mysql.connector.errors.IntegrityError:
                 self.empty_message("هذا المنتج موجود من قبل")
             except ValueError:
                 self.empty_message("برجاء ادخال ارقام فقط")
+            except:
+                self.empty_message("""حدث خطأ""")
 
     def add_new_machine(self):
         try:
@@ -1091,7 +1143,8 @@ class Main(QMainWindow, MainUI):
         try:
             value = float(self.lineEdit_21.text())
             company_name = self.comboBox_7.currentText()
-            self.daily_movement(f""" تم اضافة نوع جديد من كروت الشحن {company_name} {value}""")
+            self.daily_movement(
+                f""" تم اضافة نوع جديد من كروت الشحن {company_name} {value}""")
             if company_name == "فودافون":
                 self.cur.execute("""
                     INSERT INTO vodafone_cards_values(card_value)
@@ -1127,6 +1180,8 @@ class Main(QMainWindow, MainUI):
             self.show_cards()
         except ValueError:
             self.empty_message("برجاء ادخال ارقام فقط")
+        except:
+            self.empty_message("""حدث خطأ""")
 
     def add_new_accessories(self):
         name = self.lineEdit_14.text()
@@ -1144,13 +1199,16 @@ class Main(QMainWindow, MainUI):
                 self.comboBox_2.clear()
                 self.comboBox_10.clear()
                 self.show_all_accessories()
-                self.daily_movement(f"""تم اضافة نوع جديد من الاكسسوارات {name} بسعر {price} بكمية {quantity}""")
+                self.daily_movement(
+                    f"""تم اضافة نوع جديد من الاكسسوارات {name} بسعر {price} بكمية {quantity}""")
                 self.statusBar().showMessage("تم اضافة النتج بنجاح")
                 self.statusBar().setStyleSheet("font-size: 20px;")
             except mysql.connector.errors.IntegrityError:
                 self.empty_message("هذا المنتج موجود من قبل")
             except ValueError:
                 self.empty_message("برجاء ادخال ارقام فقط")
+            except:
+                self.empty_message("""حدث خطأ""")
 
     def add_new_other(self):
         name = self.lineEdit_16.text()
@@ -1168,13 +1226,16 @@ class Main(QMainWindow, MainUI):
                 self.comboBox_6.clear()
                 self.comboBox_11.clear()
                 self.show_other()
-                self.daily_movement(f"""تم اضافة منتج اخر {name} بسعر {price} {quantity}""")
+                self.daily_movement(
+                    f"""تم اضافة منتج اخر {name} بسعر {price} {quantity}""")
                 self.statusBar().showMessage("تم اضافة امنتج بنجاح")
                 self.statusBar().setStyleSheet("font-size: 20px;")
             except mysql.connector.errors.IntegrityError:
                 self.empty_message("هذا المنتج موجود من قبل")
             except ValueError:
                 self.empty_message("برجاء ادخال ارقام فقط")
+            except:
+                self.empty_message("""حدث خطأ""")
 
     def show_edit(self):
         self.tableWidget_6.setRowCount(0)
@@ -1182,7 +1243,8 @@ class Main(QMainWindow, MainUI):
         category = self.comboBox_15.currentText()
         if category == "سجاير":
             self.tableWidget_6.setColumnCount(3)
-            self.tableWidget_6.setHorizontalHeaderLabels(["اسم المنتج", "سعر المنتج", "المخزون"])
+            self.tableWidget_6.setHorizontalHeaderLabels(
+                ["اسم المنتج", "سعر المنتج", "المخزون"])
             self.cur.execute("""
                     SELECT name, price, quantity FROM tobacco_stored
             """)
@@ -1195,7 +1257,8 @@ class Main(QMainWindow, MainUI):
             self.tableWidget_6.resizeColumnsToContents()
         elif category == "اكسسوارات محمول":
             self.tableWidget_6.setColumnCount(3)
-            self.tableWidget_6.setHorizontalHeaderLabels(["اسم المنتج", "سعر المنتج", "المخزون"])
+            self.tableWidget_6.setHorizontalHeaderLabels(
+                ["اسم المنتج", "سعر المنتج", "المخزون"])
             self.cur.execute("""
                     SELECT name, price, quantity FROM accessories_stored
             """)
@@ -1208,7 +1271,8 @@ class Main(QMainWindow, MainUI):
             self.tableWidget_6.resizeColumnsToContents()
         elif category == "اخرى":
             self.tableWidget_6.setColumnCount(3)
-            self.tableWidget_6.setHorizontalHeaderLabels(["اسم المنتج", "سعر المنتج", "المخزون"])
+            self.tableWidget_6.setHorizontalHeaderLabels(
+                ["اسم المنتج", "سعر المنتج", "المخزون"])
             self.cur.execute("""
                     SELECT other_name, price, quantity FROM other_stored
             """)
@@ -1221,7 +1285,8 @@ class Main(QMainWindow, MainUI):
             self.tableWidget_6.resizeColumnsToContents()
         elif category == "كروت فودافون":
             self.tableWidget_6.setColumnCount(2)
-            self.tableWidget_6.setHorizontalHeaderLabels(["كود الكرت", "سعر الكرت"])
+            self.tableWidget_6.setHorizontalHeaderLabels(
+                ["كود الكرت", "سعر الكرت"])
             self.cur.execute("""
                     SELECT * FROM vodafone_cards_values
             """)
@@ -1234,7 +1299,8 @@ class Main(QMainWindow, MainUI):
             self.tableWidget_6.resizeColumnsToContents()
         elif category == "كروت اورنج":
             self.tableWidget_6.setColumnCount(2)
-            self.tableWidget_6.setHorizontalHeaderLabels(["كود الكرت", "سعر الكرت"])
+            self.tableWidget_6.setHorizontalHeaderLabels(
+                ["كود الكرت", "سعر الكرت"])
             self.cur.execute("""
                     SELECT * FROM orange_cards_values
             """)
@@ -1247,7 +1313,8 @@ class Main(QMainWindow, MainUI):
             self.tableWidget_6.resizeColumnsToContents()
         elif category == "كروت اتصالات":
             self.tableWidget_6.setColumnCount(2)
-            self.tableWidget_6.setHorizontalHeaderLabels(["كود الكرت", "سعر الكرت"])
+            self.tableWidget_6.setHorizontalHeaderLabels(
+                ["كود الكرت", "سعر الكرت"])
             self.cur.execute("""
                     SELECT * FROM etisalat_cards_values
             """)
@@ -1260,7 +1327,8 @@ class Main(QMainWindow, MainUI):
             self.tableWidget_6.resizeColumnsToContents()
         elif category == "كروت WE":
             self.tableWidget_6.setColumnCount(2)
-            self.tableWidget_6.setHorizontalHeaderLabels(["كود الكرت", "سعر الكرت"])
+            self.tableWidget_6.setHorizontalHeaderLabels(
+                ["كود الكرت", "سعر الكرت"])
             self.cur.execute("""
                     SELECT * FROM WE_cards_values
             """)
@@ -1273,7 +1341,8 @@ class Main(QMainWindow, MainUI):
             self.tableWidget_6.resizeColumnsToContents()
         elif category == "خدمات":
             self.tableWidget_6.setColumnCount(2)
-            self.tableWidget_6.setHorizontalHeaderLabels(["كود الخدمة", "اسم الخدمة"])
+            self.tableWidget_6.setHorizontalHeaderLabels(
+                ["كود الخدمة", "اسم الخدمة"])
             self.cur.execute("""
                     SELECT serviceID, service_name FROM services ORDER BY serviceID
             """)
@@ -1286,7 +1355,8 @@ class Main(QMainWindow, MainUI):
             self.tableWidget_6.resizeColumnsToContents()
         elif category == "رصيد":
             self.tableWidget_6.setColumnCount(3)
-            self.tableWidget_6.setHorizontalHeaderLabels(["الرقم التعريفي", "اسم الماكينة", "الرصيد"])
+            self.tableWidget_6.setHorizontalHeaderLabels(
+                ["الرقم التعريفي", "اسم الماكينة", "الرصيد"])
             self.cur.execute("""
                     SELECT * FROM machines ORDER BY MachineID
             """)
@@ -1315,7 +1385,8 @@ class Main(QMainWindow, MainUI):
                     UPDATE tobacco_stored SET name=%s, price=%s, quantity=%s WHERE name=%s
                 """, (name, price, quantity, name))
                 self.db.commit()
-                self.daily_movement(f""" تم التعديل على {name} بسعر {price} بكمية {quantity}""")
+                self.daily_movement(
+                    f""" تم التعديل على {name} بسعر {price} بكمية {quantity}""")
                 self.statusBar().showMessage("تم التعديل على النتج بنجاح")
                 self.statusBar().setStyleSheet("font-size: 20px;")
             elif category == "اكسسوارات محمول":
@@ -1324,7 +1395,8 @@ class Main(QMainWindow, MainUI):
                     UPDATE accessories_stored SET name=%s, price=%s, quantity=%s WHERE name=%s
                 """, (name, price, quantity, name))
                 self.db.commit()
-                self.daily_movement(f""" تم التعديل على {name} بسعر {price} بكمية {quantity}""")
+                self.daily_movement(
+                    f""" تم التعديل على {name} بسعر {price} بكمية {quantity}""")
                 self.statusBar().showMessage("تم التعديل على النتج بنجاح")
                 self.statusBar().setStyleSheet("font-size: 20px;")
             elif category == "اخرى":
@@ -1333,7 +1405,8 @@ class Main(QMainWindow, MainUI):
                     UPDATE other_stored SET other_name=%s, price=%s, quantity=%s WHERE other_name=%s
                 """, (name, price, quantity, name))
                 self.db.commit()
-                self.daily_movement(f""" تم التعديل على {name} بسعر {price} بكمية {quantity}""")
+                self.daily_movement(
+                    f""" تم التعديل على {name} بسعر {price} بكمية {quantity}""")
                 self.statusBar().showMessage("تم التعديل على النتج بنجاح")
                 self.statusBar().setStyleSheet("font-size: 20px;")
             elif category == "كروت فودافون":
@@ -1342,7 +1415,8 @@ class Main(QMainWindow, MainUI):
                 """, (price, name))
                 self.db.commit()
                 self.show_cards()
-                self.daily_movement(f""" تم التعديل على {name} بسعر {price} بكمية {quantity}""")
+                self.daily_movement(
+                    f""" تم التعديل على {name} بسعر {price} بكمية {quantity}""")
                 self.statusBar().showMessage("تم التعديل على قيمة الكرت بنجاح")
                 self.statusBar().setStyleSheet("font-size: 20px;")
             elif category == "كروت اورنج":
@@ -1351,7 +1425,8 @@ class Main(QMainWindow, MainUI):
                 """, (price, name))
                 self.db.commit()
                 self.show_cards()
-                self.daily_movement(f""" تم التعديل على {name} بسعر {price} """)
+                self.daily_movement(
+                    f""" تم التعديل على {name} بسعر {price} """)
                 self.statusBar().showMessage("تم التعديل على قيمة الكرت بنجاح")
                 self.statusBar().setStyleSheet("font-size: 20px;")
             elif category == "كروت اتصالات":
@@ -1369,7 +1444,8 @@ class Main(QMainWindow, MainUI):
                 """, (price, name))
                 self.db.commit()
                 self.show_cards()
-                self.daily_movement(f""" تم التعديل على {name} بسعر {price} """)
+                self.daily_movement(
+                    f""" تم التعديل على {name} بسعر {price} """)
                 self.statusBar().showMessage("تم التعديل على قيمة الكرت بنجاح")
                 self.statusBar().setStyleSheet("font-size: 20px;")
             elif category == "خدمات":
@@ -1387,7 +1463,8 @@ class Main(QMainWindow, MainUI):
                 """, (info[2], name))
                 self.db.commit()
                 self.show_servies()
-                self.daily_movement(f""" تم التعديل على {info[1]} بقيمة {info[2]} """)
+                self.daily_movement(
+                    f""" تم التعديل على {info[1]} بقيمة {info[2]} """)
                 self.statusBar().showMessage("تم التعديل على اسم الخدمة بنجاح")
                 self.statusBar().setStyleSheet("font-size: 20px;")
             else:
@@ -1437,33 +1514,36 @@ class Main(QMainWindow, MainUI):
             self.empty_message("برجاء اختيار اسم الموظف")
 
     def edit_employee(self):
-        username = self.comboBox_13.currentText()
-        name = self.lineEdit_30.text()
-        mail = self.lineEdit_29.text()
-        national_id = self.lineEdit_28.text()
-        phone = self.lineEdit_32.text()
-        address = self.lineEdit_33.text()
-        if name == "":
-            self.empty_message("برجاء ادخال بيانات الموظف بشكل كامل")
-        elif self.lineEdit_31.text() == "":
-            self.empty_message("برجاء اخدال كلمة السر")
-        else:
-            password = self.encrypt(self.lineEdit_31.text(), "md5")
-            self.cur.execute("""
-                UPDATE employee SET name=%s, mail=%s, national_id=%s, phone=%s, address=%s, password=%s
-                WHERE username=%s
-            """, (name, mail, national_id, phone, address, password, username))
-            self.db.commit()
-            self.statusBar().showMessage("تم تعديل بيانات الموظف بنجاح")
-            self.lineEdit_30.setText("")
-            self.lineEdit_29.setText("")
-            self.lineEdit_28.setText("")
-            self.lineEdit_32.setText("")
-            self.lineEdit_33.setText("")
-            self.lineEdit_31.setText("")
-            self.daily_movement(f""" تم التعديل على بيانات {name}""")
-            self.statusBar().showMessage("تم التعديل على بيانات الموظف بنجاح")
-            self.statusBar().setStyleSheet("font-size: 20px;")
+        try:
+            username = self.comboBox_13.currentText()
+            name = self.lineEdit_30.text()
+            mail = self.lineEdit_29.text()
+            national_id = self.lineEdit_28.text()
+            phone = self.lineEdit_32.text()
+            address = self.lineEdit_33.text()
+            if name == "":
+                self.empty_message("برجاء ادخال بيانات الموظف بشكل كامل")
+            elif self.lineEdit_31.text() == "":
+                self.empty_message("برجاء اخدال كلمة السر")
+            else:
+                password = self.encrypt(self.lineEdit_31.text(), "md5")
+                self.cur.execute("""
+                    UPDATE employee SET name=%s, mail=%s, national_id=%s, phone=%s, address=%s, password=%s
+                    WHERE username=%s
+                """, (name, mail, national_id, phone, address, password, username))
+                self.db.commit()
+                self.statusBar().showMessage("تم تعديل بيانات الموظف بنجاح")
+                self.lineEdit_30.setText("")
+                self.lineEdit_29.setText("")
+                self.lineEdit_28.setText("")
+                self.lineEdit_32.setText("")
+                self.lineEdit_33.setText("")
+                self.lineEdit_31.setText("")
+                self.daily_movement(f""" تم التعديل على بيانات {name}""")
+                self.statusBar().showMessage("تم التعديل على بيانات الموظف بنجاح")
+                self.statusBar().setStyleSheet("font-size: 20px;")
+        except:
+            self.empty_message("""حدث خطأ""")
 
     def add_employee(self):
         try:
@@ -1620,7 +1700,8 @@ class Main(QMainWindow, MainUI):
             charge_values = 0
             for value in values:
                 charge_values += value[0]
-            total_values.append([data[stored][1], "---------", data[stored][2], "---------", charge_values, "---------"])
+            total_values.append([data[stored][1], "---------", data[stored]
+                                 [2], "---------", charge_values, "---------"])
             total_pay += charge_values
         return total_pay, total_stored, total_values
 
@@ -1671,18 +1752,18 @@ class Main(QMainWindow, MainUI):
     def func_export(self, category):
             data = category
             wb = Workbook(f'تقارير/{self.load_date()}.xlsx')
-            sheet1  = wb.add_worksheet()
-            sheet1.write(0,0,'اسم المنتج')
-            sheet1.write(0,1,'سعر المنتج')
-            sheet1.write(0,2,'المجزون')
-            sheet1.write(0,3,'قيمة المخزون')
-            sheet1.write(0,4,'المباع')
-            sheet1.write(0,5,'قيمة المباع')
+            sheet1 = wb.add_worksheet()
+            sheet1.write(0, 0, 'اسم المنتج')
+            sheet1.write(0, 1, 'سعر المنتج')
+            sheet1.write(0, 2, 'المجزون')
+            sheet1.write(0, 3, 'قيمة المخزون')
+            sheet1.write(0, 4, 'المباع')
+            sheet1.write(0, 5, 'قيمة المباع')
             row_number = 1
-            for row in data :
+            for row in data:
                 column_number = 0
-                for item in row :
-                    sheet1.write(row_number , column_number , str(item))
+                for item in row:
+                    sheet1.write(row_number, column_number, str(item))
                     column_number += 1
                 row_number += 1
             wb.close()
@@ -1696,7 +1777,8 @@ class Main(QMainWindow, MainUI):
         elif category == "اخرى":
             self.func_export(self.show_other_reports()[2])
         elif category == "الكل":
-            total = self.show_tobacco_reports()[2] + self.show_accessories_reports()[2] + self.show_other_reports()[2]
+            total = self.show_tobacco_reports(
+            )[2] + self.show_accessories_reports()[2] + self.show_other_reports()[2]
             self.func_export(total)
         elif category == "رصيد":
             self.func_export(self.show_charge_reports()[2])
@@ -1710,7 +1792,8 @@ class Main(QMainWindow, MainUI):
         username = self.comboBox_21.currentText()
         _from = self.dateEdit_7.date().toString("yyyy-MM-dd")
         _to = self.dateEdit_6.date().toString("yyyy-MM-dd")
-        self.cur.execute("""SELECT name, EmployeeID FROM employee WHERE username=%s""", (username,))
+        self.cur.execute(
+            """SELECT name, EmployeeID FROM employee WHERE username=%s""", (username,))
         info = self.cur.fetchall()[0]
         name = info[0]
         emp_id = info[1]
@@ -1743,14 +1826,17 @@ class Main(QMainWindow, MainUI):
         _to = self.dateEdit_6.date().toString("yyyy-MM-dd")
         if username == "الكل":
             data = self.show_all_daily_movements()
-            self.textBrowser.append(f"""التحركات داخل البرنامج لكل الموظفين : """)
+            self.textBrowser.append(
+                f"""التحركات داخل البرنامج لكل الموظفين : """)
             for i in data:
-                self.textBrowser.append(f"""قام {i[0]} {i[1]} التاريخ {i[2]} التوقيت {i[3]}""")
+                self.textBrowser.append(
+                    f"""قام {i[0]} {i[1]} التاريخ {i[2]} التوقيت {i[3]}""")
         else:
             data, name = self.show_daily_movment_for_one()
             self.textBrowser.append(f"""التحركات  ل {name} داخل البرنامج : """)
             for i in data:
-                self.textBrowser.append(f"""{i[1]} التاريخ {i[2]} التوقيت {i[3]}""")
+                self.textBrowser.append(
+                    f"""{i[1]} التاريخ {i[2]} التوقيت {i[3]}""")
 
     def export_daiymovments(self):
         username = self.comboBox_21.currentText()
@@ -1758,12 +1844,14 @@ class Main(QMainWindow, MainUI):
             with open(f"التحركات/{self.load_date()}.txt", "a", encoding="utf-8") as file:
                 data = self.show_all_daily_movements()
                 for i in data:
-                    file.write(f"""قام {i[0]} {i[1]} التاريخ {i[2]} التوقيت {i[3]} \n""")
+                    file.write(
+                        f"""قام {i[0]} {i[1]} التاريخ {i[2]} التوقيت {i[3]} \n""")
         else:
             with open(f"التحركات/{self.load_date()}.txt", "a", encoding="utf-8") as file:
                 data = self.show_daily_movment_for_one()[0]
                 for i in data:
-                    file.write(f"""قام {i[0]} {i[1]} التاريخ {i[2]} التوقيت {i[3]} \n""")
+                    file.write(
+                        f"""قام {i[0]} {i[1]} التاريخ {i[2]} التوقيت {i[3]} \n""")
         self.statusBar().showMessage("تم تصدير البيانات بنجاح")
         self.statusBar().setStyleSheet("font-size: 20px;")
 
@@ -1771,7 +1859,8 @@ class Main(QMainWindow, MainUI):
         try:
             username = self.lineEdit_7.text()
             password = self.encrypt(self.lineEdit_8.text(), "md5")
-            self.cur.execute(""" SELECT EmployeeID, username, password FROM employee WHERE username=%s""", (username,))
+            self.cur.execute(
+                """ SELECT EmployeeID, username, password FROM employee WHERE username=%s""", (username,))
             data = self.cur.fetchall()
             if password == data[0][2] and username == data[0][1]:
                 global emp_id
@@ -1952,9 +2041,11 @@ class Main(QMainWindow, MainUI):
                         self.pushButton_8.setEnabled(False)
 
             else:
-                self.empty_message("برجاء الخال اسم المستخدم و الكلمة المرور بشكل صحيح")
+                self.empty_message(
+                    "برجاء الخال اسم المستخدم و الكلمة المرور بشكل صحيح")
         except:
-            self.empty_message("برجاء الخال اسم المستخدم و الكلمة المرور بشكل صحيح")
+            self.empty_message(
+                "برجاء الخال اسم المستخدم و الكلمة المرور بشكل صحيح")
 
     def display_permission(self):
         try:
@@ -1996,9 +2087,11 @@ class Main(QMainWindow, MainUI):
             self.checkBox_54.setChecked(False)
             self.checkBox_28.setChecked(False)
             username = self.comboBox_12.currentText()
-            self.cur.execute(""" SELECT EmployeeID FROM employee WHERE username=%s""",(username,))
+            self.cur.execute(
+                """ SELECT EmployeeID FROM employee WHERE username=%s""", (username,))
             _id = self.cur.fetchall()[0][0]
-            self.cur.execute(""" SELECT * FROM permissions WHERE EmployeeID=%s""", (_id,))
+            self.cur.execute(
+                """ SELECT * FROM permissions WHERE EmployeeID=%s""", (_id,))
             data = self.cur.fetchall()[0]
             is_admin = data[2]
             charge_tab = data[3]
@@ -2092,51 +2185,55 @@ class Main(QMainWindow, MainUI):
                 if add_permissions == 1:
                     self.checkBox_28.setChecked(True)
         except:
-            self.empty_message("""هذا الموظف ليس لديه صلاحيات برجاء اضافة صلاحيات له""")
+            self.empty_message(
+                """هذا الموظف ليس لديه صلاحيات برجاء اضافة صلاحيات له""")
 
     def permissions(self):
-        username = self.comboBox_12.currentText()
-        self.cur.execute("""
-                SELECT EmployeeID FROM employee WHERE username=%s
-        """,(username,))
-        _id = self.cur.fetchall()[0][0]
-        is_admin = self.checkBox_29.isChecked()
-        charge_tab = self.checkBox_16.isChecked()
-        add_charge = self.checkBox_15.isChecked()
-        del_charge = self.checkBox_2.isChecked()
-        info_charge = self.checkBox_3.isChecked()
-        accessories_tab = self.checkBox_17.isChecked()
-        add_accessories = self.checkBox_32.isChecked()
-        del_accessories = self.checkBox_9.isChecked()
-        info_accessories = self.checkBox_10.isChecked()
-        tobacco_tab = self.checkBox_18.isChecked()
-        add_tobacco = self.checkBox_11.isChecked()
-        del_tobacco = self.checkBox_22.isChecked()
-        info_tobacco = self.checkBox_13.isChecked()
-        other_tab = self.checkBox_19.isChecked()
-        add_other = self.checkBox_23.isChecked()
-        del_other = self.checkBox_30.isChecked()
-        info_other = self.checkBox_31.isChecked()
-        wanted_tab = self.checkBox_20.isChecked()
-        add_wanted = self.checkBox_12.isChecked()
-        del_wanted = self.checkBox_14.isChecked()
-        search_op = self.checkBox_21.isChecked()
-        settings_tab = self.checkBox_24.isChecked()
-        add_brand = self.checkBox_25.isChecked()
-        add_new_brand = self.checkBox_26.isChecked()
-        edit_brand = self.checkBox_52.isChecked()
-        add_emp = self.checkBox_27.isChecked()
-        info_emp = self.checkBox_55.isChecked()
-        reports = self.checkBox_53.isChecked()
-        dailymovments = self.checkBox_54.isChecked()
-        add_permissions = self.checkBox_28.isChecked()
-        self.cur.execute("""
-                UPDATE permissions SET is_admin=%s, charge_tab=%s, charge_add=%s, charge_del=%s, charge_info=%s, accessories_tab=%s, accessories_add=%s, accessories_del=%s, accessories_info=%s, tobacco_tab=%s, tobacco_add=%s, tobacco_del=%s, tobacco_info=%s, other_tab=%s, other_add=%s, other_del=%s, other_info=%s, wanted_tab=%s, wanted_add=%s, wanted_del=%s, search_op=%s, settings_tab=%s, setting_add_brand=%s, setting_add_new_brand=%s, setting_edit_brand=%s, add_employee=%s, edit_employee=%s, reports=%s, dailymoment=%s, add_permissions=%s
-                WHERE EmployeeID=%s
-        """, (is_admin, charge_tab, add_charge, del_charge, info_charge, accessories_tab, add_accessories, del_accessories, info_accessories, tobacco_tab, add_tobacco, del_tobacco, info_tobacco, other_tab, add_other, del_other, info_other, wanted_tab, add_wanted, del_wanted, search_op, settings_tab, add_brand, add_new_brand, edit_brand, add_emp, info_emp, reports, dailymovments, add_permissions, _id))
-        self.db.commit()
-        self.statusBar().showMessage("تم تعديل صلاحيات الموظف بنجاح")
-        self.statusBar().setStyleSheet("font-size: 20px;")
+        try:
+            username = self.comboBox_12.currentText()
+            self.cur.execute("""
+                    SELECT EmployeeID FROM employee WHERE username=%s
+            """, (username,))
+            _id = self.cur.fetchall()[0][0]
+            is_admin = self.checkBox_29.isChecked()
+            charge_tab = self.checkBox_16.isChecked()
+            add_charge = self.checkBox_15.isChecked()
+            del_charge = self.checkBox_2.isChecked()
+            info_charge = self.checkBox_3.isChecked()
+            accessories_tab = self.checkBox_17.isChecked()
+            add_accessories = self.checkBox_32.isChecked()
+            del_accessories = self.checkBox_9.isChecked()
+            info_accessories = self.checkBox_10.isChecked()
+            tobacco_tab = self.checkBox_18.isChecked()
+            add_tobacco = self.checkBox_11.isChecked()
+            del_tobacco = self.checkBox_22.isChecked()
+            info_tobacco = self.checkBox_13.isChecked()
+            other_tab = self.checkBox_19.isChecked()
+            add_other = self.checkBox_23.isChecked()
+            del_other = self.checkBox_30.isChecked()
+            info_other = self.checkBox_31.isChecked()
+            wanted_tab = self.checkBox_20.isChecked()
+            add_wanted = self.checkBox_12.isChecked()
+            del_wanted = self.checkBox_14.isChecked()
+            search_op = self.checkBox_21.isChecked()
+            settings_tab = self.checkBox_24.isChecked()
+            add_brand = self.checkBox_25.isChecked()
+            add_new_brand = self.checkBox_26.isChecked()
+            edit_brand = self.checkBox_52.isChecked()
+            add_emp = self.checkBox_27.isChecked()
+            info_emp = self.checkBox_55.isChecked()
+            reports = self.checkBox_53.isChecked()
+            dailymovments = self.checkBox_54.isChecked()
+            add_permissions = self.checkBox_28.isChecked()
+            self.cur.execute("""
+                    UPDATE permissions SET is_admin=%s, charge_tab=%s, charge_add=%s, charge_del=%s, charge_info=%s, accessories_tab=%s, accessories_add=%s, accessories_del=%s, accessories_info=%s, tobacco_tab=%s, tobacco_add=%s, tobacco_del=%s, tobacco_info=%s, other_tab=%s, other_add=%s, other_del=%s, other_info=%s, wanted_tab=%s, wanted_add=%s, wanted_del=%s, search_op=%s, settings_tab=%s, setting_add_brand=%s, setting_add_new_brand=%s, setting_edit_brand=%s, add_employee=%s, edit_employee=%s, reports=%s, dailymoment=%s, add_permissions=%s
+                    WHERE EmployeeID=%s
+            """, (is_admin, charge_tab, add_charge, del_charge, info_charge, accessories_tab, add_accessories, del_accessories, info_accessories, tobacco_tab, add_tobacco, del_tobacco, info_tobacco, other_tab, add_other, del_other, info_other, wanted_tab, add_wanted, del_wanted, search_op, settings_tab, add_brand, add_new_brand, edit_brand, add_emp, info_emp, reports, dailymovments, add_permissions, _id))
+            self.db.commit()
+            self.statusBar().showMessage("تم تعديل صلاحيات الموظف بنجاح")
+            self.statusBar().setStyleSheet("font-size: 20px;")
+        except:
+            self.empty_message("""حدث خطأ""")
 
     def open_settings_tab(self):
         self.tabWidget.setCurrentIndex(7)
@@ -2148,6 +2245,7 @@ def main():
     window = Main()
     window.show()
     app.exec_()
+
 
 if __name__ == "__main__":
     main()
