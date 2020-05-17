@@ -1318,7 +1318,7 @@ QMessageBox QLabel {
          </font>
         </property>
         <property name="currentIndex">
-         <number>7</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="tab_9">
          <attribute name="title">
@@ -2019,9 +2019,6 @@ QMessageBox QLabel {
                <bool>false</bool>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_11">
-               <property name="topMargin">
-                <number>20</number>
-               </property>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_3">
                  <item>
@@ -2045,6 +2042,18 @@ QMessageBox QLabel {
                    </property>
                    <property name="text">
                     <string>حفظ</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="comboBox_18">
+                   <property name="font">
+                    <font>
+                     <pointsize>15</pointsize>
+                    </font>
+                   </property>
+                   <property name="layoutDirection">
+                    <enum>Qt::RightToLeft</enum>
                    </property>
                   </widget>
                  </item>
