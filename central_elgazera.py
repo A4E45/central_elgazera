@@ -75,8 +75,6 @@ class Main(QMainWindow, MainUI):
         self.pushButton_9.clicked.connect(self.info_tobacco)
         self.pushButton_14.clicked.connect(self.add_cards)
         self.pushButton_15.clicked.connect(self.cards_info)
-        self.pushButton_18.clicked.connect(self.add_ele_cards)
-        self.pushButton_17.clicked.connect(self.info_elec_cards)
         self.pushButton_22.clicked.connect(self.add_other)
         self.pushButton_49.clicked.connect(self.del_other)
         self.pushButton_21.clicked.connect(self.info_other)
@@ -262,7 +260,6 @@ class Main(QMainWindow, MainUI):
         for machine in machines:
             for m in machine:
                 self.comboBox.addItem(m)
-                self.comboBox_9.addItem(m)
                 self.comboBox_17.addItem(m)
                 self.comboBox_18.addItem(m)
 
@@ -698,9 +695,9 @@ class Main(QMainWindow, MainUI):
                 self.empty_message("""لقد نفذ الرصيد من هذه الماكينة او ان قيمة التحويل غير كافية""")
             else:
                 self.cur.execute("""
-                        INSERT INTO phone_cards (company_name, value, quantity, EmployeeID, _date, _time)
+                        INSERT INTO charge(phone_number, value, _date, EmployeeID, MachineID, _time)
                         VALUES (%s, %s, %s, %s, %s, %s)
-                    """, (card_name, final_value, card_quantity, emp_id, self.load_date(), self.load_time()))
+                    """, (card_name, final_value, self.load_date(), emp_id, machine_id, self.load_time()))
                 self.db.commit()
                 final = stored_value - final_value
                 self.cur.execute(
@@ -732,66 +729,6 @@ class Main(QMainWindow, MainUI):
             total2 += float(value2[0])
         self.info_message(total, total2)
         self.daily_movement("""  تم اظهار معلومات عن الكروت الشحن""")
-
-    def add_ele_cards(self):
-        try:
-            client_number = self.lineEdit_9.text()
-            value = float(self.lineEdit_3.text())
-            machine_name = self.comboBox_9.currentText()
-            if client_number == "":
-                self.empty_message("ربجاء ادخال رقم العميل")
-            else:
-                self.cur.execute("""
-                        SELECT * FROM machines WHERE machine_name=%s
-                    """, (machine_name,))
-                machine_id = int(self.cur.fetchall()[0][0])
-                self.cur.execute(
-                    "SELECT stored_charge FROM machines WHERE MachineID=%s", (machine_id,))
-                stored_value = float(self.cur.fetchall()[0][0])
-            if stored_value < value:
-                self.empty_message("""لقد نفذ الرصيد من هذه الماكينة او ان قيمة التحويل غير كافية""")
-            else:
-                op_type = "شحن كرت كهربا"
-                self.cur.execute("""
-						SELECT MachineID FROM machines WHERE machine_name=%s
-					""", (machine_name, ))
-                machine_id = self.cur.fetchall()[0][0]
-                #emp = 1
-                self.cur.execute("""
-						INSERT INTO elec_cards(client_number, value, type, _date, EmployeeID, MachineID, _time)
-						VALUES (%s, %s, %s, %s, %s, %s, %s)
-					""", (client_number, value, op_type, self.load_date(), emp_id, machine_id, self.load_time()))
-                self.db.commit()
-                final = stored_value - value
-                self.cur.execute(
-                    """UPDATE machines SET stored_charge=%s WHERE MachineID=%s""", (final, machine_id))
-                self.db.commit()
-                self.daily_movement(
-                    f"""تم اضافة كرت كهربا {value} {client_number}""")
-                self.statusBar().showMessage("تم اضافة قيمة الكرت بنجاح",3000)
-                self.statusBar().setStyleSheet("font-size: 17px;")
-        except ValueError:
-            self.empty_message("برجاء ادخال ارقام فقط")
-        except:
-            self.empty_message("""حدث خطأ""")
-
-    def info_elec_cards(self):
-        self.cur.execute("""
-			SELECT value FROM elec_cards WHERE _date=%s
-			""", (self.load_date(),))
-        values = self.cur.fetchall()
-        total = 0
-        for value in values:
-            total += float(value[0])
-        self.cur.execute("""
-			SELECT value FROM elec_cards WHERE _date=%s AND EmployeeID=%s
-			""", (self.load_date(), emp_id))
-        values2 = self.cur.fetchall()
-        total2 = 0
-        for value2 in values2:
-            total2 += float(value2[0])
-        self.info_message(total, total2)
-        self.daily_movement("""تم اظهار معلومات عن كروت الكهربا""")
 
     def show_other(self):
         self.comboBox_11.clear()
@@ -1142,7 +1079,6 @@ class Main(QMainWindow, MainUI):
                     """, (name, value))
                     self.db.commit()
                     self.comboBox.clear()
-                    self.comboBox_9.clear()
                     self.comboBox_17.clear()
                     self.show_machine()
                     self.daily_movement(f"""تم اضافة ماكينة جديدة {name}""")
@@ -1762,16 +1698,16 @@ class Main(QMainWindow, MainUI):
         self.label_18.setText("")
         if category == "سجاير":
             payment, stored = self.tobacco_reports()
-            self.label_20.setText(str(payment))
-            self.label_18.setText(str(stored))
+            self.label_20.setText("{:.2f}".format(payment))
+            self.label_18.setText("{:.2f}".format(stored))
         elif category == "اكسسوارات":
             payment, stored = self.accessories_reports()
-            self.label_20.setText(str(payment))
-            self.label_18.setText(str(stored))
+            self.label_20.setText("{:.2f}".format(payment))
+            self.label_18.setText("{:.2f}".format(stored))
         elif category == "اخرى":
             payment, stored = self.other_reports()
-            self.label_20.setText(str(payment))
-            self.label_18.setText(str(stored))
+            self.label_20.setText("{:.2f}".format(payment))
+            self.label_18.setText("{:.2f}".format(stored))
         elif category == "الكل":
             payment_ch, stored_ch = self.charge_reports()
             payment_ot, stored_ot = self.other_reports()
@@ -1779,15 +1715,16 @@ class Main(QMainWindow, MainUI):
             payment_to, stored_to = self.tobacco_reports()
             total = payment_to + payment_ac + payment_ot + payment_ch
             total_stored = stored_to + stored_ac + stored_ot + stored_ch
-            self.label_20.setText(str(total))
-            self.label_18.setText(str(total_stored))
+            self.label_20.setText("{:.2f}".format(total))
+            self.label_18.setText("{:.2f}".format(total_stored))
         elif category == "رصيد":
             payment, stored = self.charge_reports()
-            self.label_20.setText(str(payment))
-            self.label_18.setText(str(stored))
+            self.label_20.setText("{:.2f}".format(payment))
+            self.label_18.setText("{:.2f}".format(stored))
         else:
             pass
         self.daily_movement(f"""تم اظهار تقاير عن {category}""")
+        self.report_cards()
 
     def func_export(self, category):
             data = category
@@ -1932,11 +1869,9 @@ class Main(QMainWindow, MainUI):
                     self.pushButton_9.setEnabled(True)
                     self.pushButton_12.setEnabled(True)
                     self.pushButton_14.setEnabled(True)
-                    self.pushButton_18.setEnabled(True)
                     self.pushButton_22.setEnabled(True)
                     self.pushButton_49.setEnabled(True)
                     self.pushButton_15.setEnabled(True)
-                    self.pushButton_17.setEnabled(True)
                     self.pushButton_16.setEnabled(True)
                     self.pushButton_19.setEnabled(True)
                     self.pushButton_20.setEnabled(True)
@@ -2004,11 +1939,9 @@ class Main(QMainWindow, MainUI):
                         self.pushButton_12.setEnabled(True)
                         if data[16] == 1:
                             self.pushButton_14.setEnabled(True)
-                            self.pushButton_18.setEnabled(True)
                             self.pushButton_22.setEnabled(True)
                         else:
                             self.pushButton_14.setEnabled(False)
-                            self.pushButton_18.setEnabled(False)
                             self.pushButton_22.setEnabled(False)
                         if data[17] == 1:
                             self.pushButton_49.setEnabled(True)
@@ -2016,11 +1949,9 @@ class Main(QMainWindow, MainUI):
                             self.pushButton_49.setEnabled(False)
                         if data[18] == 1:
                             self.pushButton_15.setEnabled(True)
-                            self.pushButton_17.setEnabled(True)
                             self.pushButton_21.setEnabled(True)
                         else:
                             self.pushButton_15.setEnabled(False)
-                            self.pushButton_17.setEnabled(False)
                             self.pushButton_21.setEnabled(False)
                     else:
                         self.pushButton_12.setEnabled(False)
