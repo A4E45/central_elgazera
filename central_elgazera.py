@@ -695,10 +695,9 @@ class Main(QMainWindow, MainUI):
                 self.empty_message("""لقد نفذ الرصيد من هذه الماكينة او ان قيمة التحويل غير كافية""")
             else:
                 self.cur.execute("""
-                        INSERT INTO charge(phone_number, value, _date, EmployeeID, MachineID, _time)
-                        VALUES (%s, %s, %s, %s, %s, %s)
-                    """, (card_name, final_value, self.load_date(), emp_id, machine_id, self.load_time()))
-                self.db.commit()
+				INSERT INTO phone_cards (company_name, value, quantity, EmployeeID, _date, _time)
+				VALUES (%s, %s, %s, %s, %s, %s)
+			    """, (card_name, card_value * card_quantity, card_quantity, emp_id, self.load_date(), self.load_time()))
                 final = stored_value - final_value
                 self.cur.execute(
                         """UPDATE machines SET stored_charge=%s WHERE MachineID=%s""", (final, machine_id))
@@ -1724,7 +1723,6 @@ class Main(QMainWindow, MainUI):
         else:
             pass
         self.daily_movement(f"""تم اظهار تقاير عن {category}""")
-        self.report_cards()
 
     def func_export(self, category):
             data = category
