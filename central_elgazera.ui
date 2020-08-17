@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1172</width>
-    <height>721</height>
+    <width>1202</width>
+    <height>737</height>
    </rect>
   </property>
   <property name="sizeIncrement">
@@ -1318,7 +1318,7 @@ QMessageBox QLabel {
          </font>
         </property>
         <property name="currentIndex">
-         <number>4</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_9">
          <attribute name="title">
@@ -1504,6 +1504,16 @@ QMessageBox QLabel {
                   <property name="text">
                    <string>تسجيل دخول</string>
                   </property>
+                  <property name="icon">
+                   <iconset resource="style.qrc">
+                    <normaloff>:/dark_blue/img/login-512.png</normaloff>:/dark_blue/img/login-512.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>32</width>
+                    <height>32</height>
+                   </size>
+                  </property>
                  </widget>
                 </item>
                </layout>
@@ -1622,7 +1632,17 @@ QMessageBox QLabel {
                  </font>
                 </property>
                 <property name="text">
-                 <string>معلومات</string>
+                 <string> معلومات</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="style.qrc">
+                  <normaloff>:/dark_blue/img/info-5-512.png</normaloff>:/dark_blue/img/info-5-512.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>32</width>
+                  <height>32</height>
+                 </size>
                 </property>
                </widget>
               </item>
@@ -1636,6 +1656,16 @@ QMessageBox QLabel {
                 <property name="text">
                  <string>حذف</string>
                 </property>
+                <property name="icon">
+                 <iconset resource="style.qrc">
+                  <normaloff>:/dark_blue/img/delete-512.png</normaloff>:/dark_blue/img/delete-512.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>32</width>
+                  <height>32</height>
+                 </size>
+                </property>
                </widget>
               </item>
               <item>
@@ -1646,7 +1676,17 @@ QMessageBox QLabel {
                  </font>
                 </property>
                 <property name="text">
-                 <string>حفظ</string>
+                 <string> حفظ</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="style.qrc">
+                  <normaloff>:/dark_blue/img/save-512.png</normaloff>:/dark_blue/img/save-512.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>32</width>
+                  <height>32</height>
+                 </size>
                 </property>
                </widget>
               </item>
@@ -1760,70 +1800,107 @@ QMessageBox QLabel {
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QSplitter" name="splitter_2">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <widget class="QPushButton" name="pushButton_13">
-               <property name="font">
-                <font>
-                 <pointsize>15</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>معلومات</string>
-               </property>
-              </widget>
-              <widget class="QPushButton" name="pushButton_4">
-               <property name="font">
-                <font>
-                 <pointsize>15</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>حذف</string>
-               </property>
-              </widget>
-              <widget class="QPushButton" name="pushButton_3">
-               <property name="font">
-                <font>
-                 <pointsize>15</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>حفظ</string>
-               </property>
-              </widget>
-              <widget class="QSpinBox" name="spinBox">
-               <property name="font">
-                <font>
-                 <pointsize>14</pointsize>
-                </font>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-               <property name="locale">
-                <locale language="English" country="UnitedStates"/>
-               </property>
-               <property name="minimum">
-                <number>1</number>
-               </property>
-               <property name="value">
-                <number>1</number>
-               </property>
-              </widget>
-              <widget class="QComboBox" name="comboBox_2">
-               <property name="font">
-                <font>
-                 <pointsize>15</pointsize>
-                </font>
-               </property>
-               <property name="layoutDirection">
-                <enum>Qt::RightToLeft</enum>
-               </property>
-              </widget>
-             </widget>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QPushButton" name="pushButton_13">
+                <property name="font">
+                 <font>
+                  <pointsize>15</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string> معلومات</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="style.qrc">
+                  <normaloff>:/dark_blue/img/info-5-512.png</normaloff>:/dark_blue/img/info-5-512.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>32</width>
+                  <height>32</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_4">
+                <property name="font">
+                 <font>
+                  <pointsize>15</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>حذف</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="style.qrc">
+                  <normaloff>:/dark_blue/img/delete-512.png</normaloff>:/dark_blue/img/delete-512.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>32</width>
+                  <height>32</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_3">
+                <property name="font">
+                 <font>
+                  <pointsize>15</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string> حفظ</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="style.qrc">
+                  <normaloff>:/dark_blue/img/save-512.png</normaloff>:/dark_blue/img/save-512.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>32</width>
+                  <height>32</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBox">
+                <property name="font">
+                 <font>
+                  <pointsize>14</pointsize>
+                 </font>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::RightToLeft</enum>
+                </property>
+                <property name="locale">
+                 <locale language="English" country="UnitedStates"/>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="value">
+                 <number>1</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_2">
+                <property name="font">
+                 <font>
+                  <pointsize>15</pointsize>
+                 </font>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::RightToLeft</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
              <widget class="QTableWidget" name="tableWidget_2">
@@ -1887,6 +1964,16 @@ QMessageBox QLabel {
                <property name="text">
                 <string>معلومات</string>
                </property>
+               <property name="icon">
+                <iconset resource="style.qrc">
+                 <normaloff>:/dark_blue/img/info-5-512.png</normaloff>:/dark_blue/img/info-5-512.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
+               </property>
               </widget>
               <widget class="QPushButton" name="pushButton_34">
                <property name="font">
@@ -1897,6 +1984,16 @@ QMessageBox QLabel {
                <property name="text">
                 <string>حذف</string>
                </property>
+               <property name="icon">
+                <iconset resource="style.qrc">
+                 <normaloff>:/dark_blue/img/delete-512.png</normaloff>:/dark_blue/img/delete-512.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
+               </property>
               </widget>
               <widget class="QPushButton" name="pushButton_10">
                <property name="font">
@@ -1905,7 +2002,17 @@ QMessageBox QLabel {
                 </font>
                </property>
                <property name="text">
-                <string>حفظ</string>
+                <string> حفظ</string>
+               </property>
+               <property name="icon">
+                <iconset resource="style.qrc">
+                 <normaloff>:/dark_blue/img/save-512.png</normaloff>:/dark_blue/img/save-512.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
                </property>
               </widget>
               <widget class="QSpinBox" name="spinBox_2">
@@ -2031,6 +2138,16 @@ QMessageBox QLabel {
                    <property name="text">
                     <string>معلومات</string>
                    </property>
+                   <property name="icon">
+                    <iconset resource="style.qrc">
+                     <normaloff>:/dark_blue/img/info-5-512.png</normaloff>:/dark_blue/img/info-5-512.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>32</width>
+                     <height>32</height>
+                    </size>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -2042,6 +2159,16 @@ QMessageBox QLabel {
                    </property>
                    <property name="text">
                     <string>حفظ</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="style.qrc">
+                     <normaloff>:/dark_blue/img/save-512.png</normaloff>:/dark_blue/img/save-512.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>32</width>
+                     <height>32</height>
+                    </size>
                    </property>
                   </widget>
                  </item>
@@ -2134,6 +2261,16 @@ QMessageBox QLabel {
                        <property name="text">
                         <string>معلومات</string>
                        </property>
+                       <property name="icon">
+                        <iconset resource="style.qrc">
+                         <normaloff>:/dark_blue/img/info-5-512.png</normaloff>:/dark_blue/img/info-5-512.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>32</width>
+                         <height>32</height>
+                        </size>
+                       </property>
                       </widget>
                      </item>
                      <item>
@@ -2146,6 +2283,16 @@ QMessageBox QLabel {
                        <property name="text">
                         <string>حذف</string>
                        </property>
+                       <property name="icon">
+                        <iconset resource="style.qrc">
+                         <normaloff>:/dark_blue/img/delete-512.png</normaloff>:/dark_blue/img/delete-512.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>32</width>
+                         <height>32</height>
+                        </size>
+                       </property>
                       </widget>
                      </item>
                      <item>
@@ -2156,7 +2303,17 @@ QMessageBox QLabel {
                         </font>
                        </property>
                        <property name="text">
-                        <string>حفظ</string>
+                        <string> حفظ</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="style.qrc">
+                         <normaloff>:/dark_blue/img/save-512.png</normaloff>:/dark_blue/img/save-512.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>32</width>
+                         <height>32</height>
+                        </size>
                        </property>
                       </widget>
                      </item>
@@ -2259,6 +2416,16 @@ QMessageBox QLabel {
                 <property name="text">
                  <string>حذف</string>
                 </property>
+                <property name="icon">
+                 <iconset resource="style.qrc">
+                  <normaloff>:/dark_blue/img/delete-512.png</normaloff>:/dark_blue/img/delete-512.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>32</width>
+                  <height>32</height>
+                 </size>
+                </property>
                </widget>
               </item>
               <item>
@@ -2269,7 +2436,17 @@ QMessageBox QLabel {
                  </font>
                 </property>
                 <property name="text">
-                 <string>حفظ</string>
+                 <string> حفظ</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="style.qrc">
+                  <normaloff>:/dark_blue/img/save-512.png</normaloff>:/dark_blue/img/save-512.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>32</width>
+                  <height>32</height>
+                 </size>
                 </property>
                </widget>
               </item>
@@ -2370,7 +2547,7 @@ QMessageBox QLabel {
              <locale language="English" country="UnitedStates"/>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="tab_19">
              <attribute name="title">
@@ -2390,6 +2567,16 @@ QMessageBox QLabel {
                     </property>
                     <property name="text">
                      <string>بحث</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="style.qrc">
+                      <normaloff>:/dark_blue/img/icon_search.png</normaloff>:/dark_blue/img/icon_search.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>32</width>
+                      <height>32</height>
+                     </size>
                     </property>
                    </widget>
                   </item>
@@ -2574,6 +2761,16 @@ QMessageBox QLabel {
                     <property name="text">
                      <string>بحث</string>
                     </property>
+                    <property name="icon">
+                     <iconset resource="style.qrc">
+                      <normaloff>:/dark_blue/img/icon_search.png</normaloff>:/dark_blue/img/icon_search.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>32</width>
+                      <height>32</height>
+                     </size>
+                    </property>
                    </widget>
                   </item>
                   <item>
@@ -2750,7 +2947,17 @@ QMessageBox QLabel {
                         </font>
                        </property>
                        <property name="text">
-                        <string>اضافة</string>
+                        <string> اضافة</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="style.qrc">
+                         <normaloff>:/dark_blue/img/add-512.png</normaloff>:/dark_blue/img/add-512.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>32</width>
+                         <height>32</height>
+                        </size>
                        </property>
                       </widget>
                      </item>
@@ -2816,7 +3023,17 @@ QMessageBox QLabel {
                         </font>
                        </property>
                        <property name="text">
-                        <string>اضافة</string>
+                        <string> اضافة</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="style.qrc">
+                         <normaloff>:/dark_blue/img/add-512.png</normaloff>:/dark_blue/img/add-512.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>32</width>
+                         <height>32</height>
+                        </size>
                        </property>
                       </widget>
                      </item>
@@ -2871,6 +3088,16 @@ QMessageBox QLabel {
                        </property>
                        <property name="text">
                         <string>اضافة</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="style.qrc">
+                         <normaloff>:/dark_blue/img/add-512.png</normaloff>:/dark_blue/img/add-512.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>32</width>
+                         <height>32</height>
+                        </size>
                        </property>
                       </widget>
                      </item>
@@ -2934,6 +3161,16 @@ QMessageBox QLabel {
                        </property>
                        <property name="text">
                         <string>اضافة</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="style.qrc">
+                         <normaloff>:/dark_blue/img/add-512.png</normaloff>:/dark_blue/img/add-512.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>32</width>
+                         <height>32</height>
+                        </size>
                        </property>
                       </widget>
                      </item>
@@ -3007,7 +3244,17 @@ QMessageBox QLabel {
                         </font>
                        </property>
                        <property name="text">
-                        <string>اضافة</string>
+                        <string> اضافة</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="style.qrc">
+                         <normaloff>:/dark_blue/img/add-512.png</normaloff>:/dark_blue/img/add-512.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>32</width>
+                         <height>32</height>
+                        </size>
                        </property>
                       </widget>
                      </item>
@@ -3082,7 +3329,17 @@ QMessageBox QLabel {
                         </font>
                        </property>
                        <property name="text">
-                        <string>اضافة</string>
+                        <string> اضافة</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="style.qrc">
+                         <normaloff>:/dark_blue/img/add-512.png</normaloff>:/dark_blue/img/add-512.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>32</width>
+                         <height>32</height>
+                        </size>
                        </property>
                       </widget>
                      </item>
@@ -3145,7 +3402,17 @@ QMessageBox QLabel {
                         </font>
                        </property>
                        <property name="text">
-                        <string>اضافة</string>
+                        <string> اضافة</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="style.qrc">
+                         <normaloff>:/dark_blue/img/add-512.png</normaloff>:/dark_blue/img/add-512.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>32</width>
+                         <height>32</height>
+                        </size>
                        </property>
                       </widget>
                      </item>
@@ -3190,7 +3457,17 @@ QMessageBox QLabel {
                         </font>
                        </property>
                        <property name="text">
-                        <string>اضافة</string>
+                        <string> اضافة</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="style.qrc">
+                         <normaloff>:/dark_blue/img/add-512.png</normaloff>:/dark_blue/img/add-512.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>32</width>
+                         <height>32</height>
+                        </size>
                        </property>
                       </widget>
                      </item>
@@ -3264,7 +3541,17 @@ QMessageBox QLabel {
                         </font>
                        </property>
                        <property name="text">
-                        <string>اضافة</string>
+                        <string> اضافة</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="style.qrc">
+                         <normaloff>:/dark_blue/img/add-512.png</normaloff>:/dark_blue/img/add-512.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>32</width>
+                         <height>32</height>
+                        </size>
                        </property>
                       </widget>
                      </item>
@@ -3339,7 +3626,17 @@ QMessageBox QLabel {
                         </font>
                        </property>
                        <property name="text">
-                        <string>اضافة</string>
+                        <string> اضافة</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="style.qrc">
+                         <normaloff>:/dark_blue/img/add-512.png</normaloff>:/dark_blue/img/add-512.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>32</width>
+                         <height>32</height>
+                        </size>
                        </property>
                       </widget>
                      </item>
@@ -3512,6 +3809,19 @@ QMessageBox QLabel {
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_20">
                   <item>
+                   <spacer name="horizontalSpacer_8">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
                    <widget class="QPushButton" name="pushButton_47">
                     <property name="font">
                      <font>
@@ -3519,7 +3829,17 @@ QMessageBox QLabel {
                      </font>
                     </property>
                     <property name="text">
-                     <string>حفظ</string>
+                     <string> حفظ</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="style.qrc">
+                      <normaloff>:/dark_blue/img/save-512.png</normaloff>:/dark_blue/img/save-512.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>32</width>
+                      <height>32</height>
+                     </size>
                     </property>
                    </widget>
                   </item>
@@ -3658,6 +3978,16 @@ QMessageBox QLabel {
                       <property name="text">
                        <string>حفظ</string>
                       </property>
+                      <property name="icon">
+                       <iconset resource="style.qrc">
+                        <normaloff>:/dark_blue/img/save-512.png</normaloff>:/dark_blue/img/save-512.png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>32</width>
+                        <height>32</height>
+                       </size>
+                      </property>
                      </widget>
                     </widget>
                    </item>
@@ -3688,6 +4018,16 @@ QMessageBox QLabel {
                    </property>
                    <property name="text">
                     <string>تم</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="style.qrc">
+                     <normaloff>:/dark_blue/img/check-mark-3-512.png</normaloff>:/dark_blue/img/check-mark-3-512.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>32</width>
+                     <height>32</height>
+                    </size>
                    </property>
                   </widget>
                   <widget class="QComboBox" name="comboBox_13">
@@ -3811,6 +4151,16 @@ QMessageBox QLabel {
                     <property name="text">
                      <string>حفظ</string>
                     </property>
+                    <property name="icon">
+                     <iconset resource="style.qrc">
+                      <normaloff>:/dark_blue/img/save-512.png</normaloff>:/dark_blue/img/save-512.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>32</width>
+                      <height>32</height>
+                     </size>
+                    </property>
                    </widget>
                   </item>
                  </layout>
@@ -3838,10 +4188,20 @@ QMessageBox QLabel {
                        </font>
                       </property>
                       <property name="layoutDirection">
-                       <enum>Qt::RightToLeft</enum>
+                       <enum>Qt::LeftToRight</enum>
                       </property>
                       <property name="text">
                        <string>تم</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="style.qrc">
+                        <normaloff>:/dark_blue/img/check-mark-3-512.png</normaloff>:/dark_blue/img/check-mark-3-512.png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>32</width>
+                        <height>32</height>
+                       </size>
                       </property>
                      </widget>
                     </item>
@@ -4118,6 +4478,16 @@ QMessageBox QLabel {
                   <property name="text">
                    <string>تصدير</string>
                   </property>
+                  <property name="icon">
+                   <iconset resource="style.qrc">
+                    <normaloff>:/dark_blue/img/upload-3-512.png</normaloff>:/dark_blue/img/upload-3-512.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>32</width>
+                    <height>32</height>
+                   </size>
+                  </property>
                  </widget>
                 </item>
                </layout>
@@ -4143,10 +4513,20 @@ QMessageBox QLabel {
                     </font>
                    </property>
                    <property name="layoutDirection">
-                    <enum>Qt::RightToLeft</enum>
+                    <enum>Qt::LeftToRight</enum>
                    </property>
                    <property name="text">
                     <string>بحث</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="style.qrc">
+                     <normaloff>:/dark_blue/img/icon_search.png</normaloff>:/dark_blue/img/icon_search.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>32</width>
+                     <height>32</height>
+                    </size>
                    </property>
                   </widget>
                   <widget class="QDateEdit" name="dateEdit_6">
@@ -4259,6 +4639,16 @@ QMessageBox QLabel {
                   <property name="text">
                    <string>تصدير</string>
                   </property>
+                  <property name="icon">
+                   <iconset resource="style.qrc">
+                    <normaloff>:/dark_blue/img/upload-3-512.png</normaloff>:/dark_blue/img/upload-3-512.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>32</width>
+                    <height>32</height>
+                   </size>
+                  </property>
                  </widget>
                 </item>
                </layout>
@@ -4294,6 +4684,16 @@ QMessageBox QLabel {
                      <property name="text">
                       <string>تأكيد</string>
                      </property>
+                     <property name="icon">
+                      <iconset resource="style.qrc">
+                       <normaloff>:/dark_blue/img/check-mark-3-512.png</normaloff>:/dark_blue/img/check-mark-3-512.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>32</width>
+                       <height>32</height>
+                      </size>
+                     </property>
                     </widget>
                     <widget class="QComboBox" name="comboBox_12">
                      <property name="font">
@@ -4328,614 +4728,627 @@ QMessageBox QLabel {
                  <property name="title">
                   <string/>
                  </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_58">
+                 <layout class="QVBoxLayout" name="verticalLayout_42">
                   <item>
-                   <layout class="QVBoxLayout" name="verticalLayout_57">
+                   <layout class="QHBoxLayout" name="horizontalLayout_14">
                     <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_14">
-                      <item>
-                       <widget class="QGroupBox" name="groupBox_21">
-                        <property name="enabled">
-                         <bool>false</bool>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <pointsize>15</pointsize>
-                         </font>
-                        </property>
-                        <property name="title">
-                         <string>الاعدادات</string>
-                        </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_44">
+                     <widget class="QGroupBox" name="groupBox_21">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="title">
+                       <string>الاعدادات</string>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_44">
+                       <item>
+                        <layout class="QVBoxLayout" name="verticalLayout_40">
                          <item>
-                          <layout class="QVBoxLayout" name="verticalLayout_40">
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_25">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>اضافة منتجات</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_26">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>اضافة منتجات جديدة</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_52">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>تعديل منتجات</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_27">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>اضافة اضافة موظف</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_55">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>بيانات موظف</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_53">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>تقارير</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_54">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>التحركات اليومية</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_28">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>اضافة صلاحيات</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
+                          <widget class="QCheckBox" name="checkBox_25">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>اضافة منتجات</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_26">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>اضافة منتجات جديدة</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_52">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>تعديل منتجات</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_27">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>اضافة اضافة موظف</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_55">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>بيانات موظف</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_53">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>تقارير</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_54">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>التحركات اليومية</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_28">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>اضافة صلاحيات</string>
+                           </property>
+                          </widget>
                          </item>
                         </layout>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QGroupBox" name="groupBox_19">
-                        <property name="enabled">
-                         <bool>false</bool>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <pointsize>15</pointsize>
-                         </font>
-                        </property>
-                        <property name="title">
-                         <string>مستحقات</string>
-                        </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_45">
-                         <property name="topMargin">
-                          <number>20</number>
-                         </property>
-                         <item>
-                          <layout class="QVBoxLayout" name="verticalLayout_38">
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_12">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>اضافة </string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_14">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>حذف </string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QGroupBox" name="groupBox_24">
-                        <property name="enabled">
-                         <bool>false</bool>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <pointsize>15</pointsize>
-                         </font>
-                        </property>
-                        <property name="title">
-                         <string>اخرى</string>
-                        </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_46">
-                         <item>
-                          <layout class="QVBoxLayout" name="verticalLayout_49">
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_23">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>اضافة </string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_30">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>حذف </string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_31">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>معلومات</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QGroupBox" name="groupBox_18">
-                        <property name="enabled">
-                         <bool>false</bool>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <pointsize>15</pointsize>
-                         </font>
-                        </property>
-                        <property name="title">
-                         <string>سجاير</string>
-                        </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_43">
-                         <item>
-                          <layout class="QVBoxLayout" name="verticalLayout_37">
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_11">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>اضافة </string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_22">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>حذف </string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_13">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>معلومات</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QGroupBox" name="groupBox_17">
-                        <property name="enabled">
-                         <bool>false</bool>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <pointsize>15</pointsize>
-                         </font>
-                        </property>
-                        <property name="title">
-                         <string>اكسسوارت</string>
-                        </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_47">
-                         <item>
-                          <layout class="QVBoxLayout" name="verticalLayout_36">
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_32">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>اضافة </string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_9">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>حذف </string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_10">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>معلومات</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QGroupBox" name="groupBox_16">
-                        <property name="enabled">
-                         <bool>false</bool>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <pointsize>15</pointsize>
-                         </font>
-                        </property>
-                        <property name="title">
-                         <string>تحويل رصيد</string>
-                        </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_48">
-                         <item>
-                          <layout class="QVBoxLayout" name="verticalLayout_35">
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_15">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>اضافة </string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_2">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>حذف </string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_3">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>معلومات</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QGroupBox" name="groupBox_20">
-                        <property name="font">
-                         <font>
-                          <pointsize>15</pointsize>
-                         </font>
-                        </property>
-                        <property name="title">
-                         <string>القائمة الرئيسة</string>
-                        </property>
-                        <layout class="QVBoxLayout" name="verticalLayout_41">
-                         <property name="topMargin">
-                          <number>20</number>
-                         </property>
-                         <item>
-                          <layout class="QVBoxLayout" name="verticalLayout_39">
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_16">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>تحويل رصيد</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_17">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>اكسسوارات</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_18">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>سجاير</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_19">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>اخرى</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_20">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>مستحقات</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_21">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>بحث عن عملية</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QCheckBox" name="checkBox_24">
-                             <property name="font">
-                              <font>
-                               <pointsize>13</pointsize>
-                              </font>
-                             </property>
-                             <property name="layoutDirection">
-                              <enum>Qt::RightToLeft</enum>
-                             </property>
-                             <property name="text">
-                              <string>الاعدادات</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                     </layout>
+                       </item>
+                      </layout>
+                     </widget>
                     </item>
                     <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_42">
+                     <widget class="QGroupBox" name="groupBox_19">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="title">
+                       <string>مستحقات</string>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_45">
+                       <property name="topMargin">
+                        <number>20</number>
+                       </property>
+                       <item>
+                        <layout class="QVBoxLayout" name="verticalLayout_38">
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_12">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>اضافة </string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_14">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>حذف </string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QGroupBox" name="groupBox_24">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="title">
+                       <string>اخرى</string>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_46">
+                       <item>
+                        <layout class="QVBoxLayout" name="verticalLayout_49">
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_23">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>اضافة </string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_30">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>حذف </string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_31">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>معلومات</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QGroupBox" name="groupBox_18">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="title">
+                       <string>سجاير</string>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_43">
+                       <item>
+                        <layout class="QVBoxLayout" name="verticalLayout_37">
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_11">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>اضافة </string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_22">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>حذف </string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_13">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>معلومات</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QGroupBox" name="groupBox_17">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="title">
+                       <string>اكسسوارت</string>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_47">
+                       <item>
+                        <layout class="QVBoxLayout" name="verticalLayout_36">
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_32">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>اضافة </string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_9">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>حذف </string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_10">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>معلومات</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QGroupBox" name="groupBox_16">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="title">
+                       <string>تحويل رصيد</string>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_48">
+                       <item>
+                        <layout class="QVBoxLayout" name="verticalLayout_35">
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_15">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>اضافة </string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_2">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>حذف </string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_3">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>معلومات</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QGroupBox" name="groupBox_20">
+                      <property name="font">
+                       <font>
+                        <pointsize>15</pointsize>
+                       </font>
+                      </property>
+                      <property name="title">
+                       <string>القائمة الرئيسة</string>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_41">
+                       <property name="topMargin">
+                        <number>20</number>
+                       </property>
+                       <item>
+                        <layout class="QVBoxLayout" name="verticalLayout_39">
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_16">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>تحويل رصيد</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_17">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>اكسسوارات</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_18">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>سجاير</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_19">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>اخرى</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_20">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>مستحقات</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_21">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>بحث عن عملية</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QCheckBox" name="checkBox_24">
+                           <property name="font">
+                            <font>
+                             <pointsize>13</pointsize>
+                            </font>
+                           </property>
+                           <property name="layoutDirection">
+                            <enum>Qt::RightToLeft</enum>
+                           </property>
+                           <property name="text">
+                            <string>الاعدادات</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_12">
+                    <item>
+                     <widget class="QCheckBox" name="checkBox_29">
+                      <property name="font">
+                       <font>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::RightToLeft</enum>
+                      </property>
+                      <property name="text">
+                       <string>اضافة الموظف كمسؤل</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_32">
                       <item>
-                       <widget class="QCheckBox" name="checkBox_29">
-                        <property name="font">
-                         <font>
-                          <pointsize>13</pointsize>
-                         </font>
+                       <spacer name="horizontalSpacer_9">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
                         </property>
-                        <property name="layoutDirection">
-                         <enum>Qt::RightToLeft</enum>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
                         </property>
-                        <property name="text">
-                         <string>اضافة الموظف كمسؤل</string>
-                        </property>
-                       </widget>
+                       </spacer>
                       </item>
                       <item>
                        <widget class="QPushButton" name="pushButton_45">
@@ -4945,7 +5358,17 @@ QMessageBox QLabel {
                          </font>
                         </property>
                         <property name="text">
-                         <string>حفظ</string>
+                         <string> حفظ</string>
+                        </property>
+                        <property name="icon">
+                         <iconset resource="style.qrc">
+                          <normaloff>:/dark_blue/img/save-512.png</normaloff>:/dark_blue/img/save-512.png</iconset>
+                        </property>
+                        <property name="iconSize">
+                         <size>
+                          <width>32</width>
+                          <height>32</height>
+                         </size>
                         </property>
                        </widget>
                       </item>
@@ -4976,8 +5399,21 @@ QMessageBox QLabel {
            <pointsize>15</pointsize>
           </font>
          </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;تحويل رصيد&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>تحويل رصيد</string>
+         </property>
+         <property name="icon">
+          <iconset resource="style.qrc">
+           <normaloff>:/dark_blue/img/mobile-phone-8-512.png</normaloff>:/dark_blue/img/mobile-phone-8-512.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
          </property>
         </widget>
         <widget class="QPushButton" name="pushButton_7">
@@ -4986,8 +5422,21 @@ QMessageBox QLabel {
            <pointsize>15</pointsize>
           </font>
          </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;اكسسوارات&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>اكسسوارات</string>
+         </property>
+         <property name="icon">
+          <iconset resource="style.qrc">
+           <normaloff>:/dark_blue/img/headphones-512.png</normaloff>:/dark_blue/img/headphones-512.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
          </property>
         </widget>
         <widget class="QPushButton" name="pushButton_11">
@@ -4996,8 +5445,21 @@ QMessageBox QLabel {
            <pointsize>15</pointsize>
           </font>
          </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;سجاير&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
-          <string>سجاير</string>
+          <string>سجاير  </string>
+         </property>
+         <property name="icon">
+          <iconset resource="style.qrc">
+           <normaloff>:/dark_blue/img/smoking-512.png</normaloff>:/dark_blue/img/smoking-512.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
          </property>
         </widget>
         <widget class="QPushButton" name="pushButton_12">
@@ -5006,8 +5468,21 @@ QMessageBox QLabel {
            <pointsize>15</pointsize>
           </font>
          </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;اخرى&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>اخرى</string>
+         </property>
+         <property name="icon">
+          <iconset resource="style.qrc">
+           <normaloff>:/dark_blue/img/shopping-cart-512.png</normaloff>:/dark_blue/img/shopping-cart-512.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
          </property>
         </widget>
         <widget class="QPushButton" name="pushButton_16">
@@ -5019,6 +5494,16 @@ QMessageBox QLabel {
          <property name="text">
           <string>مستحقات</string>
          </property>
+         <property name="icon">
+          <iconset resource="style.qrc">
+           <normaloff>:/dark_blue/img/external-link-512.png</normaloff>:/dark_blue/img/external-link-512.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
         </widget>
         <widget class="QPushButton" name="pushButton_28">
          <property name="font">
@@ -5028,6 +5513,22 @@ QMessageBox QLabel {
          </property>
          <property name="text">
           <string>بحث عن عملية</string>
+         </property>
+         <property name="icon">
+          <iconset resource="style.qrc">
+           <normaloff>:/dark_blue/img/icon_search.png</normaloff>:/dark_blue/img/icon_search.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
          </property>
         </widget>
         <widget class="QPushButton" name="pushButton_8">
@@ -5042,6 +5543,16 @@ QMessageBox QLabel {
          <property name="text">
           <string>الاعدادات</string>
          </property>
+         <property name="icon">
+          <iconset resource="style.qrc">
+           <normaloff>:/dark_blue/img/icon_settings.png</normaloff>:/dark_blue/img/icon_settings.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
         </widget>
         <widget class="QPushButton" name="pushButton_32">
          <property name="enabled">
@@ -5053,7 +5564,17 @@ QMessageBox QLabel {
           </font>
          </property>
          <property name="text">
-          <string>تسجيل خروج</string>
+          <string> تسجيل خروج</string>
+         </property>
+         <property name="icon">
+          <iconset resource="style.qrc">
+           <normaloff>:/dark_blue/img/account-logout-512.png</normaloff>:/dark_blue/img/account-logout-512.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
          </property>
         </widget>
        </widget>
@@ -5067,7 +5588,7 @@ QMessageBox QLabel {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1172</width>
+     <width>1202</width>
      <height>21</height>
     </rect>
    </property>

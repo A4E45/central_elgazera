@@ -47,7 +47,21 @@
     <file>img/showpassword.png</file>
     <file>img/hidepassword.png</file>
     <file>img/central_elgazera.png</file>
-
+    <file>img/icon_settings.png</file>
+    <file>img/account-logout-512.png</file>
+    <file>img/icon_search.png</file>
+    <file>img/mobile-phone-8-512.png</file>
+    <file>img/headphones-512.png</file>
+    <file>img/smoking-512.png</file>
+    <file>img/shopping-cart-512.png</file>
+    <file>img/external-link-512.png</file>
+    <file>img/login-512.png</file>
+    <file>img/add-512.png</file>
+    <file>img/delete-512.png</file>
+    <file>img/info-5-512.png</file>
+    <file>img/save-512.png</file>
+    <file>img/check-mark-3-512.png</file>
+    <file>img/upload-3-512.png</file>
   </qresource>
   <qresource prefix="/dark_blue">
       <file>style.qss</file>
